@@ -39,6 +39,14 @@
 
   users.defaultUserShell = pkgs.zsh;
 
+  # hyprland and wayland
+  programs.hyprland = {
+    # Install the packages from nixpkgs
+    enable = true;
+    # Whether to enable XWayland
+    xwayland.enable = true;
+  };
+
   # sddm for login
   services.displayManager.enable = true;
   services.displayManager.sddm = {
