@@ -12,6 +12,13 @@
   environment.systemPackages = with pkgs; [
   ];
 
+  # As of NixOS 22.05 ("Quokka"), you can enable Ozone Wayland support in 
+  # Chromium and Electron based applications by setting 
+  # the environment variable NIXOS_OZONE_WL=1. For example, in a configuration.nix:
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   networking.wireless.iwd.enable = true;  # Enables wireless support.
   networking.networkmanager = {
     enable = true;  # Easiest to use and most distros use this by default.
@@ -33,8 +40,8 @@
   users.defaultUserShell = pkgs.zsh;
 
   # sddm for login
-  services.xserver.enable = true; # still needs to install an xserver dispite i'll never use it
-  services.xserver.displayManager.sddm = {
+  services.displayManager.enable = true;
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
