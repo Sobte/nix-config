@@ -85,15 +85,18 @@ in {
       bun
       dprint
 
-      # go
-      go
-
       # rust
       rustup
       sccache
 
       # lua
       luajit
+
+      # dotnet
+      dotnet-sdk_8
+      
+      # python
+      python3
 
       # k8s
       kubectl
@@ -196,5 +199,17 @@ in {
 
     # command not found in nix
     nix-index.enable = true;
+
+    # java programming language
+    java = {
+      enable = true;
+      package = pkgs.graalvm-ce;
+    };
+
+    # go programming language
+    go = {
+      enable = true;
+    };
+
   };
 }
