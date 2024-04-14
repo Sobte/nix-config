@@ -76,7 +76,7 @@
   services.udisks2.enable = true;
 
   # the app that maximizes my retention
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
