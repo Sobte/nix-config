@@ -92,6 +92,12 @@ in {
       # lua
       luajit
 
+      # kotlin
+      kotlin
+
+      # flutter
+      flutter
+
       # dotnet
       dotnet-sdk_8
       
