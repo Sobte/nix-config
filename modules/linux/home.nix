@@ -36,13 +36,15 @@
       inkscape-with-extensions
       gparted
       heroic
-      jetbrains.idea-community-bin
       obsidian
       qbittorrent
       r2modman
       syncplay
       ventoy-full
       vlc
+
+      ## jetbrains toolbox (all ide)
+      jetbrains-toolbox
     ];
   };
 
