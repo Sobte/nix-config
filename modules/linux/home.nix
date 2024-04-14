@@ -43,8 +43,23 @@
       ventoy-full
       vlc
 
-      ## jetbrains toolbox (all ide)
+      ## jetbrains ide
       jetbrains-toolbox
+      jetbrains.webstorm
+      jetbrains.rust-rover
+      jetbrains.ruby-mine
+      jetbrains.rider
+      jetbrains.pycharm-professional
+      jetbrains.phpstorm
+      jetbrains.idea-ultimate
+      jetbrains.goland
+      jetbrains.gateway
+      jetbrains.dataspell
+      jetbrains.datagrip
+      # jetbrains.clion
+
+      ## android studio
+      android-studio
     ];
   };
 
