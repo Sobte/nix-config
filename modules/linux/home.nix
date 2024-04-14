@@ -51,13 +51,13 @@
     credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      kdePackages.fcitx5-configtool
-    ];
-  };
+  # i18n.inputMethod = {
+  #   enabled = "fcitx5";
+  #   fcitx5.addons = with pkgs; [
+  #     fcitx5-rime
+  #     kdePackages.fcitx5-configtool
+  #   ];
+  # };
 
   # the linux browser (TM)
   programs.firefox = {

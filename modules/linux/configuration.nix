@@ -85,4 +85,14 @@
     enable = true;
     storageDriver = "btrfs";
   };
+
+  # fcitx5 with qt6
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      kdePackages.fcitx5-configtool
+    ];
+  };
+
 }
