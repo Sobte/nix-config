@@ -42,6 +42,7 @@
       syncplay
       ventoy-full
       vlc
+      kdePackages.kleopatra
 
       ## jetbrains ide
       jetbrains-toolbox
