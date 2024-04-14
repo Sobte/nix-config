@@ -43,7 +43,6 @@
       syncplay
       ventoy-full
       vlc
-      google-chrome
     ];
   };
 
@@ -65,9 +64,14 @@
     package = pkgs.firefox-devedition-bin;
   };
 
-  # programs.chromium = {
-  #   enable = true;
-  # };
+  # chromium for google
+  programs.chromium = {
+    enable = true;
+    package = pkgs.google-chrome;
+    commandLineArgs = [
+      "--enable-wayland-ime"
+    ];
+  };
 
   programs.browserpass = {
     enable = true;
