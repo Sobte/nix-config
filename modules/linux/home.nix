@@ -88,6 +88,7 @@
     enable = true;
     package = pkgs.google-chrome;
     commandLineArgs = [
+      "--ozone-platform=wayland"
       "--enable-wayland-ime"
     ];
   };
