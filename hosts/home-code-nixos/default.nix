@@ -16,6 +16,8 @@ inputs @ {
     # use systemd-boot as the bootloader
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    # use amd gpu driver
+    boot.initrd.kernelModules = [ "amdgpu" ];
 
     # fix file system options
     fileSystems = {
