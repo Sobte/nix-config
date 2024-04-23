@@ -30,6 +30,7 @@
       # apps
       bitwarden-desktop
       telegram-desktop
+      discord
       filezilla
       geogebra6
       gimp
@@ -57,7 +58,7 @@
       jetbrains.gateway
       jetbrains.dataspell
       jetbrains.datagrip
-      # jetbrains.clion
+      jetbrains.clion
 
       ## android studio
       android-studio
