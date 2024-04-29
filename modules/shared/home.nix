@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  nodejs = pkgs.nodejs_21;
+  nodejs = pkgs.nodejs_22;
 in {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
