@@ -44,6 +44,7 @@
       ventoy-full
       vlc
       kdePackages.kleopatra
+      libreoffice
 
       ## jetbrains ide
       jetbrains-toolbox
