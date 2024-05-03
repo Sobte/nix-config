@@ -56,7 +56,6 @@
       jetbrains.phpstorm
       jetbrains.idea-ultimate
       jetbrains.goland
-      jetbrains.gateway
       jetbrains.dataspell
       jetbrains.datagrip
       jetbrains.clion
