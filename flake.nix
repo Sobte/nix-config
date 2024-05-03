@@ -4,7 +4,8 @@
   inputs = {
     flake-schemas.url = "github:DeterminateSystems/flake-schemas";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,6 +26,7 @@
   outputs = inputs @ {
     flake-schemas,
     nixpkgs,
+    nixos-wsl,
     nix-formatter-pack,
     ...
   }: let
@@ -64,6 +66,8 @@
     nixosConfigurations = {
       # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
       "home-code-nixos" = import ./hosts/home-code-nixos inputs;
+      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-wsl
+      "home-code-wsl" = import ./hosts/home-code-wsl inputs;
     };
 
     images = {
