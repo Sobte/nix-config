@@ -30,6 +30,9 @@ inputs @ {
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
 
+    # enable openssh
+    services.openssh.enable = true;
+
     users.users.meow = {
       isNormalUser = true;
       extraGroups = [
