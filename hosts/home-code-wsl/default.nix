@@ -19,8 +19,11 @@ inputs @ {
     # wsl configuration
     wsl.enable = true;
     wsl.defaultUser = "meow";
+    wsl.nativeSystemd = true;
+    wsl.useWindowsDriver = true;
+    # close the docker in nixos, use docker desktop in windows
+    virtualisation.docker.enable = nixpkgs.lib.mkForce false;
     # wsl.docker-desktop.enable = true;
-    wsl.wslConf.network.hostname = "home-code-wsl";
 
     networking.hostName = "home-code-wsl"; # tower pc built in 2020, get it?
 
