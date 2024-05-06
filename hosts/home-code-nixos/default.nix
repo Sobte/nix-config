@@ -7,6 +7,7 @@ inputs @ {
   configuration = {...}: {
     imports = [
       ../../modules/linux/configuration.nix
+      ../../modules/linux/core/services/samba.nix
       ./hardware-configuration.nix
     ];
 
