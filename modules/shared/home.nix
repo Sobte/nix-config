@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  nodejs = pkgs.nodejs_22;
-in {
+}: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
@@ -79,9 +77,8 @@ in {
       emscripten
 
       # js
-      nodejs
-      nodejs.pkgs.yarn
-      nodejs.pkgs.pnpm
+      nodejs_22
+      corepack_22
       bun
       dprint
 
