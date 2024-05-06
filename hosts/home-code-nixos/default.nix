@@ -30,7 +30,10 @@ inputs @ {
 
     networking.hostName = "home-code-nixos"; # tower pc built in 2020, get it?
     # wg-quick configuration
-    networking.wg-quick.interfaces = builtins.fromTOML (builtins.readFile "${hosts-secrets}/home-code-nixos/wg-quick.toml");
+    networking.wg-quick.interfaces = 
+    let wg-conf-file = "${hosts-secrets}/hosts/home-code-nixos/wg-quick.toml";
+    in builtins.fromTOML (builtins.readFile wg-conf-file);
+
     services.openssh.enable = true;
 
     time.timeZone = "Asia/Shanghai";
