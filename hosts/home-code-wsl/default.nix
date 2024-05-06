@@ -9,6 +9,7 @@ inputs @ {
       # include NixOS-WSL modules
       # <nixos-wsl/modules>
       ../../modules/linux/configuration.nix
+      ../../modules/linux/core/services/samba.nix
       ./hardware-configuration.nix
     ];
 
