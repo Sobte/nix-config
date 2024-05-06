@@ -1,6 +1,7 @@
 inputs @ {
   nixpkgs,
   home-manager,
+  hosts-secrets,
   ...
 }: let
   configuration = {...}: {
@@ -28,6 +29,9 @@ inputs @ {
     };
 
     networking.hostName = "home-code-nixos"; # tower pc built in 2020, get it?
+    # wg-quick configuration
+    networking.wg-quick.interfaces = builtins.fromTOML (builtins.readFile "${hosts-secrets}/home-code-nixos/wg-quick.toml");
+    services.openssh.enable = true;
 
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
