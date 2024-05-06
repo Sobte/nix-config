@@ -45,6 +45,7 @@
       vlc
       kdePackages.kleopatra
       libreoffice
+      fluffychat
 
       ## jetbrains ide
       jetbrains-toolbox
