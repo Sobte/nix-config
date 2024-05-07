@@ -15,6 +15,7 @@
       rime-cli
       gcc
       psmisc # killall
+      usbutils # lsusb
 
       # disk stuff
       ifuse # for ios
