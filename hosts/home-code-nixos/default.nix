@@ -1,14 +1,12 @@
 inputs @ {
   nixpkgs,
   home-manager,
-  hosts-secrets,
   ...
 }: let
   configuration = {...}: {
     imports = [
-      ../../modules/linux/configuration.nix
-      ../../modules/linux/core/services/samba.nix
       ./hardware-configuration.nix
+      ./configuration.nix
     ];
 
     # this doesn't need to be touched,
@@ -19,7 +17,7 @@ inputs @ {
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     # use amd gpu driver
-    boot.initrd.kernelModules = [ "amdgpu" ];
+    boot.initrd.kernelModules = ["amdgpu"];
 
     # fix file system options
     fileSystems = {
@@ -30,12 +28,6 @@ inputs @ {
     };
 
     networking.hostName = "home-code-nixos"; # tower pc built in 2020, get it?
-    # wg-quick configuration
-    networking.wg-quick.interfaces = 
-    let wg-conf-file = "${hosts-secrets}/hosts/home-code-nixos/wg-quick.toml";
-    in builtins.fromTOML (builtins.readFile wg-conf-file);
-
-    services.openssh.enable = true;
 
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";

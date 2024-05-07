@@ -1,32 +1,14 @@
 {pkgs, ...}: {
   imports = [
-    ../shared/home.nix
+    ../core/home.nix
   ];
 
   home = {
     packages = with pkgs; [
-      # common lib
-      libsecret # for git credentials
-
-      # cli stuff
-      kwalletcli
-      ollama # llm
-      p7zip
-      rime-cli
-      gcc
-      psmisc # killall
-      usbutils # lsusb
-
-      # disk stuff
-      ifuse # for ios
-      mtools # NTFS
-      nfs-utils # nfs
-
       # network
       cloudflared # tunnel
       cloudflare-warp
       tailscale
-      inetutils # telnet / ping
 
       # apps
       bitwarden-desktop
@@ -67,18 +49,6 @@
     ];
   };
 
-  programs.git.extraConfig = {
-    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
-  };
-
-  # i18n.inputMethod = {
-  #   enabled = "fcitx5";
-  #   fcitx5.addons = with pkgs; [
-  #     fcitx5-rime
-  #     kdePackages.fcitx5-configtool
-  #   ];
-  # };
-
   # the linux browser (TM)
   programs.firefox = {
     enable = true;
@@ -95,6 +65,7 @@
     ];
   };
 
+  # browserpass for password management
   programs.browserpass = {
     enable = true;
     browsers = [

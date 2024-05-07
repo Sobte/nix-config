@@ -6,17 +6,14 @@ inputs @ {
 }: let
   configuration = {...}: {
     imports = [
-      # include NixOS-WSL modules
-      # <nixos-wsl/modules>
-      ../../modules/linux/configuration.nix
-      ../../modules/linux/core/services/samba.nix
       ./hardware-configuration.nix
+      ./configuration.nix
     ];
 
     # this doesn't need to be touched,
     # touching it will definitely break things, so beware
     system.stateVersion = "24.05";
-    
+
     # wsl configuration
     wsl.enable = true;
     wsl.defaultUser = "meow";
@@ -30,9 +27,6 @@ inputs @ {
 
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
-
-    # enable openssh
-    services.openssh.enable = true;
 
     users.users.meow = {
       isNormalUser = true;

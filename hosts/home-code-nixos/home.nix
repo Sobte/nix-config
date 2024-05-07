@@ -1,5 +1,6 @@
 {config, ...}: {
   imports = [
-    ../../modules/linux/home.nix
+    ../../modules/linux/desktop/home.nix
+    ../../modules/linux/desktop/app/dev-app.nix
   ];
 }
