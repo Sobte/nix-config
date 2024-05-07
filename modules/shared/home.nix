@@ -40,6 +40,7 @@
       wrk
       oha
       pciutils # lspci
+      openssl
 
       # tui
       btop
@@ -49,6 +50,7 @@
       dua # most convenient disk stuff I've ever used
       gitui
       dive
+      tree # file tree
 
       # databases
       postgresql_16_jit # til: postgres has jit
@@ -146,7 +148,7 @@
         # should set this in cli too
         branch.sort = "-committerdate";
         # I still left wondering how on earth would I configure repo maintenance
-        
+
         init.defaultBranch = "main";
       };
     };
@@ -193,6 +195,5 @@
 
     # command not found in nix
     nix-index.enable = true;
-
   };
 }
