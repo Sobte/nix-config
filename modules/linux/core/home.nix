@@ -27,7 +27,9 @@
     ];
   };
 
-  programs.git.extraConfig = {
-    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+  programs = {
+    git.extraConfig = {
+      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+    };
   };
 }
