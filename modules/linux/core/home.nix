@@ -28,6 +28,15 @@
   };
 
   programs = {
+    zsh.initExtra = ''
+      # pnpm
+      export PNPM_HOME="$HOME/.local/share/pnpm"
+      # check pnpm home exists in path
+      if [[ ":$PATH:" != *":$PNPM_HOME:"* ]]; then
+          export PATH="$PATH:$PNPM_HOME"
+      fi
+    '';
+
     git.extraConfig = {
       credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
     };
