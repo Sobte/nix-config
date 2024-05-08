@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$directory$fill $all"""
+format = """$directory[::](dimmed black) $all"""
 continuation_prompt = '[󰇙](bold green) '
 
 [aws]
@@ -13,8 +13,8 @@ symbol = ' '
 symbol = ' '
 
 [character]
-success_symbol = '[\$](bold green)'
-error_symbol = '[\$](bold red)'
+success_symbol = '[λ](bold purple)'
+error_symbol = '[λ](bold red)'
 
 [conda]
 symbol = ' '
