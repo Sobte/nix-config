@@ -9,6 +9,9 @@ symbol = ' '
 [buf]
 symbol = ' '
 
+[bun]
+symbol = " "
+
 [c]
 symbol = ' '
 
@@ -34,6 +37,10 @@ repo_root_style = 'bold cyan'
 
 [docker_context]
 symbol = ' '
+
+[dotnet]
+symbol = '󰪮 '
+detect_extensions = [ "csproj", "fsproj", "xproj", "sln"]
 
 [elixir]
 symbol = ' '
