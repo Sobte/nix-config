@@ -15,10 +15,12 @@ inputs @ {
     system.stateVersion = "24.05";
 
     # wsl configuration
-    wsl.enable = true;
-    wsl.defaultUser = "meow";
-    wsl.nativeSystemd = true;
-    wsl.useWindowsDriver = true;
+    wsl = {
+      enable = true;
+      defaultUser = "meow";
+      nativeSystemd = true;
+      useWindowsDriver = true;
+    };
     # close the docker in nixos, use docker desktop in windows
     virtualisation.docker.enable = nixpkgs.lib.mkForce false;
     # wsl.docker-desktop.enable = true;
