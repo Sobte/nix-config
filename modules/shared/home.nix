@@ -14,6 +14,7 @@
       # nix stuff
       alejandra
       nil # nix language server
+      nixfmt-rfc-style # An opinionated formatter for Nix
 
       # cli utils
       wget # fetch thing i don't use
