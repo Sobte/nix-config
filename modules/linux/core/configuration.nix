@@ -12,10 +12,12 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  networking.wireless.iwd.enable = true; # Enables wireless support.
-  networking.networkmanager = {
-    enable = true; # Easiest to use and most distros use this by default.
-    wifi.backend = "iwd";
+  networking = {
+    wireless.iwd.enable = true; # Enables wireless support.
+    networkmanager = {
+      enable = true; # Easiest to use and most distros use this by default.
+      wifi.backend = "iwd";
+    };
   };
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
