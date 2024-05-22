@@ -39,16 +39,6 @@ in {
   in
     {
       fontDir.enable = true;
-      fontconfig.defaultFonts = {
-        # Source Han Serif
-        serif = ["Source Han Serif SC" "Source Han Serif TC" "Noto Color Emoji"];
-        # Source Han Sans
-        sansSerif = ["Source Han Sans SC" "Source Han Sans TC" "Noto Color Emoji"];
-        # Fira Code
-        monospace = ["Fira Code" "Noto Color Emoji"];
-        # Nerd Fonts
-        emoji = ["Noto Color Emoji"];
-      };
     }
     // (
       if isDarwin
@@ -57,6 +47,16 @@ in {
       }
       else {
         inherit packages;
+        fontconfig.defaultFonts = {
+          # Source Han Serif
+          serif = ["Source Han Serif SC" "Source Han Serif TC" "Noto Color Emoji"];
+          # Source Han Sans
+          sansSerif = ["Source Han Sans SC" "Source Han Sans TC" "Noto Color Emoji"];
+          # Fira Code
+          monospace = ["Fira Code" "Noto Color Emoji"];
+          # Nerd Fonts
+          emoji = ["Noto Color Emoji"];
+        };
       }
     );
 

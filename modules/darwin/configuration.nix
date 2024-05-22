@@ -40,7 +40,7 @@
       automatic = true;
       interval = {
         Weekday = 0;
-        Hour = 2;
+        Hour = 4;
         Minute = 0;
       };
       options = "--delete-older-than 30d";

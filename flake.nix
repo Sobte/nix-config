@@ -16,6 +16,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,8 +77,8 @@
     formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
 
     darwinConfigurations = {
-      # $ darwin-rebuild switch --flake ~/.config/nix-darwin#chinos-mbp23
-      # "chinos-mbp23" = import ./hosts/chinos-mbp23 inputs;
+      # $ darwin-rebuild switch --flake ~/.config/nix-config#home-code-mbp
+      "home-code-mbp" = import ./hosts/home-code-mbp inputs;
     };
 
     nixosConfigurations = {

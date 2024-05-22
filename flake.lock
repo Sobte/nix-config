@@ -85,6 +85,26 @@
         "url": "ssh://git@github.com/Sobte/hosts-secrets.git"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1716329735,
+        "narHash": "sha256-ap51w+VqG21vuzyQ04WrhI2YbWHd3UGz0e7dc/QQmoA=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "eac4f25028c1975a939c8f8fba95c12f8a25e01c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nix-formatter-pack": {
       "inputs": {
         "nixpkgs": [
@@ -217,6 +237,7 @@
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "hosts-secrets": "hosts-secrets",
+        "nix-darwin": "nix-darwin",
         "nix-formatter-pack": "nix-formatter-pack",
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",

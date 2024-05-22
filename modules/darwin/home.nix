@@ -7,11 +7,12 @@
     zsh.initExtra = ''
       # pnpm
       export PNPM_HOME="/Users/meow/Library/pnpm"
-      case ":$PATH:" in
-        *":$PNPM_HOME:"*) ;;
-        *) export PATH="$PNPM_HOME:$PATH" ;;
-      esac
-      # pnpm end
+      # check pnpm home exists in path
+      if [[ ":$PATH:" != *":$PNPM_HOME:"* ]]; then
+          export PATH="$PATH:$PNPM_HOME"
+      fi
     '';
+
+    vscode.enable = true;
   };
 }
