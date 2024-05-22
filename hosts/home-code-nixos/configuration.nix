@@ -19,5 +19,4 @@
   in
     builtins.fromTOML (builtins.readFile wg-conf-file);
 
-  services.openssh.enable = true;
 }

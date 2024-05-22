@@ -49,4 +49,7 @@
     enable = true;
     storageDriver = "btrfs";
   };
+
+  # enable openssh
+  services.openssh.enable = true;
 }
