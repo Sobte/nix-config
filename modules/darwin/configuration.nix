@@ -56,10 +56,7 @@
     # giving the ablitity to self update is usually more efficient,
     # tho some software is not able to do so.
     casks = [
-      "android-platform-tools" # adb stuff, tho it doesn't bind to path, probably'll do it later
-      "eloston-chromium"
-      "iina" # video player, tho i usually use vlc
-      "powershell"
+      "google-chrome"
     ];
   };
 }
