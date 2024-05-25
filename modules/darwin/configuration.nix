@@ -57,6 +57,7 @@
     # tho some software is not able to do so.
     casks = [
       "google-chrome"
+      "jetbrains-toolbox"
     ];
   };
 }
