@@ -4,6 +4,7 @@
   inputs,
   ...
 }: let
+  # TODO use hosts-secrets (garnix no cache secrets)
   homeDir = config.users.users.meow.home;
   smb-secrets = "${homeDir}/.config/hosts-secrets/shared/samba/smb-secrets";
   # By default, CIFS shares are mounted as root. If mounting as user is desirable, `uid`, `gid` and usergroup arguments can be provided as part of the filesystem options:
