@@ -35,6 +35,11 @@
       url = "github:Gerschtli/nix-formatter-pack";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hosts-secrets = {
+      url = "git+ssh://git@github.com/Sobte/hosts-secrets.git";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
