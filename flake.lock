@@ -69,22 +69,6 @@
         "type": "github"
       }
     },
-    "hosts-secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715022102,
-        "narHash": "sha256-DqAT6y0K0GLxyE7HQqqAqV9o11CL9ZeVuLPiyzDTUy8=",
-        "ref": "refs/heads/main",
-        "rev": "89fbc5b9e282d3e172dad8dea4a0a21eadbcfcf2",
-        "revCount": 3,
-        "type": "git",
-        "url": "ssh://git@github.com/Sobte/hosts-secrets.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/Sobte/hosts-secrets.git"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -236,7 +220,6 @@
       "inputs": {
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
-        "hosts-secrets": "hosts-secrets",
         "nix-darwin": "nix-darwin",
         "nix-formatter-pack": "nix-formatter-pack",
         "nix-index-database": "nix-index-database",

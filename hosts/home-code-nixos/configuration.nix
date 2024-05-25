@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -14,9 +15,10 @@
   ];
 
   # wg-quick configuration
-  networking.wg-quick.interfaces = let
-    wg-conf-file = "${inputs.hosts-secrets}/hosts/home-code-nixos/wg-quick.toml";
-  in
-    builtins.fromTOML (builtins.readFile wg-conf-file);
+  networking.wg-quick.interfaces = {
+    wg-go-home = {
+      configFile = "${config.users.users.meow.home}/.config/hosts-secrets/hosts/home-code-nixos/wg-go-home.conf";
+    };
+  };
 
 }

@@ -42,6 +42,7 @@
       oha
       pciutils # lspci
       openssl
+      wireguard-tools # i need wg-quick
 
       # tui
       btop
