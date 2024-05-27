@@ -28,6 +28,7 @@
       kdePackages.kleopatra
       libreoffice
       fluffychat
+      thunderbird # email client
     ];
   };
 

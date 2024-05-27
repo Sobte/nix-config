@@ -58,6 +58,7 @@
     casks = [
       "google-chrome"
       "jetbrains-toolbox"
+      "thunderbird" # email client
     ];
   };
 }
