@@ -9,7 +9,7 @@
   # wg-quick configuration
   environment.etc = {
     "wireguard/wg-go-home.conf" = {
-      configFile = "${inputs.hosts-secrets}/hosts/home-code-mbp/wg-go-home.conf";
+      source = "${inputs.hosts-secrets}/hosts/home-code-mbp/wg-go-home.conf";
     };
   };
 }
