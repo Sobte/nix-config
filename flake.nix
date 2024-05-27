@@ -32,7 +32,7 @@
     };
 
     nix-formatter-pack = {
-      url = "github:Gerschtli/nix-formatter-pack";
+      url = "github:Sobte/nix-formatter-pack/mv-nixfmt_rfc_style";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -59,7 +59,7 @@
 
       config = {
         tools = {
-          alejandra.enable = true;
+          nixfmt.enable = true;
           deadnix.enable = true;
           statix.enable = true;
         };
