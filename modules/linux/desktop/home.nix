@@ -1,7 +1,6 @@
-{pkgs, ...}: {
-  imports = [
-    ../core/home.nix
-  ];
+{ pkgs, ... }:
+{
+  imports = [ ../core/home.nix ];
 
   home = {
     packages = with pkgs; [
@@ -52,9 +51,7 @@
     # browserpass for password management
     browserpass = {
       enable = true;
-      browsers = [
-        "chrome"
-      ];
+      browsers = [ "chrome" ];
     };
 
     # i'd rather like to configure in vscode and use config sync,

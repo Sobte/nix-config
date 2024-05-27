@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   # TODO use hosts-secrets (garnix no cache secrets)
   homeDir = config.users.users.meow.home;
   smb-secrets = "${homeDir}/.config/hosts-secrets/shared/samba/smb-secrets";
@@ -12,22 +13,21 @@
   gid = "100";
   # this line prevents hanging on network split
   automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-in {
+in
+{
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    cifs-utils
-  ];
+  environment.systemPackages = with pkgs; [ cifs-utils ];
 
   fileSystems."/mnt/home-shared" = {
     device = "//home.nas.oop.icu/home-shared";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=${smb-secrets},uid=${uid},gid=${gid}"];
+    options = [ "${automount_opts},credentials=${smb-secrets},uid=${uid},gid=${gid}" ];
   };
 
   fileSystems."/mnt/home-resources" = {
     device = "//home.nas.oop.icu/home-resources";
     fsType = "cifs";
-    options = ["${automount_opts},credentials=${smb-secrets},uid=${uid},gid=${gid}"];
+    options = [ "${automount_opts},credentials=${smb-secrets},uid=${uid},gid=${gid}" ];
   };
 }

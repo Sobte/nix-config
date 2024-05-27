@@ -2,12 +2,8 @@
   description = "Meow' Nix Flakes";
 
   nixConfig = {
-    extra-substituters = [
-      "https://cache.garnix.io"
-    ];
-    extra-trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
+    extra-substituters = [ "https://cache.garnix.io" ];
+    extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
   };
 
   inputs = {
@@ -42,58 +38,67 @@
     };
   };
 
-  outputs = inputs @ {
-    flake-schemas,
-    nixpkgs,
-    nix-formatter-pack,
-    ...
-  }: let
-    linuxSystems = ["x86_64-linux" "aarch64-linux"];
-    darwinSystems = ["aarch64-darwin" "x86_64-darwin"];
-    forEachSystem = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+  outputs =
+    inputs@{
+      flake-schemas,
+      nixpkgs,
+      nix-formatter-pack,
+      ...
+    }:
+    let
+      linuxSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      darwinSystems = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      forEachSystem = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
 
-    formatterPackArgs = forEachSystem (system: {
-      inherit nixpkgs system;
+      formatterPackArgs = forEachSystem (system: {
+        inherit nixpkgs system;
 
-      checkFiles = [./.];
+        checkFiles = [ ./. ];
 
-      config = {
-        tools = {
-          nixfmt.enable = true;
-          deadnix.enable = true;
-          statix = {
-            enable = true;
-            disabledLints = ["repeated_keys"];
+        config = {
+          tools = {
+            nixfmt.enable = true;
+            deadnix.enable = true;
+            statix = {
+              enable = true;
+              disabledLints = [ "repeated_keys" ];
+            };
           };
         };
+      });
+    in
+    rec {
+      inherit inputs;
+
+      inherit (flake-schemas) schemas;
+
+      # nix-formatter-pack
+      checks = forEachSystem (system: {
+        nix-formatter-pack-check = nix-formatter-pack.lib.mkCheck formatterPackArgs.${system};
+      });
+      formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
+
+      darwinConfigurations = {
+        # $ darwin-rebuild switch --flake ~/.config/nix-config#home-code-mbp
+        "home-code-mbp" = import ./hosts/home-code-mbp inputs;
       };
-    });
-  in rec {
-    inherit inputs;
 
-    inherit (flake-schemas) schemas;
+      nixosConfigurations = {
+        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
+        "home-code-nixos" = import ./hosts/home-code-nixos inputs;
+        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-wsl
+        "home-code-wsl" = import ./hosts/home-code-wsl inputs;
+      };
 
-    # nix-formatter-pack
-    checks = forEachSystem (system: {
-      nix-formatter-pack-check = nix-formatter-pack.lib.mkCheck formatterPackArgs.${system};
-    });
-    formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
-
-    darwinConfigurations = {
-      # $ darwin-rebuild switch --flake ~/.config/nix-config#home-code-mbp
-      "home-code-mbp" = import ./hosts/home-code-mbp inputs;
+      images = {
+        # $ nix build .#images.chinos-r4s21
+        # "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
+      };
     };
-
-    nixosConfigurations = {
-      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
-      "home-code-nixos" = import ./hosts/home-code-nixos inputs;
-      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-wsl
-      "home-code-wsl" = import ./hosts/home-code-wsl inputs;
-    };
-
-    images = {
-      # $ nix build .#images.chinos-r4s21
-      # "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
-    };
-  };
 }

@@ -1,7 +1,6 @@
-{pkgs,...}: {
-  imports = [
-    ../shared/home.nix
-  ];
+{ pkgs, ... }:
+{
+  imports = [ ../shared/home.nix ];
 
   home = {
     packages = with pkgs; [

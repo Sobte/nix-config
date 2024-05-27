@@ -1,7 +1,6 @@
-{...}: {
-  imports = [
-    ../shared/configuration.nix
-  ];
+{ ... }:
+{
+  imports = [ ../shared/configuration.nix ];
 
   system.defaults = {
     LaunchServices = {
@@ -52,7 +51,7 @@
 
   homebrew = {
     enable = true;
-    brews = [];
+    brews = [ ];
     # software that can't update itself.
     # giving the ablitity to self update is usually more efficient,
     # tho some software is not able to do so.

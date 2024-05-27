@@ -1,11 +1,6 @@
+{ pkgs, inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}: {
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-  ];
+  imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   home = {
     stateVersion = "24.05";
@@ -167,7 +162,7 @@
     # use zoxide to replace cd
     zoxide = {
       enable = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
 
     # used to use headline, tho kinda slow, so switched to starship

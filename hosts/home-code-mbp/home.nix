@@ -1,5 +1,4 @@
-{config, ...}: {
-  imports = [
-    ../../modules/darwin/home.nix
-  ];
+{ ... }:
+{
+  imports = [ ../../modules/darwin/home.nix ];
 }

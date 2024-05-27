@@ -1,8 +1,5 @@
+{ pkgs, inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   imports = [
     # include NixOS-WSL modules
     # <nixos-wsl/modules>
@@ -12,7 +9,5 @@
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-  ];
-
+  environment.systemPackages = with pkgs; [ ];
 }
