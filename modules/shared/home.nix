@@ -8,8 +8,8 @@
     packages = with pkgs; [
       # nix stuff
       alejandra
-      nil # nix language server
       nixfmt-rfc-style # An opinionated formatter for Nix
+      nil # nix language server
 
       # cli utils
       wget # fetch thing i don't use

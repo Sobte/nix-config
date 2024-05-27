@@ -100,5 +100,23 @@
         # $ nix build .#images.chinos-r4s21
         # "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
       };
+
+      # development shell
+      devShells = forEachSystem (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              # nix stuff
+              nixfmt-rfc-style
+              deadnix
+              statix
+            ];
+          };
+        }
+      );
     };
 }
