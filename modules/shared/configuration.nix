@@ -78,6 +78,9 @@ in
     settings = {
       # enable flakes support
       experimental-features = "nix-command flakes";
+
+      # trusted user for nix substituters
+      trusted-users = [ "meow" ];
     };
   };
 
