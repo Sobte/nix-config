@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   # TODO use hosts-secrets (garnix no cache secrets)
   homeDir = config.users.users.meow.home;

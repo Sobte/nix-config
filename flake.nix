@@ -73,9 +73,7 @@
         };
       });
     in
-    rec {
-      inherit inputs;
-
+    {
       inherit (flake-schemas) schemas;
 
       # nix-formatter-pack

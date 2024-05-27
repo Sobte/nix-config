@@ -1,10 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [ ../core/configuration.nix ];
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = [ ];
 
   # As of NixOS 22.05 ("Quokka"), you can enable Ozone Wayland support in
   # Chromium and Electron based applications by setting

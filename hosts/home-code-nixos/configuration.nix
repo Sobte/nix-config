@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, ... }:
 {
   imports = [
     ../../modules/linux/core/services/samba.nix
@@ -12,7 +7,7 @@
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = [ ];
 
   # wg-quick configuration
   networking.wg-quick.interfaces = {
