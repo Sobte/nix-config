@@ -1,6 +1,4 @@
 { ... }:
 {
-  imports = [
-    ../../modules/linux/desktop/home.nix
-  ];
+  imports = [ ../../modules/linux/desktop/home.nix ];
 }

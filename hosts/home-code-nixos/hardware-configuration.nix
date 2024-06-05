@@ -26,24 +26,40 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/4f3af9cb-fc64-4d2a-a3e1-d8471e81e430";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = [
+      "subvol=@"
+      "compress=lzo"
+    ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/4f3af9cb-fc64-4d2a-a3e1-d8471e81e430";
     fsType = "btrfs";
-    options = [ "subvol=@nix" ];
+    options = [
+      "subvol=@nix"
+      "compress=lzo"
+      "noatime"
+    ];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/9769-3BFC";
     fsType = "vfat";
+    options = [
+      "noatime"
+      "fmask=0137"
+      "dmask=0027"
+      "errors=remount-ro"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/8373172a-c632-4e12-afac-c5c414014205";
     fsType = "btrfs";
-    options = [ "subvol=@home" ];
+    options = [
+      "subvol=@home"
+      "compress=lzo"
+    ];
   };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/a540fbe0-7504-4d62-bfaa-487331f6f1b0"; } ];

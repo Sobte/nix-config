@@ -11,9 +11,9 @@
 
   # wg-quick configuration
   networking.wg-quick.interfaces = {
-   wg-come-home = {
-     # TODO use hosts-secrets (garnix no cache secrets)
-     configFile = "${config.users.users.meow.home}/.config/hosts-secrets/hosts/home-test-nixos/wg-come-home.conf";
-   };
+    wg-come-home = {
+      # TODO use hosts-secrets (garnix no cache secrets)
+      configFile = "${config.users.users.meow.home}/.config/hosts-secrets/hosts/home-test-nixos/wg-come-home.conf";
+    };
   };
 }
