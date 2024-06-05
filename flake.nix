@@ -90,6 +90,8 @@
       nixosConfigurations = {
         # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
         "home-code-nixos" = import ./hosts/home-code-nixos inputs;
+        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-test-nixos
+        "home-test-nixos" = import ./hosts/home-test-nixos inputs;
         # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-wsl
         "home-code-wsl" = import ./hosts/home-code-wsl inputs;
       };
