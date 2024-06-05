@@ -1,4 +1,9 @@
-inputs@{ nixpkgs, home-manager, ... }:
+inputs@{
+  nixpkgs,
+  home-manager,
+  vscode-server,
+  ...
+}:
 let
   configuration =
     { ... }:
@@ -47,6 +52,7 @@ nixpkgs.lib.nixosSystem {
   };
   modules = [
     home-manager.nixosModules.home-manager
+    vscode-server.nixosModules.default
     configuration
   ];
 }

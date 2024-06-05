@@ -9,6 +9,8 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ ];
 
+  services.vscode-server.enable = true;
+
   # wg-quick configuration
   networking.wg-quick.interfaces = {
     wg-come-home = {
