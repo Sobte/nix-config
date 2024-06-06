@@ -1,8 +1,9 @@
 { config, ... }:
 {
   imports = [
-    ../../modules/linux/core/services/samba.nix
     ../../modules/linux/core/services/docker.nix
+    ../../modules/linux/core/services/samba.nix
+    ../../modules/linux/core/services/vmware.nix
     ../../modules/linux/desktop/configuration.nix
   ];
 
