@@ -24,10 +24,8 @@ let
         defaultUser = "meow";
         nativeSystemd = true;
         useWindowsDriver = true;
+        # docker-desktop.enable = true;
       };
-      # close the docker in nixos, use docker desktop in windows
-      virtualisation.docker.enable = nixpkgs.lib.mkForce false;
-      # wsl.docker-desktop.enable = true;
 
       networking.hostName = "home-code-wsl"; # tower pc built in 2020, get it?
 

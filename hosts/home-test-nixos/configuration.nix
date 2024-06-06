@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/linux/core/services/samba.nix
+    ../../modules/linux/core/services/docker.nix
     ../../modules/linux/desktop/configuration.nix
   ];
 

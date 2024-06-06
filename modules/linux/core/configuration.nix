@@ -38,12 +38,6 @@
   # the way to mount disks
   services.udisks2.enable = true;
 
-  # the program that i have to use to do any work
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-  };
-
   # enable openssh
   services.openssh.enable = true;
 }
