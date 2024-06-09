@@ -3,6 +3,7 @@
   imports = [
     ../../modules/linux/core/services/samba.nix
     ../../modules/linux/core/services/docker.nix
+    ../../modules/linux/core/services/vscode-server.nix
     ../../modules/linux/desktop/configuration.nix
   ];
 
