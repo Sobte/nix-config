@@ -6,6 +6,7 @@
     ../../modules/linux/core/services/vmware.nix
     ../../modules/linux/core/services/vscode-server.nix
     ../../modules/linux/core/services/flatpak
+    ../../modules/linux/desktop/display/kde
     ../../modules/linux/desktop/configuration.nix
   ];
 
