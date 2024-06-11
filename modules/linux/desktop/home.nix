@@ -13,10 +13,4 @@
       libreoffice # office suite
     ];
   };
-
-  programs = {
-    # i'd rather like to configure in vscode and use config sync,
-    # since changes are mostly gui based
-    vscode.enable = true;
-  };
 }
