@@ -8,6 +8,8 @@
       addons = with pkgs; [
         fcitx5-rime
         fcitx5-configtool
+        fcitx5-chinese-addons
+        fcitx5-gtk
       ];
     };
   };
