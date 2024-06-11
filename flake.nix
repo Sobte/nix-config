@@ -69,7 +69,7 @@
             deadnix.enable = true;
             statix = {
               enable = true;
-              disabledLints = [ "repeated_keys" ];
+              disabledLints = (fromTOML (builtins.readFile ./statix.toml)).disabled;
             };
           };
         };
