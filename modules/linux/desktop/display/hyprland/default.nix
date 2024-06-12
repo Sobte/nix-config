@@ -1,4 +1,6 @@
 {
+  imports = [ ../../../wayland.nix ];
+
   # hyprland and wayland
   programs.hyprland = {
     # Install the packages from nixpkgs
