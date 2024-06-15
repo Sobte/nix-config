@@ -9,6 +9,7 @@
     ./screenshots/home.nix
     ./terminal/home.nix
     ./vscode/home.nix
+    ./waybar/home.nix
     ./wlogout/home.nix
   ];
 }
