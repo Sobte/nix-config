@@ -2,8 +2,14 @@
   description = "Meow' Nix Flakes";
 
   nixConfig = {
-    extra-substituters = [ "https://cache.garnix.io" ];
-    extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+      "https://cache.garnix.io"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    ];
   };
 
   inputs = {
@@ -31,6 +37,11 @@
 
     nix-formatter-pack = {
       url = "github:Sobte/nix-formatter-pack/mv-nixfmt_rfc_style";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.39.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

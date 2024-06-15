@@ -1,7 +1,7 @@
 {
   imports = [
     ../core/configuration.nix
-    ./base
+    ./services
     ./peripherals.nix
   ];
 }

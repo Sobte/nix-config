@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ../core/home.nix ];
+  imports = [
+    ../core/home.nix
+    ./services/home.nix
+  ];
 
   home = {
     packages = with pkgs; [

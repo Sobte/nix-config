@@ -1,5 +1,5 @@
 {
-  imports = [ ../../../wayland.nix ];
+  imports = [ ../../wayland.nix ];
 
   # hyprland and wayland
   programs.hyprland = {
