@@ -3,6 +3,7 @@
     ../../home.nix
     ./convention/home.nix
     ./fcitx/home.nix
+    ./file-manager/home.nix
     ./launcher/home.nix
     ./lock-screen/home.nix
     ./notification/home.nix
