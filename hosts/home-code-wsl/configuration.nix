@@ -5,7 +5,7 @@
     # <nixos-wsl/modules>
     ../../modules/linux/core/services/samba.nix
     ../../modules/linux/core/services/vscode-server.nix
-    ../../modules/linux/desktop/display/kde
+    ../../modules/linux/desktop/display/gnome
     ../../modules/linux/desktop/configuration.nix
   ];
 
