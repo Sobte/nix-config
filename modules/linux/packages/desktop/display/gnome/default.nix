@@ -1,6 +1,6 @@
 {
   imports = [
-    ../../xorg.nix
+    ../xorg.nix
     ./gdm
   ];
 
