@@ -1,5 +1,9 @@
 inputs@{ nix-darwin, home-manager, ... }:
 let
+  host = {
+    username = "meow";
+    lib = import ../../lib;
+  };
   configuration =
     { ... }:
     {
@@ -15,16 +19,15 @@ let
         extraSpecialArgs = {
           inherit inputs;
         };
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        users.meow.imports = [ ./home.nix ];
+        users.${host.username}.imports = [ ./home.nix ];
       };
 
-      users.users.meow.home = "/Users/meow";
+      users.users.${host.username}.home = "/Users/${host.username}";
     };
 in
 nix-darwin.lib.darwinSystem {
   specialArgs = {
+    inherit host;
     inherit inputs;
   };
   modules = [

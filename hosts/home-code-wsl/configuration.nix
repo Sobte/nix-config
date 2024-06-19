@@ -1,12 +1,8 @@
-{ ... }:
 {
   imports = [
-    # include NixOS-WSL modules
-    # <nixos-wsl/modules>
-    ../../modules/linux/core/services/samba.nix
-    ../../modules/linux/core/services/vscode-server.nix
-    ../../modules/linux/desktop/display/gnome
-    ../../modules/linux/desktop/configuration.nix
+    ../../modules/linux/general-desktop.nix
+    # gnome
+    ../../modules/linux/packages/desktop/display/gnome
   ];
 
   # packages installed in system profile. to search by name, run:

@@ -1,11 +1,9 @@
-{ config, ... }:
+{ config, host, ... }:
 {
   imports = [
-    ../../modules/linux/core/services/samba.nix
-    ../../modules/linux/core/services/docker.nix
-    ../../modules/linux/core/services/vscode-server.nix
-    ../../modules/linux/desktop/display/kde
-    ../../modules/linux/desktop/configuration.nix
+    ../../modules/linux/dev-desktop.nix
+    # kde
+    ../../modules/linux/packages/desktop/display/kde
   ];
 
   # packages installed in system profile. to search by name, run:
@@ -16,7 +14,9 @@
   networking.wg-quick.interfaces = {
     wg-come-home = {
       # TODO use hosts-secrets (garnix no cache secrets)
-      configFile = "${config.users.users.meow.home}/.config/hosts-secrets/hosts/home-code-nixos/wg-come-home.conf";
+      configFile = "${
+        config.users.users.${host.username}.home
+      }/.config/hosts-secrets/hosts/home-code-nixos/wg-come-home.conf";
     };
   };
 }

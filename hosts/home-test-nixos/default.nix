@@ -5,6 +5,10 @@ inputs@{
   ...
 }:
 let
+  host = {
+    username = "meow";
+    lib = import ../../lib;
+  };
   configuration =
     { ... }:
     {
@@ -28,7 +32,7 @@ let
       time.timeZone = "Asia/Shanghai";
       i18n.defaultLocale = "en_US.UTF-8";
 
-      users.users.meow = {
+      users.users.${host.username} = {
         isNormalUser = true;
         extraGroups = [
           "wheel" # for sudo
@@ -40,14 +44,13 @@ let
         extraSpecialArgs = {
           inherit inputs;
         };
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        users.meow.imports = [ ./home.nix ];
+        users.${host.username}.imports = [ ./home.nix ];
       };
     };
 in
 nixpkgs.lib.nixosSystem {
   specialArgs = {
+    inherit host;
     inherit inputs;
   };
   modules = [
