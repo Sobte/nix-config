@@ -3,6 +3,8 @@
     ../../modules/linux/general-desktop.nix
     # gnome
     ../../modules/linux/packages/desktop/display/gnome
+    # home samba
+    ../../modules/linux/packages/core/services/samba.nix
   ];
 
   # packages installed in system profile. to search by name, run:

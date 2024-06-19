@@ -11,7 +11,7 @@
         ./packages/app/visual-home.nix
         ./packages/app/youtube-dl-home.nix
       ]
-      ++ (host.lib.findNixPaths ./packages/app/datebase)
+      ++ (host.lib.findNixPaths ./packages/app/database)
       ++ (host.lib.findNixPaths ./packages/app/dev-kit);
   };
 }

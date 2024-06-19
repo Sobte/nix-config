@@ -5,10 +5,10 @@
 
     # desktop, use the charm-cat theme auto load hyprland
     ../../modules/linux/packages/desktop/display/hyprland/theme/charm-cat
+    # home samba
+    ../../modules/linux/packages/core/services/samba.nix
     # vmware
     ../../modules/linux/packages/desktop/services/vmware.nix
-
-    ../../modules/shared/all.nix
   ];
 
   # packages installed in system profile. to search by name, run:

@@ -4,6 +4,8 @@
     ../../modules/linux/dev-desktop.nix
     # kde
     ../../modules/linux/packages/desktop/display/kde
+    # home samba
+    ../../modules/linux/packages/core/services/samba.nix
   ];
 
   # packages installed in system profile. to search by name, run:
