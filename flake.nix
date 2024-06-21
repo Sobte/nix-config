@@ -100,7 +100,8 @@
         "home-code-mbp" = import ./hosts/home-code-mbp inputs;
       };
 
-      nixosConfigurations = { # mirror use --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
+      nixosConfigurations = {
+        # mirror use --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
         # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
         "home-code-nixos" = import ./hosts/home-code-nixos inputs;
         # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-test-nixos

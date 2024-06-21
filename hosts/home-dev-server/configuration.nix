@@ -1,4 +1,3 @@
-{ config, host, ... }:
 {
   imports = [
     ../../modules/linux/server.nix
