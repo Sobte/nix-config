@@ -4,6 +4,7 @@
     ../shared/base.nix
 
     # core services
+    ./packages/core/services/cron.nix
     ./packages/core/services/gnupg.nix
     ./packages/core/services/network.nix
     ./packages/core/services/nix.nix
