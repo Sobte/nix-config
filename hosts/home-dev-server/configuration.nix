@@ -12,6 +12,9 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ ];
 
+  # openssh port
+  services.openssh.ports = [ 6422 ];
+
   # wg-quick configuration
   networking.wg-quick.interfaces = {
     wg-come-home = {
