@@ -13,6 +13,6 @@
   # the way to mount disks
   services.udisks2.enable = true;
 
-  # opengl
-  hardware.opengl.driSupport32Bit = true;
+  # opengl, graphics drivers
+  hardware.graphics.enable32Bit = true;
 }
