@@ -9,7 +9,11 @@
 }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    # gpu
+    ../../modules/linux/packages/core/boot/gpu/amd.nix
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

@@ -21,12 +21,6 @@ let
       # touching it will definitely break things, so beware
       system.stateVersion = "24.05";
 
-      # use systemd-boot as the bootloader
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
-      # use amd gpu driver
-      boot.initrd.kernelModules = [ "amdgpu" ];
-
       networking.hostName = "home-test-nixos"; # tower pc built in 2020, get it?
 
       time.timeZone = "Asia/Shanghai";

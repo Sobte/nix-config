@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/linux/dev-desktop.nix
+
     # kde
     ../../modules/linux/packages/desktop/display/kde
     # home samba

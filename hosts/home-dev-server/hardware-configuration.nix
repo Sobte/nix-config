@@ -4,7 +4,11 @@
 { lib, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    # gpu
+    ../../modules/linux/packages/core/boot/gpu/amd.nix
+  ];
 
   boot.initrd.availableKernelModules = [
     "ata_piix"
