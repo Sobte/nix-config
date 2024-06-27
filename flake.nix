@@ -110,6 +110,8 @@
         "home-code-wsl" = import ./hosts/home-code-wsl inputs;
         # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-dev-server
         "home-dev-server" = import ./hosts/home-dev-server inputs;
+        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-infra-smartdns
+        "home-infra-smartdns" = import ./hosts/home-infra-smartdns inputs;
       };
 
       images = {
