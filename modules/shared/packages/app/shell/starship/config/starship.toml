@@ -22,6 +22,11 @@ error_symbol = '[λ](bold red)'
 [conda]
 symbol = ' '
 
+[container]
+symbol = ' '
+style = 'bold blue dimmed'
+format = '[\[$symbol󰊍$name\]]($style) '
+
 [crystal]
 symbol = ' '
 
