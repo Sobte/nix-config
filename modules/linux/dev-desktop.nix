@@ -4,6 +4,8 @@
     ./desktop.nix
 
     ../shared/dev.nix
+    # efi boot
+    ./packages/core/boot/loader/efi.nix
     # core services
     ./packages/core/services/docker.nix
     ./packages/core/services/vscode-server.nix

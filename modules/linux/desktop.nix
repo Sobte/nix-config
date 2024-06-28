@@ -3,8 +3,6 @@
   imports = [
     ./base.nix
 
-    # efi boot
-    ./packages/core/boot/loader/efi.nix
     # core services
     ./packages/core/services/udisks2.nix
     ./packages/core/services/wireless.nix

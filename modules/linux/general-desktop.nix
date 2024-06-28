@@ -3,6 +3,8 @@
   imports = [
     ./desktop.nix
 
+    # efi boot
+    ./packages/core/boot/loader/efi.nix
     # core services
     ./packages/core/services/docker.nix
     ./packages/core/services/udisks2.nix
