@@ -1,6 +1,6 @@
 {
   imports = [
-    ../../modules/linux/server.nix
+    ../../modules/linux/container.nix
     # vscode server
     ../../modules/linux/packages/core/services/vscode-server.nix
   ];
