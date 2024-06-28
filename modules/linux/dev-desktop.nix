@@ -9,8 +9,6 @@
     # core services
     ./packages/core/services/docker.nix
     ./packages/core/services/vscode-server.nix
-    # desktop services
-    ./packages/desktop/services/flatpak
   ];
 
   home-manager = {
@@ -29,8 +27,6 @@
       ./packages/desktop/app/terminal-home.nix
       ./packages/desktop/app/video-home.nix
       ./packages/desktop/app/vscode-home.nix
-      # desktop services
-      ./packages/desktop/services/flatpak/home.nix
     ];
   };
 
