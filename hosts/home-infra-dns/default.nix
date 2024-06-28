@@ -21,7 +21,7 @@ let
       # touching it will definitely break things, so beware
       system.stateVersion = "24.05";
 
-      networking.hostName = "home-infra-smartdns";
+      networking.hostName = "home-infra-dns";
 
       time.timeZone = "Asia/Shanghai";
       i18n.defaultLocale = "en_US.UTF-8";
