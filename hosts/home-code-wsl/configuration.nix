@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   imports = [
-    ../../modules/linux/general-desktop.nix
+    ../../modules/linux/wsl-desktop.nix
     # gnome
     ../../modules/linux/packages/desktop/display/gnome
     # home samba

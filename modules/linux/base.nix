@@ -9,6 +9,7 @@
     ./packages/core/services/network.nix
     ./packages/core/services/nix.nix
     ./packages/core/services/openssh.nix
+    ./packages/core/services/sudo.nix
   ];
 
   home-manager = {

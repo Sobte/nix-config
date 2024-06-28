@@ -28,10 +28,6 @@ let
 
       users.users.${host.username} = {
         isNormalUser = true;
-        extraGroups = [
-          "wheel" # for sudo
-          "docker"
-        ];
       };
 
       home-manager = {
