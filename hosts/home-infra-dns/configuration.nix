@@ -4,6 +4,8 @@
     ../../modules/linux/container.nix
     # proxmox lxc
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
+    # smartdns
+    ../../modules/linux/packages/core/services/smartdns.nix
     # vscode server
     ../../modules/linux/packages/core/services/vscode-server.nix
   ];
