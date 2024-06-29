@@ -32,6 +32,7 @@ let
 
       home-manager = {
         extraSpecialArgs = {
+          inherit host;
           inherit inputs;
         };
         users.${host.username}.imports = [ ./home.nix ];

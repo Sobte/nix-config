@@ -1,7 +1,7 @@
-{ pkgs, host, ... }:
+{ host, ... }:
 {
   imports = [
-    ./packages/services/fonts.nix
+    # ./packages/services/fonts.nix
     ./packages/services/nix.nix
     ./packages/app/shell/zsh
   ];
@@ -24,6 +24,4 @@
       ./packages/app/nix-index-home.nix
     ];
   };
-
-  users.defaultUserShell = pkgs.zsh;
 }

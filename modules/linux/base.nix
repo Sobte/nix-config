@@ -1,4 +1,4 @@
-{ host, ... }:
+{ pkgs, host, ... }:
 {
   imports = [
     ../shared/base.nix
@@ -21,4 +21,6 @@
       ./packages/core/app/p7zip-home.nix
     ];
   };
+
+  users.defaultUserShell = pkgs.zsh;
 }

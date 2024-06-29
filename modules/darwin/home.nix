@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [ ../shared/dev.nix ];
-
   home = {
     packages = with pkgs; [
       android-tools

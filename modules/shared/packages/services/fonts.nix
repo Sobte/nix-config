@@ -36,14 +36,12 @@ in
       ];
     in
     {
-      fontDir.enable = true;
+      inherit packages;
     }
     // (
-      if isDarwin then
-        { fonts = packages; }
-      else
+      if (!isDarwin) then
         {
-          inherit packages;
+          fontDir.enable = true;
           fontconfig.defaultFonts = {
             # Source Han Serif
             serif = [
@@ -66,5 +64,7 @@ in
             emoji = [ "Noto Color Emoji" ];
           };
         }
+      else
+        { }
     );
 }

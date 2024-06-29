@@ -1,4 +1,6 @@
 {
+  imports = [ ../shared/dev.nix ];
+
   system.defaults = {
     LaunchServices = {
       LSQuarantine = false; # disable "this file was downloaded from the internet" warning
