@@ -22,4 +22,15 @@
       }/.config/hosts-secrets/hosts/home-code-nixos/wg-come-home.conf";
     };
   };
+
+  # krdp ports
+  networking.firewall =
+    let
+      ports = [ 6630 ];
+    in
+    {
+      allowedUDPPorts = ports;
+      allowedTCPPorts = ports;
+    };
+
 }
