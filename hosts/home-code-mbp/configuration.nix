@@ -6,10 +6,14 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ ];
 
-  # wg-quick configuration
   environment.etc = {
+    # wg-quick configuration
     "wireguard/wg-go-home.conf" = {
       source = "${inputs.hosts-secrets}/hosts/home-code-mbp/wg-go-home.conf";
+    };
+    # sing-box configuration
+    "sing-box/config.json" = {
+      source = "${inputs.hosts-secrets}/shared/sing-box/config.json";
     };
   };
 }

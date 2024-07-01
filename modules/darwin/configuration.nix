@@ -58,6 +58,7 @@
       "google-chrome"
       "jetbrains-toolbox"
       "thunderbird" # email client
+      "sfm" # sing-box graphical client
     ];
   };
 }
