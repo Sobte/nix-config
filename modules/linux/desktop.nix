@@ -3,6 +3,7 @@
   imports = [
     ./base.nix
 
+    ../shared/desktop.nix
     # core services
     ./packages/core/services/udisks2.nix
     ./packages/core/services/wireless.nix

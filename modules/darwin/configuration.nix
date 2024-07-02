@@ -1,5 +1,5 @@
 {
-  imports = [ ../shared/dev.nix ];
+  imports = [ ../shared/dev-desktop.nix ];
 
   system.defaults = {
     LaunchServices = {

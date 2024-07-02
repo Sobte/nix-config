@@ -3,6 +3,6 @@
   imports = [ ./base.nix ];
 
   home-manager = {
-    users.${host.username}.imports = [ ./packages/app/acme-sh-home.nix ];
+    users.${host.username}.imports = [ ./packages/core/app/acme-sh-home.nix ];
   };
 }
