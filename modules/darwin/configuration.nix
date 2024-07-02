@@ -12,6 +12,7 @@
 
     CustomUserPreferences = {
       "com.apple.finder" = {
+        AppleShowAllFiles = true;
         ShowExternalHardDrivesOnDesktop = false;
         ShowHardDrivesOnDesktop = false;
         ShowMountedServersOnDesktop = false;
