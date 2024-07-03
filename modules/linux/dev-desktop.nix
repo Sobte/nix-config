@@ -17,6 +17,7 @@
       ./packages/core/app/ollama-home.nix
       # desktop app
       ./packages/desktop/app/browser-home.nix
+      ./packages/desktop/app/instant-messengers-home.nix
       ./packages/desktop/app/jetbrains-home.nix
       ./packages/desktop/app/mail-home.nix
       ./packages/desktop/app/network-home.nix
