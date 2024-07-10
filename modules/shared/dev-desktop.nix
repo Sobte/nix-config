@@ -7,7 +7,6 @@
       [
         ./packages/core/app/cloud-home.nix
         ./packages/core/app/kubernetes-home.nix
-        ./packages/core/app/thefuck-home.nix
         ./packages/core/app/visual-home.nix
         ./packages/core/app/youtube-dl-home.nix
         # desktop app
