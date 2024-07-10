@@ -17,6 +17,7 @@
       ./packages/core/app/disk-home.nix
       # desktop app
       ./packages/desktop/app/browser-home.nix
+      ./packages/desktop/app/video-home.nix
       ./packages/desktop/app/vscode-home.nix
     ];
   };
