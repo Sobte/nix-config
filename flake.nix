@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland/v0.39.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hosts-secrets = {
       url = "git+ssh://git@github.com/Sobte/hosts-secrets.git";
       flake = false;
