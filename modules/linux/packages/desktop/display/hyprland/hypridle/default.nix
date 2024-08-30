@@ -1,5 +1,0 @@
-{
-  services.hypridle = {
-    enable = true;
-  };
-}

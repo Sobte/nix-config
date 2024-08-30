@@ -1,22 +1,10 @@
 {
-  description = "Meow' Nix Flakes";
-
-  nixConfig = {
-    extra-substituters = [
-      "https://hyprland.cachix.org"
-      "https://cache.garnix.io"
-    ];
-    extra-trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
-  };
-
   inputs = {
     flake-schemas.url = "github:DeterminateSystems/flake-schemas";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
@@ -30,13 +18,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-formatter-pack = {
-      url = "github:Sobte/nix-formatter-pack/mv-nixfmt_rfc_style";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -44,92 +37,73 @@
       url = "git+ssh://git@github.com/Sobte/hosts-secrets.git";
       flake = false;
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    inputs@{
-      flake-schemas,
-      nixpkgs,
-      nix-formatter-pack,
-      ...
-    }:
+    inputs:
     let
-      linuxSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-      darwinSystems = [
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-      forEachSystem = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+      lib = inputs.snowfall-lib.mkLib {
+        # snowfall doc: https://snowfall.org/guides/lib/quickstart/
+        inherit inputs;
+        # root dir
+        src = ./.;
 
-      formatterPackArgs = forEachSystem (system: {
-        inherit nixpkgs system;
-
-        checkFiles = [ ./. ];
-
-        config = {
-          tools = {
-            nixfmt.enable = true;
-            deadnix.enable = true;
-            statix = {
-              enable = true;
-              disabledLints = (fromTOML (builtins.readFile ./statix.toml)).disabled;
-            };
+        snowfall = {
+          namespace = "cattery";
+          meta = {
+            name = "meow-flake";
+            title = "Meow' Nix Flakes";
           };
         };
-      });
-    in
-    {
-      inherit (flake-schemas) schemas;
-
-      # nix-formatter-pack
-      checks = forEachSystem (system: {
-        nix-formatter-pack-check = nix-formatter-pack.lib.mkCheck formatterPackArgs.${system};
-      });
-      formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
-
-      darwinConfigurations = {
-        # $ darwin-rebuild switch --flake ~/.config/nix-config#home-code-mbp
-        "home-code-mbp" = import ./hosts/home-code-mbp inputs;
       };
 
-      nixosConfigurations = {
-        # mirror use --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
-        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-nixos
-        "home-code-nixos" = import ./hosts/home-code-nixos inputs;
-        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-test-nixos
-        "home-test-nixos" = import ./hosts/home-test-nixos inputs;
-        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-code-wsl
-        "home-code-wsl" = import ./hosts/home-code-wsl inputs;
-        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-dev-server
-        "home-dev-server" = import ./hosts/home-dev-server inputs;
-        # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#home-infra-dns
-        "home-infra-dns" = import ./hosts/home-infra-dns inputs;
-      };
-
-      images = {
-        # $ nix build .#images.chinos-r4s21
-        # "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
-      };
-
-      # development shell
-      devShells = forEachSystem (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          default = pkgs.mkShell {
-            packages = with pkgs; [
-              # nix stuff
-              nixfmt-rfc-style
-              deadnix
-              statix
-            ];
-          };
-        }
+      shared-modules = builtins.attrValues (
+        lib.snowfall.module.create-modules { src = ./modules/shared; }
       );
+
+      nixos-modules = with inputs; [
+        home-manager.nixosModules.home-manager
+        lanzaboote.nixosModules.lanzaboote
+        sops-nix.nixosModules.sops
+        vscode-server.nixosModules.default
+        nixos-wsl.nixosModules.default
+      ];
+
+    in
+    lib.mkFlake {
+
+      channels-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ ];
+      };
+
+      systems = {
+        modules = {
+          nixos = shared-modules ++ nixos-modules;
+          darwin = shared-modules;
+          install-iso = shared-modules;
+          sd-aarch64 = shared-modules;
+        };
+      };
+
+      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+
+      outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
+
     };
 }
