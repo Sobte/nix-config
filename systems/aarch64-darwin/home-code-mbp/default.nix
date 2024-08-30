@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   namespace,
   ...
@@ -16,11 +15,11 @@ in
   environment.etc = {
     # wg-quick configuration
     "wireguard/wg-go-home.conf" = {
-      source = "${inputs.hosts-secrets}/hosts/home-code-mbp/wg-go-home.conf";
+      source = "${homeDir}/.config/hosts-secrets/hosts/home-code-mbp/wg-go-home.conf";
     };
     # sing-box configuration
     "sing-box/config.json" = {
-      source = "${inputs.hosts-secrets}/shared/sing-box/config.json";
+      source = "${homeDir}/.config/hosts-secrets/shared/sing-box/config.json";
     };
   };
 

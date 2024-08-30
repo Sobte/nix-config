@@ -33,11 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hosts-secrets = {
-      url = "git+ssh://git@github.com/Sobte/hosts-secrets.git";
-      flake = false;
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
