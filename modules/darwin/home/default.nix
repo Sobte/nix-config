@@ -18,7 +18,7 @@ in
 
   config = {
     # home manager config
-    snowfallorg.user.${config.${namespace}.user.name}.home.config =
+    snowfallorg.users.${config.${namespace}.user.name}.home.config =
       mkAliasDefinitions
         options.${namespace}.home.extraOptions;
   };

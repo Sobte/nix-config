@@ -8,7 +8,7 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
-    nix-darwin = {
+    darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };

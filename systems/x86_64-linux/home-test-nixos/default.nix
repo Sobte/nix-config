@@ -8,10 +8,6 @@
       charm-cat.enable = true;
     };
 
-    apps = {
-      vmware.enable = true;
-    };
-
     system.fileSystems = {
       home-nas.enable = true;
     };
