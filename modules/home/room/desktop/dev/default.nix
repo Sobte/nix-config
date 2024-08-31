@@ -59,7 +59,6 @@ in
       apps = {
         mail = mkDefaultEnabled;
         network = mkDefaultEnabled;
-        remote = mkDefaultEnabled;
         safety = mkDefaultEnabled;
         science = mkDefaultEnabled;
         video = mkDefaultEnabled;
