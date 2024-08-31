@@ -20,7 +20,9 @@ in
   };
 
   config = {
-    users.users.${cfg.name} = {
+    # disable automatic creation. enabling it will mess up my configuration.
+    snowfallorg.users.${cfg.name}.create = false;
+    users.users.${cfg.name} = lib.mkIf (cfg.name != "root") {
       isNormalUser = true;
 
       group = "users";
