@@ -11,14 +11,5 @@ in
     };
   };
 
-  config = {
-    ${namespace}.home.extraOptions = {
-      programs = {
-        zsh.initExtra = lib.mkAfter ''
-          # ulimit
-          ulimit -n 4096
-        '';
-      };
-    };
-  };
+  config = { };
 }

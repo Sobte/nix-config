@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (lib) mkDefault;
   inherit (lib.${namespace}) mkDefaultEnabled;
 
   cfg = config.${namespace}.room.basis;
@@ -28,7 +29,13 @@ in
       shared = {
         nix = mkDefaultEnabled;
         cli-apps.shell.zsh = mkDefaultEnabled;
-        system.fonts = mkDefaultEnabled;
+        system = {
+          fonts = mkDefaultEnabled;
+          ulimit = {
+            enable = mkDefault true;
+            openFilesLimit = 4096;
+          };
+        };
       };
     };
 

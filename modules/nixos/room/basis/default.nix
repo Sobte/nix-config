@@ -40,7 +40,10 @@ in
       shared = {
         nix = mkDefaultEnabled;
         cli-apps.shell.zsh = mkDefaultEnabled;
-        system.fonts = mkDefaultEnabled;
+        system = {
+          fonts = mkDefaultEnabled;
+          ulimit = mkDefaultEnabled;
+        };
       };
     };
 
