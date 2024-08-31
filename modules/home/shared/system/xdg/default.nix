@@ -14,13 +14,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    ${namespace}.home.extraOptions = {
-      home.packages = with pkgs; [
-        xdg-utils
-        xdg-user-dirs
-      ];
+    home.packages = with pkgs; [
+      xdg-utils
+      xdg-user-dirs
+    ];
 
-      xdg.enable = true;
-    };
+    xdg.enable = true;
   };
 }

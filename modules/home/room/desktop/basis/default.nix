@@ -18,6 +18,10 @@ in
     ${namespace} = {
       room.basis = mkDefaultEnabled;
 
+      system = {
+        xdg = mkDefaultEnabled;
+      };
+
       # linux config
       apps = {
         graphics = mkDefaultEnabled;

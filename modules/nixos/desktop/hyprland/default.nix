@@ -5,8 +5,6 @@
   ...
 }:
 let
-  inherit (lib.${namespace}) mkDefaultEnabled;
-
   cfg = config.${namespace}.desktop.hyprland;
 in
 {
@@ -24,11 +22,6 @@ in
           # enable hyprland-session.target on hyprland startup.
           systemd.enable = true;
         };
-      };
-
-      desktop = {
-        # wayland support
-        addons.chromium-support = mkDefaultEnabled;
       };
     };
 

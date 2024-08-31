@@ -26,7 +26,13 @@ in
       system = {
         fcitx5 = mkDefaultEnabled;
         peripherals = mkDefaultEnabled;
-        xdg = mkDefaultEnabled;
+      };
+
+      desktop = {
+        addons = {
+          # wayland support
+          chromium-support = mkDefaultEnabled;
+        };
       };
     };
   };
