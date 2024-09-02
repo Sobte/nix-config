@@ -45,7 +45,7 @@ in
           http-utils = mkDefaultEnabled;
           monitoring = mkDefaultEnabled;
           network = mkDefaultEnabled;
-          p7zip = mkDefaultEnabled;
+          compressor = mkDefaultEnabled;
           useful = mkDefaultEnabled;
         };
 
