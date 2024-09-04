@@ -6,11 +6,17 @@
   ...
 }:
 let
+  inherit (lib) mkOption types;
+
   cfg = config.${namespace}.apps.vscode;
 in
 {
-  options.${namespace}.apps.vscode = {
+  options.${namespace}.apps.vscode = with types; {
     enable = lib.mkEnableOption "vscode";
+    commandLineArgs = mkOption {
+      default = [ ];
+      type = listOf str;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -20,7 +26,7 @@ in
         commandLineArgs = [
           "--ozone-platform=wayland"
           "--enable-wayland-ime"
-        ];
+        ] ++ cfg.commandLineArgs;
       };
     };
   };
