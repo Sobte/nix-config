@@ -16,7 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     ${namespace} = {
-      room.basis = mkDefaultEnabled;
+      room.general = mkDefaultEnabled;
 
       cli-apps = {
         tool = {

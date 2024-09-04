@@ -16,9 +16,8 @@ in
 
   config = lib.mkIf cfg.enable {
     ${namespace} = {
-      room.basis = mkDefaultEnabled;
+      room.general = mkDefaultEnabled;
 
-      system.boot.efi = mkDefaultEnabled;
       services = {
         docker = mkDefaultEnabled;
       };

@@ -41,7 +41,6 @@ in
         nix = mkDefaultEnabled;
         cli-apps.shell.zsh = mkDefaultEnabled;
         system = {
-          fonts = mkDefaultEnabled;
           ulimit = mkDefaultEnabled;
         };
       };

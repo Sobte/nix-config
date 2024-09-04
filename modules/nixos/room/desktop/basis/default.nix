@@ -26,12 +26,20 @@ in
       system = {
         fcitx5 = mkDefaultEnabled;
         peripherals = mkDefaultEnabled;
+        kernel-latest = mkDefaultEnabled;
       };
 
       desktop = {
         addons = {
           # wayland support
           chromium-support = mkDefaultEnabled;
+        };
+      };
+
+      # shared
+      shared = {
+        system = {
+          fonts = mkDefaultEnabled;
         };
       };
     };
