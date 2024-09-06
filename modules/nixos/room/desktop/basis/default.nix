@@ -26,7 +26,6 @@ in
       system = {
         fcitx5 = mkDefaultEnabled;
         peripherals = mkDefaultEnabled;
-        kernel-latest = mkDefaultEnabled;
       };
 
       desktop = {

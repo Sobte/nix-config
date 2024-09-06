@@ -34,6 +34,7 @@ in
       system = {
         locale = mkDefaultEnabled;
         time = mkDefaultEnabled;
+        kernel-latest = mkDefaultEnabled;
       };
 
       # shared
