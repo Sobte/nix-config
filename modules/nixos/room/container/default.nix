@@ -18,5 +18,7 @@ in
     ${namespace} = {
       room.basis = mkDefaultEnabled;
     };
+
+    boot.isContainer = true;
   };
 }
