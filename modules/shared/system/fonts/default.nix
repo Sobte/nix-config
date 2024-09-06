@@ -17,7 +17,6 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
-      fonts.fontDir.enable = true;
       fonts.packages = with pkgs; [
         open-sans
         noto-fonts
@@ -49,7 +48,8 @@ in
       ];
     })
 
-    (lib.mkIf isLinux {
+    (lib.optionalAttrs isLinux {
+      fonts.fontDir.enable = true;
       console = {
         font = "spleen-8x16";
         packages = with pkgs; [
