@@ -38,8 +38,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:yaxitech/ragenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,14 +72,15 @@
         };
       };
 
-      shared-modules = builtins.attrValues (
-        lib.snowfall.module.create-modules { src = ./modules/shared; }
-      );
+      shared-modules =
+        builtins.attrValues (lib.snowfall.module.create-modules { src = ./modules/shared; })
+        ++ (with inputs; [
+          agenix.nixosModules.default
+        ]);
 
       nixos-modules = with inputs; [
         home-manager.nixosModules.home-manager
         lanzaboote.nixosModules.lanzaboote
-        sops-nix.nixosModules.sops
         vscode-server.nixosModules.default
         nixos-wsl.nixosModules.default
       ];

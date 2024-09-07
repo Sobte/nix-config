@@ -28,7 +28,10 @@ in
       # shared
       shared = {
         nix = mkDefaultEnabled;
-        cli-apps.shell.zsh = mkDefaultEnabled;
+        cli-apps = {
+          shell.zsh = mkDefaultEnabled;
+          security.agenix = mkDefaultEnabled;
+        };
         system = {
           fonts = mkDefaultEnabled;
           ulimit = {
