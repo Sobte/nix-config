@@ -15,6 +15,10 @@ in
   config = lib.mkIf cfg.enable {
     homebrew = {
       enable = true;
+      onActivation = {
+        autoUpdate = true;
+        upgrade = true;
+      };
       brews = [ ];
       # software that can't update itself.
       # giving the ablitity to self update is usually more efficient,
