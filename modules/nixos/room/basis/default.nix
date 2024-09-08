@@ -42,7 +42,10 @@ in
         nix = mkDefaultEnabled;
         cli-apps = {
           shell.zsh = mkDefaultEnabled;
-          security.agenix = mkDefaultEnabled;
+          security = {
+            agenix = mkDefaultEnabled;
+            fido2 = mkDefaultEnabled;
+          };
         };
         system = {
           ulimit = mkDefaultEnabled;
