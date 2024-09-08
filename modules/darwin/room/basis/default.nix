@@ -30,6 +30,7 @@ in
         nix = mkDefaultEnabled;
         cli-apps = {
           shell.zsh = mkDefaultEnabled;
+          network.openssh = mkDefaultEnabled;
           security = {
             agenix = mkDefaultEnabled;
             fido2 = mkDefaultEnabled;
