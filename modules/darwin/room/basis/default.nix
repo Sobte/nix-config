@@ -28,13 +28,11 @@ in
       # shared
       shared = {
         nix = mkDefaultEnabled;
+        secrets = mkDefaultEnabled;
         cli-apps = {
           shell.zsh = mkDefaultEnabled;
           network.openssh = mkDefaultEnabled;
-          security = {
-            agenix = mkDefaultEnabled;
-            fido2 = mkDefaultEnabled;
-          };
+          security.fido2 = mkDefaultEnabled;
         };
         system = {
           fonts = mkDefaultEnabled;
