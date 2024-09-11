@@ -52,6 +52,12 @@
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # game
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -83,6 +89,7 @@
         lanzaboote.nixosModules.lanzaboote
         vscode-server.nixosModules.default
         nixos-wsl.nixosModules.default
+        nix-gaming.nixosModules.pipewireLowLatency
       ];
 
     in

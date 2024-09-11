@@ -17,11 +17,15 @@ in
     services.printing.enable = true;
 
     # enable sound
-    hardware.pulseaudio = {
+    services.pipewire = {
       enable = true;
-      support32Bit = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # ref: https://github.com/fufexan/nix-gaming/#pipewire-low-latency
+      lowLatency.enable = true;
     };
-    services.pipewire.enable = true;
+    security.rtkit.enable = true;
 
     # the way to mount disks
     services.udisks2.enable = true;
