@@ -1,7 +1,11 @@
 {
   namespace,
+  lib,
   ...
 }:
+let
+  inherit (lib.${namespace}.host.samba) clients;
+in
 {
   imports = [ ./hardware.nix ];
 
@@ -9,8 +13,9 @@
     room.desktop.dev.enable = true;
     desktop.kde.enable = true;
 
-    system.fileSystems = {
-      home-nas.enable = true;
+    system.fileSystems.samba = {
+      enable = true;
+      inherit clients;
     };
     services.wg-quick = {
       enable = true;
