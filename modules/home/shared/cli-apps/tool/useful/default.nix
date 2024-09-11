@@ -37,7 +37,6 @@ in
         oha # http load generator inspired by rakyll/hey with tui animation
         pciutils # lspci
         openssl # a cryptographic library that implements the SSL and TLS protocols
-        wireguard-tools # i need wg-quick
         tree # command to produce a depth indented directory listing
 
         # tui

@@ -1,4 +1,7 @@
-{ config, namespace, ... }:
+{
+  namespace,
+  ...
+}:
 {
   imports = [ ./hardware.nix ];
 
@@ -11,15 +14,9 @@
     system.fileSystems = {
       home-nas.enable = true;
     };
-  };
-
-  # wg-quick configuration
-  networking.wg-quick.interfaces = {
-    wg-come-home = {
-      # TODO use hosts-secrets (garnix no cache secrets)
-      configFile = "${
-        config.users.users.${config.${namespace}.user.name}.home
-      }/.config/hosts-secrets/hosts/home-test-nixos/wg-come-home.conf";
+    services.wg-quick = {
+      enable = true;
+      configNames = [ "wg-come-home" ];
     };
   };
 
