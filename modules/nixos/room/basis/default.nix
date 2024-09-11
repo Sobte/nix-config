@@ -43,9 +43,9 @@ in
         secrets = mkDefaultEnabled;
         cli-apps = {
           shell.zsh = mkDefaultEnabled;
-          network.openssh = mkDefaultEnabled;
           security.fido2 = mkDefaultEnabled;
         };
+        services.openssh = mkDefaultEnabled;
         system = {
           ulimit = mkDefaultEnabled;
         };

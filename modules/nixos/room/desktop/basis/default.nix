@@ -21,6 +21,7 @@ in
       services = {
         udisks2 = mkDefaultEnabled;
         wireless = mkDefaultEnabled;
+        openssh.X11Forwarding = true;
       };
 
       system = {
