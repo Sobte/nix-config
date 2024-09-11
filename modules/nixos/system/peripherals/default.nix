@@ -36,6 +36,9 @@ in
 
     # opengl, graphics drivers
     hardware.graphics.enable32Bit = true;
+
+    # enable location information services
+    services.geoclue2.enable = true;
   };
 
 }
