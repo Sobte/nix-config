@@ -27,6 +27,10 @@ in
     };
     security.rtkit.enable = true;
 
+    # enable bluetooth
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
+
     # the way to mount disks
     services.udisks2.enable = true;
 
