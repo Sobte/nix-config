@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   host,
   system,
@@ -8,9 +9,12 @@
   ...
 }:
 let
+  inherit (pkgs.stdenv) isLinux;
   inherit (lib)
     mkOption
     mkEnableOption
+    optional
+    optionalAttrs
     types
     nameValuePair
     concatMapAttrs
@@ -74,6 +78,7 @@ in
 {
   options.${namespace}.shared.secrets = with types; {
     enable = mkEnableOption "secrets";
+    yubikey.enable = mkEnableOption "yubikey support";
     # hosts private config
     hosts.configFiles = mkOption {
       type = listOf secretType;
@@ -93,9 +98,14 @@ in
 
   config = lib.mkIf cfg.enable {
     # agenix cli
-    environment.systemPackages = with inputs; [
-      agenix.packages.${system}.default
+    environment.systemPackages = [
+      (inputs.agenix.packages.${system}.default.override {
+        plugins = optional cfg.yubikey.enable pkgs.age-plugin-yubikey;
+      })
     ];
+    services = optionalAttrs (cfg.yubikey.enable && isLinux) {
+      pcscd.enable = true;
+    };
 
     # secrets
     age.secrets =
