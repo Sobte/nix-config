@@ -31,26 +31,27 @@ let
   hosts-secrets = "${homeDir}/.config/hosts-secrets";
 
   # permissions
-  onlyRoot = {
-    mode = "0500";
+  ban = {
+    mode = "0000";
     owner = "root";
   };
-  onlyUser = {
+  onlyBeneficiary = name: {
     mode = "0500";
-    owner = userName;
+    owner = name;
   };
 
   # type
   secretType = types.submodule (
     { name, ... }:
     {
-      options = {
+      options = with types; {
         name = mkOption {
-          type = types.str;
+          type = str;
           default = name;
         };
-        onlyRoot = mkEnableOption "Only root privileges, If disabled, enable onlyUser." // {
-          default = true;
+        beneficiary = mkOption {
+          type = nullOr str;
+          default = "root";
         };
       };
     }
@@ -63,7 +64,7 @@ let
       {
         file = "${hosts-secrets}/hosts/${host}/${item.name}.age";
       }
-      // (if item.onlyRoot then onlyRoot else onlyUser)
+      // (if item.beneficiary == null then ban else (onlyBeneficiary item.beneficiary))
     );
 
   toSharedSecret =
@@ -72,7 +73,7 @@ let
       {
         file = "${hosts-secrets}/shared/${item.programName}/${item.name}.age";
       }
-      // (if item.onlyRoot then onlyRoot else onlyUser)
+      // (if item.beneficiary == null then ban else (onlyBeneficiary item.beneficiary))
     );
 in
 {
@@ -117,7 +118,7 @@ in
             map toSharedSecret (
               map (item: {
                 programName = name;
-                inherit (item) name onlyRoot;
+                inherit (item) name beneficiary;
               }) value.configFiles
             )
           ))
