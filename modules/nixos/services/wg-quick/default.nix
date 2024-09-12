@@ -7,7 +7,12 @@
   ...
 }:
 let
-  inherit (lib) mkOption types nameValuePair;
+  inherit (lib)
+    mkOption
+    types
+    nameValuePair
+    foldl'
+    ;
 
   cfg = config.${namespace}.services.wg-quick;
 in
@@ -23,15 +28,19 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ wireguard-tools ];
     # secrets
-    ${namespace}.shared.secrets.hosts.configFiles = map (name: {
-      name = "${name}.conf";
-    }) cfg.configNames;
+    ${namespace}.shared.secrets.hosts.configFiles = foldl' (
+      acc: name:
+      acc
+      // {
+        "${name}.conf".beneficiary = "root";
+      }
+    ) { } cfg.configNames;
     # wg-quick configuration
     networking.wg-quick.interfaces = builtins.listToAttrs (
       map (
         name:
         nameValuePair name {
-          configFile = config.age.secrets."${host}-${name}.conf".path;
+          configFile = config.age.secrets."${host}/${name}.conf".path;
         }
       ) cfg.configNames
     );

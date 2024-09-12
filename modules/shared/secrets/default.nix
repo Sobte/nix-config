@@ -18,6 +18,7 @@ let
     types
     nameValuePair
     concatMapAttrs
+    mapAttrs'
     ;
 
   cfg = config.${namespace}.shared.secrets;
@@ -41,39 +42,32 @@ let
   };
 
   # type
-  secretType = types.submodule (
-    { name, ... }:
-    {
-      options = with types; {
-        name = mkOption {
-          type = str;
-          default = name;
-        };
-        beneficiary = mkOption {
-          type = nullOr str;
-          default = "root";
-        };
+  secretType = types.submodule {
+    options = with types; {
+      beneficiary = mkOption {
+        type = nullOr str;
+        default = null;
       };
-    }
-  );
+    };
+  };
 
   # secrets object
   toHostSecret =
-    item:
-    nameValuePair "${host}-${item.name}" (
+    name: value:
+    nameValuePair "${host}/${name}" (
       {
-        file = "${hosts-secrets}/hosts/${host}/${item.name}.age";
+        file = "${hosts-secrets}/hosts/${host}/${name}.age";
       }
-      // (if item.beneficiary == null then ban else (onlyBeneficiary item.beneficiary))
+      // (if value.beneficiary == null then ban else (onlyBeneficiary value.beneficiary))
     );
 
   toSharedSecret =
-    item:
-    nameValuePair "${item.programName}-${item.name}" (
+    name: value:
+    nameValuePair "${value.programName}/${name}" (
       {
-        file = "${hosts-secrets}/shared/${item.programName}/${item.name}.age";
+        file = "${hosts-secrets}/shared/${value.programName}/${name}.age";
       }
-      // (if item.beneficiary == null then ban else (onlyBeneficiary item.beneficiary))
+      // (if value.beneficiary == null then ban else (onlyBeneficiary value.beneficiary))
     );
 in
 {
@@ -82,15 +76,15 @@ in
     yubikey.enable = mkEnableOption "yubikey support";
     # hosts private config
     hosts.configFiles = mkOption {
-      type = listOf secretType;
-      default = [ ];
+      type = attrsOf secretType;
+      default = { };
     };
     # shared config
     shared = mkOption {
       type = attrsOf (submodule {
         options.configFiles = mkOption {
-          type = listOf secretType;
-          default = [ ];
+          type = attrsOf secretType;
+          default = { };
         };
       });
       default = { };
@@ -111,17 +105,18 @@ in
     # secrets
     age.secrets =
       let
-        hosts-config = builtins.listToAttrs (map toHostSecret cfg.hosts.configFiles);
+        hosts-config = mapAttrs' toHostSecret cfg.hosts.configFiles;
         shared-config = concatMapAttrs (
           name: value:
-          (builtins.listToAttrs (
-            map toSharedSecret (
-              map (item: {
+          mapAttrs' toSharedSecret (
+            mapAttrs' (
+              name2: value2:
+              nameValuePair name2 {
                 programName = name;
-                inherit (item) name beneficiary;
-              }) value.configFiles
-            )
-          ))
+                inherit (value2) beneficiary;
+              }
+            ) value.configFiles
+          )
         ) cfg.shared;
       in
       hosts-config // shared-config;

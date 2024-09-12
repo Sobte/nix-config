@@ -75,7 +75,7 @@ let
         options = [
           "${value2.autoMountOpts},credentials=${
             if value2.secretsPath == null then
-              config.age.secrets."samba-${name}.conf".path
+              config.age.secrets."samba/${name}.conf".path
             else
               value2.secretsPath
           },uid=${toString value2.uid},gid=${toString value2.gid}"
@@ -96,9 +96,9 @@ in
     environment.systemPackages = with pkgs; [ cifs-utils ];
 
     # enable secrets
-    ${namespace}.shared.secrets.shared.samba.configFiles = mapAttrsToList (name: _: {
-      name = "${name}.conf";
-    }) cfg.clients;
+    ${namespace}.shared.secrets.shared.samba.configFiles = mapAttrs' (
+      name: _: nameValuePair "${name}.conf" { beneficiary = "root"; }
+    ) cfg.clients;
 
     fileSystems = mergeAttrsList (mapAttrsToList toFileSystem cfg.clients);
   };

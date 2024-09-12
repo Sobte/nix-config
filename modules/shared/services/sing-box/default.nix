@@ -22,14 +22,15 @@ in
   config = lib.mkIf cfg.enable (
     {
       # secrets
-      ${namespace}.shared.secrets.shared.sing-box.configFiles = [ { name = cfg.configName; } ];
+      ${namespace}.shared.secrets.shared.sing-box.configFiles = {
+        ${cfg.configName}.beneficiary = "root";
+      };
       # sing-box configuration
       environment.etc = {
         "sing-box/config.json" = {
-          source = config.age.secrets."sing-box-${cfg.configName}".path;
+          source = config.age.secrets."sing-box/${cfg.configName}".path;
         };
       };
-
     }
     // (lib.optionalAttrs isLinux {
       # enable sing-box

@@ -7,7 +7,12 @@
   ...
 }:
 let
-  inherit (lib) mkOption types nameValuePair;
+  inherit (lib)
+    mkOption
+    types
+    nameValuePair
+    foldl'
+    ;
 
   homeDir = config.users.users.${config.${namespace}.user.name}.home;
   wg-pkgs = pkgs.wireguard-tools;
@@ -25,15 +30,19 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ wg-pkgs ];
     # secrets
-    ${namespace}.shared.secrets.hosts.configFiles = map (name: {
-      name = "${name}.conf";
-    }) cfg.configNames;
+    ${namespace}.shared.secrets.hosts.configFiles = foldl' (
+      acc: name:
+      acc
+      // {
+        "${name}.conf".beneficiary = "root";
+      }
+    ) { } cfg.configNames;
     # wg-quick configuration
     environment.etc = builtins.listToAttrs (
       map (
         name:
         nameValuePair "wireguard/${name}.conf" {
-          source = "${config.age.secrets."${host}-${name}.conf".path}";
+          source = "${config.age.secrets."${host}/${name}.conf".path}";
         }
       ) cfg.configNames
     );
