@@ -75,14 +75,14 @@ in
     enable = mkEnableOption "secrets";
     yubikey.enable = mkEnableOption "yubikey support";
     # hosts private config
-    hosts.configFiles = mkOption {
+    hosts.configFile = mkOption {
       type = attrsOf secretType;
       default = { };
     };
     # shared config
     shared = mkOption {
       type = attrsOf (submodule {
-        options.configFiles = mkOption {
+        options.configFile = mkOption {
           type = attrsOf secretType;
           default = { };
         };
@@ -105,7 +105,7 @@ in
     # secrets
     age.secrets =
       let
-        hosts-config = mapAttrs' toHostSecret cfg.hosts.configFiles;
+        hosts-config = mapAttrs' toHostSecret cfg.hosts.configFile;
         shared-config = concatMapAttrs (
           name: value:
           mapAttrs' toSharedSecret (
@@ -115,7 +115,7 @@ in
                 programName = name;
                 inherit (value2) beneficiary;
               }
-            ) value.configFiles
+            ) value.configFile
           )
         ) cfg.shared;
       in

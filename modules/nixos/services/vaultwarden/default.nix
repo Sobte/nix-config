@@ -2,18 +2,12 @@
   config,
   lib,
   namespace,
-  host,
   ...
 }:
 let
   inherit (lib) mkOption types mkForce;
-  inherit (config.age) secrets;
 
   cfg = config.${namespace}.services.vaultwarden;
-
-  envPath = secrets."${host}/${cfg.config.path}".path;
-
-  owner = "vaultwarden";
 in
 {
   options.${namespace}.services.vaultwarden = with types; {
@@ -29,10 +23,10 @@ in
         Which database backend vaultwarden will be using.
       '';
     };
-    config = {
-      path = mkOption {
-        type = str;
-        default = "vaultwarden/vaultwarden.env";
+    configFile = {
+      settingsPath = mkOption {
+        type = path;
+        default = "/etc/vaultwarden/vaultwarden.env";
         description = ''
           config manual ref: <https://github.com/dani-garcia/vaultwarden/blob/main/.env.template>
         '';
@@ -41,16 +35,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # secrets
-    ${namespace}.shared.secrets.hosts.configFiles = {
-      "${cfg.config.path}".beneficiary = owner;
-    };
     services.vaultwarden = {
       enable = true;
       inherit (cfg) dbBackend;
       # override default config
       config = mkForce { };
-      environmentFile = envPath;
+      environmentFile = cfg.configFile.settingsPath;
     };
   };
 

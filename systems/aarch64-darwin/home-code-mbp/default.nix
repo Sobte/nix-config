@@ -5,10 +5,12 @@
 {
   ${namespace} = {
     room.desktop.dev.enable = true;
-    services.wg-quick = {
-      enable = true;
-      configNames = [ "wg-go-home" ];
+    shared.services = {
+      wg-quick = {
+        enable = true;
+        configNames = [ "wg-go-home" ];
+      };
+      sing-box.enable = true;
     };
-    shared.services.sing-box.enable = true;
   };
 }

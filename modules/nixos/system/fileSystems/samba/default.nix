@@ -26,59 +26,59 @@ let
   gid = config.groups.${homeUser.group}.gid or 100;
 
   # type
-  sambaType = types.submodule {
-    options = with types; {
-      hostUrl = mkOption {
-        type = str;
-        default = "";
+  sambaType = types.submodule (
+    { name, ... }:
+    {
+      options = with types; {
+        hostUrl = mkOption {
+          type = str;
+          default = "";
+        };
+        binds = mkOption {
+          type = attrsOf (bindType name);
+          default = { };
+        };
       };
-      binds = mkOption {
-        type = attrsOf bindType;
-        default = { };
+    }
+  );
+  bindType =
+    sambaName:
+    types.submodule {
+      options = with types; {
+        uid = mkOption {
+          type = int;
+          default = uid;
+        };
+        gid = mkOption {
+          type = int;
+          default = gid;
+        };
+        autoMountOpts = mkOption {
+          type = str;
+          # this line prevents hanging on network split
+          default = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        };
+        secretsPath = mkOption {
+          type = path;
+          default = "/etc/samba/secrets/${sambaName}.conf";
+        };
+        extraOptions = mkOption {
+          type = listOf str;
+          default = [ ];
+        };
       };
     };
-  };
-  bindType = types.submodule {
-    options = with types; {
-      uid = mkOption {
-        type = int;
-        default = uid;
-      };
-      gid = mkOption {
-        type = int;
-        default = gid;
-      };
-      autoMountOpts = mkOption {
-        type = str;
-        # this line prevents hanging on network split
-        default = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      };
-      secretsPath = mkOption {
-        type = nullOr str;
-        default = null;
-      };
-      extraOptions = mkOption {
-        type = listOf str;
-        default = [ ];
-      };
-    };
-  };
 
   # object
   toFileSystem =
-    name: value:
+    _: value:
     (mapAttrs' (
       name2: value2:
       nameValuePair "/mnt/${name2}" {
         device = "//${value.hostUrl}/${name2}";
         fsType = "cifs";
         options = [
-          "${value2.autoMountOpts},credentials=${
-            if value2.secretsPath == null then
-              config.age.secrets."samba/${name}.conf".path
-            else
-              value2.secretsPath
-          },uid=${toString value2.uid},gid=${toString value2.gid}"
+          "${value2.autoMountOpts},credentials=${value2.secretsPath},uid=${toString value2.uid},gid=${toString value2.gid}"
         ] ++ value2.extraOptions;
       }
     ) value.binds);
@@ -86,7 +86,7 @@ in
 {
   options.${namespace}.system.fileSystems.samba = with types; {
     enable = lib.mkEnableOption "samba client";
-    clients = mkOption {
+    client = mkOption {
       type = attrsOf sambaType;
       default = { };
     };
@@ -95,11 +95,6 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ cifs-utils ];
 
-    # enable secrets
-    ${namespace}.shared.secrets.shared.samba.configFiles = mapAttrs' (
-      name: _: nameValuePair "${name}.conf" { beneficiary = "root"; }
-    ) cfg.clients;
-
-    fileSystems = mergeAttrsList (mapAttrsToList toFileSystem cfg.clients);
+    fileSystems = mergeAttrsList (mapAttrsToList toFileSystem cfg.client);
   };
 }

@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (lib.${namespace}.host.samba) clients;
+  inherit (lib.${namespace}.host.samba) client;
 in
 {
   imports = [ ./hardware.nix ];
@@ -15,9 +15,9 @@ in
 
     system.fileSystems.samba = {
       enable = true;
-      inherit clients;
+      inherit client;
     };
-    services.wg-quick = {
+    shared.services.wg-quick = {
       enable = true;
       configNames = [ "wg-come-home" ];
     };

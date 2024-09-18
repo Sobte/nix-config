@@ -8,8 +8,8 @@
   ${namespace} = {
     room.server.enable = true;
 
-    services = {
-      vscode-server.enable = true;
+    services.vscode-server.enable = true;
+    shared.services = {
       wg-quick = {
         enable = true;
         configNames = [ "wg-come-home" ];

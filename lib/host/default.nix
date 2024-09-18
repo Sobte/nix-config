@@ -6,7 +6,7 @@
       name = "sobte";
       email = "i@sobte.me";
     };
-    samba.clients = {
+    samba.client = {
       # home nas config
       home-nas = {
         hostUrl = "home.nas.oop.icu";
