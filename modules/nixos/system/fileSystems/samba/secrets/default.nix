@@ -21,6 +21,14 @@ in
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
     };
+    dirPathInEtc = mkOption {
+      type = str;
+      default = "samba/secrets";
+      description = ''
+        Symlink is in the etc folder, relative to the path of etc.
+        Just like: `/etc/{dirPathInEtc}`
+      '';
+    };
     files = concatMapAttrs (name: _: {
       ${name} = mkMappingOption rec {
         source = "${name}.conf";
@@ -40,10 +48,10 @@ in
       "${value.source}".beneficiary = cfg.owner;
     }) cfg.files;
 
-    # etc configuration path: `/etc/samba/secrets`
+    # etc configuration default path: `/etc/samba/secrets`
     environment.etc = lib.mkIf cfg.useSymlinkToEtc (
       concatMapAttrs (name: value: {
-        "samba/secrets/${name}.conf" = {
+        "${cfg.dirPathInEtc}/${name}.conf" = {
           source = value.target;
         };
       }) cfg.files

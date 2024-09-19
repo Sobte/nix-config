@@ -22,6 +22,14 @@ in
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
     };
+    dirPathInEtc = mkOption {
+      type = str;
+      default = "postgresql";
+      description = ''
+        Symlink is in the etc folder, relative to the path of etc.
+        Just like: `/etc/{dirPathInEtc}`
+      '';
+    };
     files = {
       settingsPath = mkMappingOption rec {
         source = "postgresql/postgresql.conf";
@@ -51,15 +59,15 @@ in
       "${cfg.files.authenticationPath.source}".beneficiary = cfg.owner;
     };
 
-    # etc configuration path: `/etc/postgresql`
+    # etc configuration default path: `/etc/postgresql`
     environment.etc = lib.mkIf cfg.useSymlinkToEtc {
-      "postgresql/postgresql.conf" = {
+      "${cfg.dirPathInEtc}/postgresql.conf" = {
         source = cfg.files.settingsPath.target;
       };
-      "postgresql/pg_ident.conf" = {
+      "${cfg.dirPathInEtc}/pg_ident.conf" = {
         source = cfg.files.identMapPath.target;
       };
-      "postgresql/pg_hba.conf" = {
+      "${cfg.dirPathInEtc}/pg_hba.conf" = {
         source = cfg.files.authenticationPath.target;
       };
     };

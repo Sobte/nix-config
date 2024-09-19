@@ -21,6 +21,14 @@ in
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
     };
+    dirPathInEtc = mkOption {
+      type = str;
+      default = "sing-box";
+      description = ''
+        Symlink is in the etc folder, relative to the path of etc.
+        Just like: `/etc/{dirPathInEtc}`
+      '';
+    };
     files = {
       settingsPath = mkMappingOption rec {
         source = "config.json";
@@ -40,9 +48,9 @@ in
       "${cfg.files.settingsPath.source}".beneficiary = cfg.owner;
     };
 
-    # etc configuration path: `/etc/sing-box`
+    # etc configuration default path: `/etc/sing-box`
     environment.etc = lib.mkIf cfg.useSymlinkToEtc {
-      "sing-box/config.json" = {
+      "${cfg.dirPathInEtc}/config.json" = {
         source = cfg.files.settingsPath.target;
       };
     };

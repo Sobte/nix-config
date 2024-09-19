@@ -22,6 +22,14 @@ in
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
     };
+    dirPathInEtc = mkOption {
+      type = str;
+      default = "vaultwarden";
+      description = ''
+        Symlink is in the etc folder, relative to the path of etc.
+        Just like: `/etc/{dirPathInEtc}`
+      '';
+    };
     files = {
       settingsPath = mkMappingOption rec {
         source = "vaultwarden/vaultwarden.env";
@@ -41,9 +49,9 @@ in
       "${cfg.files.settingsPath.source}".beneficiary = cfg.owner;
     };
 
-    # etc configuration path: `/etc/vaultwarden`
+    # etc configuration default path: `/etc/vaultwarden`
     environment.etc = lib.mkIf cfg.useSymlinkToEtc {
-      "vaultwarden/vaultwarden.env" = {
+      "${cfg.dirPathInEtc}/vaultwarden.env" = {
         source = cfg.files.settingsPath.target;
       };
     };

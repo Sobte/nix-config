@@ -27,6 +27,14 @@ in
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
     };
+    dirPathInEtc = mkOption {
+      type = str;
+      default = "wireguard";
+      description = ''
+        Symlink is in the etc folder, relative to the path of etc.
+        Just like: `/etc/{dirPathInEtc}`
+      '';
+    };
     configNames = mkOption {
       type = listOf str;
       default = cfgParent.configNames;
@@ -54,10 +62,10 @@ in
       "${value.source}".beneficiary = cfg.owner;
     }) cfg.files;
 
-    # etc configuration path: `/etc/wireguard`
+    # etc configuration default path: `/etc/wireguard`
     environment.etc = lib.mkIf cfg.useSymlinkToEtc (
       concatMapAttrs (name: value: {
-        "wireguard/${name}.conf" = {
+        "${cfg.dirPathInEtc}/${name}.conf" = {
           source = value.target;
         };
       }) cfg.files
