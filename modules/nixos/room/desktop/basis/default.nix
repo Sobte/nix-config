@@ -20,12 +20,12 @@ in
 
       services = {
         udisks2 = mkDefaultEnabled;
-        wireless = mkDefaultEnabled;
         openssh.X11Forwarding = true;
       };
 
       system = {
         fcitx5 = mkDefaultEnabled;
+        network.wireless = mkDefaultEnabled;
         peripherals = mkDefaultEnabled;
       };
 

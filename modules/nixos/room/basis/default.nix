@@ -27,12 +27,12 @@ in
       services = {
         cron = mkDefaultEnabled;
         gnupg = mkDefaultEnabled;
-        network = mkDefaultEnabled;
         openssh = mkDefaultEnabled;
       };
 
       system = {
         locale = mkDefaultEnabled;
+        network = mkDefaultEnabled;
         time = mkDefaultEnabled;
         kernel-latest = mkDefaultEnabled;
       };

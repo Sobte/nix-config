@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.${namespace}.services.network;
+  cfg = config.${namespace}.system.network;
 in
 {
-  options.${namespace}.services.network = {
+  options.${namespace}.system.network = {
     enable = lib.mkEnableOption "network";
   };
 

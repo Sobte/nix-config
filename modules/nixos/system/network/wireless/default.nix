@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.${namespace}.services.wireless;
+  cfg = config.${namespace}.system.network.wireless;
 in
 {
-  options.${namespace}.services.wireless = {
+  options.${namespace}.system.network.wireless = {
     enable = lib.mkEnableOption "wireless";
   };
 
