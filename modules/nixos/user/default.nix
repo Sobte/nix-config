@@ -22,19 +22,19 @@ in
   config = {
     # disable automatic creation. enabling it will mess up my configuration.
     snowfallorg.users.${cfg.name}.create = false;
-    users.users.${cfg.name} = lib.mkIf (cfg.name != "root") {
-      isNormalUser = true;
+    users = {
+      users.${cfg.name} = lib.mkIf (cfg.name != "root") {
+        isNormalUser = true;
 
-      group = "users";
-      # single user
-      uid = 1000;
-      home = "/home/${cfg.name}";
+        group = "users";
+        # single user
+        uid = 1000;
+        home = "/home/${cfg.name}";
 
-      # for sudo
-      extraGroups = [ "wheel" ];
-    };
-
-    # default shell
-    users.defaultUserShell = pkgs.zsh;
+        # for sudo
+        extraGroups = [ "wheel" ];
+      };
+      # default shell
+    } // (lib.optionalAttrs config.programs.zsh.enable { defaultUserShell = pkgs.zsh; });
   };
 }
