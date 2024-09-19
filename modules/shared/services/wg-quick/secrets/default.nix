@@ -22,7 +22,7 @@ in
   options.${namespace}.shared.services.wg-quick.secrets = with types; {
     enable = lib.mkEnableOption "wg-quick" // {
       # If wg-quick is started, secrets are enabled by default
-      default = cfgParent.enable;
+      default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
     };
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;

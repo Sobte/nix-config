@@ -17,7 +17,7 @@ in
   options.${namespace}.services.vaultwarden.secrets = with types; {
     enable = lib.mkEnableOption "vaultwarden" // {
       # If vaultwarden is started, secrets are enabled by default
-      default = cfgParent.enable;
+      default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
     };
     useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
       default = true;
