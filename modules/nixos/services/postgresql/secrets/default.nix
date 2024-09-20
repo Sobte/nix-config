@@ -71,5 +71,17 @@ in
         source = cfg.files.authenticationPath.target;
       };
     };
+
+    users = lib.mkIf (!cfgParent.enable) {
+      users.${cfg.owner} = {
+        name = cfg.owner;
+        uid = config.ids.uids.postgres;
+        group = "postgres";
+        description = "PostgreSQL server user";
+        createHome = false;
+        useDefaultShell = true;
+      };
+      groups.postgres.gid = config.ids.gids.postgres;
+    };
   };
 }
