@@ -63,6 +63,7 @@
   outputs =
     inputs:
     let
+      # TODO: write your own module loader with container support.
       lib = inputs.snowfall-lib.mkLib {
         # snowfall doc: https://snowfall.org/guides/lib/quickstart/
         inherit inputs;
