@@ -35,6 +35,17 @@ let
         type = attrs;
         description = "IPv6 configuration for the bridge interface. just like the 'networking.interfaces.<name>.ipv6' option.";
       };
+      useDHCP = mkOption {
+        type = types.nullOr types.bool;
+        default = null;
+        description = ''
+          Whether this interface should be configured with DHCP. Overrides the
+          default set by {option}`networking.useDHCP`. If `null` (the default),
+          DHCP is enabled if the interface has no IPv4 addresses configured
+          with {option}`networking.interfaces.<name>.ipv4.addresses`, and
+          disabled otherwise.
+        '';
+      };
     };
   };
 in
@@ -54,7 +65,7 @@ in
       }) cfg;
       interfaces = concatMapAttrs (name: bridge: {
         ${name} = {
-          inherit (bridge) ipv4 ipv6;
+          inherit (bridge) ipv4 ipv6 useDHCP;
         };
       }) cfg;
     };

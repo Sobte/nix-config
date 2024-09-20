@@ -18,7 +18,6 @@ let
     mkDefault
     mkOption
     types
-    any
     concatMapAttrs
     intersectLists
     mergeAttrsList
@@ -26,8 +25,6 @@ let
     ;
 
   cfg = config.${namespace}.containers;
-
-  bridgeName = "nixctr0";
 
   servicesEnum = [
     "postgresql"
@@ -57,17 +54,16 @@ let
         networkMode = mkOption {
           type = enum [
             "host"
-            "bridge"
             "none"
           ];
-          default = "bridge";
+          default = "none";
           description = ''
             `none` -- Completely isolate a container from the host and other containers. none is not available for Swarm services.
           '';
         };
         hostBridge = mkOption {
           type = nullOr str;
-          default = bridgeName;
+          default = null;
           example = "br0";
           description = ''
             Put the host-side of the veth-pair into the named bridge.
@@ -193,10 +189,10 @@ in
           hostAddress6
           localAddress
           localAddress6
+          hostBridge
           ;
 
         privateNetwork = ctr.networkMode != "host";
-        hostBridge = if ctr.networkMode == "bridge" then ctr.hostBridge else null;
         bindMounts =
           let
             autoLoaderSecrets = lib.mkIf ctr.hostModules.autoLoader.bindSecretsEtcSymlink (
@@ -304,25 +300,5 @@ in
           });
       } // ctr.extraOptions;
     }) cfg;
-
-    # network
-    ${namespace}.system.network =
-      let
-        isBridge = any (x: x.networkMode == "bridge") (builtins.attrValues cfg);
-      in
-      {
-        # bridge
-        bridges = lib.mkIf isBridge {
-          ${bridgeName} = {
-            interfaces = [ "eth0" ];
-            ipv4.addresses = [
-              {
-                address = "172.18.0.1";
-                prefixLength = 16;
-              }
-            ];
-          };
-        };
-      };
   };
 }
