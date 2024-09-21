@@ -13,4 +13,6 @@
       sing-box.enable = true;
     };
   };
+
+  system.stateVersion = 5;
 }

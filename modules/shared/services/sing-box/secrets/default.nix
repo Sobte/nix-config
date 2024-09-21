@@ -1,10 +1,12 @@
 {
+  pkgs,
   config,
   lib,
   namespace,
   ...
 }:
 let
+  inherit (pkgs.stdenv) isDarwin;
   inherit (lib) mkOption types;
   inherit (lib.${namespace}) mkMappingOption;
   inherit (config.age) secrets;
@@ -29,7 +31,7 @@ in
         default = true;
       };
       useSymlink = lib.mkEnableOption "use symlink to etc" // {
-        default = false;
+        default = isDarwin;
       };
       dirPath = mkOption {
         type = str;
