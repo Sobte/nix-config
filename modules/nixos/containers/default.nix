@@ -35,9 +35,34 @@ let
     "openssh"
   ];
 
+  # generate container ip
+  generateIps =
+    let
+      ctrNames = builtins.attrNames cfg;
+      ctrIdxs = builtins.genList (i: i) (builtins.length ctrNames);
+    in
+    foldl' (
+      acc: idx:
+      acc
+      // (
+        let
+          # idx: 0 1 2 -> ip: 2 3 4
+          ip = toString (idx + 2);
+        in
+        {
+          ${builtins.elemAt ctrNames idx} = {
+            hostAddress = "172.30.3.1";
+            hostAddress6 = "fc00::1";
+            localAddress = "172.30.3.${ip}";
+            localAddress6 = "fc00::${ip}";
+          };
+        }
+      )
+    ) { } ctrIdxs;
+
   # type
   containerType = types.submodule (
-    { name, ... }:
+    { name, config, ... }:
     {
       options = with types; {
         autoStart = lib.mkEnableOption "Whether the container is automatically started at boot-time." // {
@@ -90,23 +115,26 @@ let
         };
         hostAddress = mkOption {
           type = nullOr str;
-          default = null;
+          default = if config.autoGenerateStaticIp then generateIps.${name}.hostAddress else null;
           example = "10.231.136.1";
         };
         hostAddress6 = mkOption {
           type = nullOr str;
-          default = null;
+          default = if config.autoGenerateStaticIp then generateIps.${name}.hostAddress6 else null;
           example = "fc00::1";
         };
         localAddress = mkOption {
           type = nullOr str;
-          default = null;
+          default = if config.autoGenerateStaticIp then generateIps.${name}.localAddress else null;
           example = "10.231.136.2";
         };
         localAddress6 = mkOption {
           type = nullOr str;
-          default = null;
+          default = if config.autoGenerateStaticIp then generateIps.${name}.localAddress6 else null;
           example = "fc00::2";
+        };
+        autoGenerateStaticIp = lib.mkEnableOption "generate container static ip" // {
+          default = config.networkMode == "none";
         };
         bindMounts = mkOption {
           type = attrs;
