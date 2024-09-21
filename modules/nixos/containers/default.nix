@@ -173,8 +173,8 @@ let
               type = listOf (enum sharedServicesEnum);
               default = intersectLists [ "${name}" ] sharedServicesEnum;
             };
-            bindSecretsEtcSymlink = lib.mkEnableOption ''
-              Binding host decryption secrets etc symlink.
+            bindSecretsEtc = lib.mkEnableOption ''
+              Binding host decryption secrets etc.
               The secret to enable the corresponding service.
             '';
           };
@@ -223,14 +223,14 @@ in
         privateNetwork = ctr.networkMode != "host";
         bindMounts =
           let
-            autoLoaderSecrets = lib.mkIf ctr.hostModules.autoLoader.bindSecretsEtcSymlink (
+            autoLoaderSecrets = lib.mkIf ctr.hostModules.autoLoader.bindSecretsEtc (
               (foldl' (
                 acc: name:
                 acc
                 // (
                   let
                     service = config.${namespace}.services.${name};
-                    path = service.secrets.dirPathInEtc or "";
+                    path = service.secrets.etc.dirPath or "";
                     enable = service.secrets.enable or false;
                   in
                   optionalAttrs (enable && path != "") {
@@ -244,7 +244,7 @@ in
                 // (
                   let
                     service = config.${namespace}.shared.services.${name};
-                    path = service.secrets.dirPathInEtc or "";
+                    path = service.secrets.etc.dirPath or "";
                     enable = service.secrets.enable or false;
                   in
                   optionalAttrs (enable && path != "") {

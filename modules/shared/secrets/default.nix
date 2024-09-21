@@ -37,6 +37,7 @@ let
     owner = "root";
   };
   onlyBeneficiary = name: {
+    # Read-only and executable
     mode = "0500";
     owner = name;
   };

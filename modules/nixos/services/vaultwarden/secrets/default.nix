@@ -12,6 +12,13 @@ let
 
   cfgParent = config.${namespace}.services.vaultwarden;
   cfg = cfgParent.secrets;
+
+  onlyOwner = {
+    inherit (config.users.users.${cfg.owner}) uid;
+    inherit (config.users.groups.vaultwarden) gid;
+    # Read-only
+    mode = "0400";
+  };
 in
 {
   options.${namespace}.services.vaultwarden.secrets = with types; {
@@ -19,16 +26,21 @@ in
       # If vaultwarden is started, secrets are enabled by default
       default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
     };
-    useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
-      default = true;
-    };
-    dirPathInEtc = mkOption {
-      type = str;
-      default = "vaultwarden";
-      description = ''
-        Symlink is in the etc folder, relative to the path of etc.
-        Just like: `/etc/{dirPathInEtc}`
-      '';
+    etc = {
+      enable = lib.mkEnableOption "bind to etc" // {
+        default = true;
+      };
+      useSymlink = lib.mkEnableOption "use symlink to etc" // {
+        default = false;
+      };
+      dirPath = mkOption {
+        type = str;
+        default = "vaultwarden";
+        description = ''
+          relative to the path of etc.
+          Just like: `/etc/{etc.dirPath}`
+        '';
+      };
     };
     files = {
       settingsPath = mkMappingOption rec {
@@ -50,10 +62,10 @@ in
     };
 
     # etc configuration default path: `/etc/vaultwarden`
-    environment.etc = lib.mkIf cfg.useSymlinkToEtc {
-      "${cfg.dirPathInEtc}/vaultwarden.env" = {
+    environment.etc = lib.mkIf cfg.etc.enable {
+      "${cfg.etc.dirPath}/vaultwarden.env" = {
         source = cfg.files.settingsPath.target;
-      };
+      } // (lib.optionalAttrs (!cfg.etc.useSymlink) onlyOwner);
     };
 
     users = lib.mkIf (!cfgParent.enable) {

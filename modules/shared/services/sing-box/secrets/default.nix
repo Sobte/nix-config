@@ -11,6 +11,12 @@ let
 
   cfgParent = config.${namespace}.shared.services.sing-box;
   cfg = cfgParent.secrets;
+
+  onlyOwner = {
+    inherit (config.users.users.${cfg.owner}) uid;
+    # Read-only
+    mode = "0400";
+  };
 in
 {
   options.${namespace}.shared.services.sing-box.secrets = with types; {
@@ -18,16 +24,21 @@ in
       # If sing-box is started, secrets are enabled by default
       default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
     };
-    useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
-      default = true;
-    };
-    dirPathInEtc = mkOption {
-      type = str;
-      default = "sing-box";
-      description = ''
-        Symlink is in the etc folder, relative to the path of etc.
-        Just like: `/etc/{dirPathInEtc}`
-      '';
+    etc = {
+      enable = lib.mkEnableOption "bind to etc" // {
+        default = true;
+      };
+      useSymlink = lib.mkEnableOption "use symlink to etc" // {
+        default = false;
+      };
+      dirPath = mkOption {
+        type = str;
+        default = "sing-box";
+        description = ''
+          relative to the path of etc.
+          Just like: `/etc/{etc.dirPath}`
+        '';
+      };
     };
     files = {
       settingsPath = mkMappingOption rec {
@@ -49,10 +60,10 @@ in
     };
 
     # etc configuration default path: `/etc/sing-box`
-    environment.etc = lib.mkIf cfg.useSymlinkToEtc {
-      "${cfg.dirPathInEtc}/config.json" = {
+    environment.etc = lib.mkIf cfg.etc.enable {
+      "${cfg.etc.dirPath}/config.json" = {
         source = cfg.files.settingsPath.target;
-      };
+      } // (lib.optionalAttrs (!cfg.etc.useSymlink) onlyOwner);
     };
   };
 }

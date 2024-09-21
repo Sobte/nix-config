@@ -11,6 +11,12 @@ let
 
   cfgParent = config.${namespace}.system.fileSystems.samba;
   cfg = cfgParent.secrets;
+
+  onlyOwner = {
+    inherit (config.users.users.${cfg.owner}) uid;
+    # Read-only
+    mode = "0400";
+  };
 in
 {
   options.${namespace}.system.fileSystems.samba.secrets = with types; {
@@ -18,16 +24,21 @@ in
       # If samba is started, secrets are enabled by default
       default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
     };
-    useSymlinkToEtc = lib.mkEnableOption "use symlink to etc" // {
-      default = true;
-    };
-    dirPathInEtc = mkOption {
-      type = str;
-      default = "samba/secrets";
-      description = ''
-        Symlink is in the etc folder, relative to the path of etc.
-        Just like: `/etc/{dirPathInEtc}`
-      '';
+    etc = {
+      enable = lib.mkEnableOption "bind to etc" // {
+        default = true;
+      };
+      useSymlink = lib.mkEnableOption "use symlink to etc" // {
+        default = false;
+      };
+      dirPath = mkOption {
+        type = str;
+        default = "samba/secrets";
+        description = ''
+          relative to the path of etc.
+          Just like: `/etc/{etc.dirPath}`
+        '';
+      };
     };
     files = concatMapAttrs (name: _: {
       ${name} = mkMappingOption rec {
@@ -49,11 +60,11 @@ in
     }) cfg.files;
 
     # etc configuration default path: `/etc/samba/secrets`
-    environment.etc = lib.mkIf cfg.useSymlinkToEtc (
+    environment.etc = lib.mkIf cfg.etc.enable (
       concatMapAttrs (name: value: {
-        "${cfg.dirPathInEtc}/${name}.conf" = {
+        "${cfg.etc.dirPath}/${name}.conf" = {
           source = value.target;
-        };
+        } // (lib.optionalAttrs (!cfg.etc.useSymlink) onlyOwner);
       }) cfg.files
     );
   };
