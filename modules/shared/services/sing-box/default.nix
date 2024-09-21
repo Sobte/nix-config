@@ -15,8 +15,11 @@ in
     enable = lib.mkEnableOption "sing-box";
   };
 
-  config = lib.mkIf (cfg.enable && isLinux) {
-    # enable sing-box
-    services.sing-box.enable = true;
-  };
+  config = lib.mkIf cfg.enable (
+    { }
+    // (lib.optionalAttrs isLinux {
+      # enable sing-box
+      services.sing-box.enable = true;
+    })
+  );
 }
