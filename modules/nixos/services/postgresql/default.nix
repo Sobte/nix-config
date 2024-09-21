@@ -13,6 +13,7 @@ in
 {
   options.${namespace}.services.postgresql = with types; {
     enable = lib.mkEnableOption "postgresql";
+    openFirewall = lib.mkEnableOption "postgresql open firewall";
     configFile = {
       settingsPath = mkOption {
         type = path;
@@ -56,6 +57,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    networking.firewall = lib.mkIf cfg.openFirewall {
+      allowedTCPPorts = [ cfg.settings.port ];
+    };
     # postgresql
     services.postgresql = {
       enable = true;
