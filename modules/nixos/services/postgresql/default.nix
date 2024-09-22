@@ -54,6 +54,10 @@ in
         default = 5432;
       };
     };
+    extraOptions = mkOption {
+      type = attrs;
+      default = { };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -72,6 +76,6 @@ in
         }
         // cfg.settings
       );
-    };
+    } // cfg.extraOptions;
   };
 }
