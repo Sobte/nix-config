@@ -10,7 +10,10 @@
         enable = true;
         configNames = [ "wg-go-home" ];
       };
-      sing-box.enable = true;
+      sing-box = {
+        enable = true;
+        secrets.owner = "meow";
+      };
     };
   };
 

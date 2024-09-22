@@ -27,7 +27,6 @@ in
         "google-chrome"
         "jetbrains-toolbox"
         "thunderbird" # email client
-        "sfm" # sing-box graphical client
         "microsoft-remote-desktop" # remote desktop client
         "signal" # instant messaging application focusing on security
       ];
