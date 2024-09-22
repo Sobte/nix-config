@@ -27,5 +27,7 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [ 443 ];
+
   system.stateVersion = "24.05";
 }
