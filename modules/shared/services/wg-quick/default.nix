@@ -21,7 +21,9 @@ let
 in
 {
   options.${namespace}.shared.services.wg-quick = with types; {
-    enable = lib.mkEnableOption "wireguard wg-quick";
+    enable = lib.mkEnableOption "wireguard wg-quick" // {
+      default = (builtins.length cfg.configNames) > 0;
+    };
     configPrefix = mkOption {
       type = str;
       default = prefix;

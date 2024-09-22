@@ -19,10 +19,7 @@ in
       enable = true;
       inherit client;
     };
-    shared.services.wg-quick = {
-      enable = true;
-      configNames = [ "wg-come-home" ];
-    };
+    shared.services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   system.stateVersion = "24.05";
