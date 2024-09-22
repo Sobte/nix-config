@@ -8,6 +8,8 @@
     system.proxmox.lxc.enable = true;
     services = {
       vscode-server.enable = true;
+      postgresql.enable = true;
+      vaultwarden.enable = true;
     };
   };
 
