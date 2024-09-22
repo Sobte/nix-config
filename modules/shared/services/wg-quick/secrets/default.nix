@@ -37,7 +37,7 @@ in
         default = true;
       };
       useSymlink = lib.mkEnableOption "use symlink to etc" // {
-        default = isDarwin;
+        default = isDarwin || (onlyOwner.uid == null);
       };
       dirPath = mkOption {
         type = str;
