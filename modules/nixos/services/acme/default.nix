@@ -20,6 +20,13 @@ in
 {
   options.${namespace}.services.acme = with types; {
     enable = lib.mkEnableOption "acme";
+    useRoot = lib.mkEnableOption ''
+      Whether to use the root user when generating certs. This is not recommended
+      for security + compatibility reasons. If a service requires root owned certificates
+      consider following the guide on "Using ACME with services demanding root
+      owned certificates" in the NixOS manual, and only using this as a fallback
+      or for testing.
+    '';
     email = mkOption {
       type = nullOr str;
       default = user.email or null;
@@ -55,6 +62,7 @@ in
 
   config = lib.mkIf cfg.enable {
     security.acme = {
+      inherit (cfg) useRoot;
       defaults = {
         inherit (cfg)
           email

@@ -6,7 +6,10 @@ in
   ${namespace} = {
     services = {
       vscode-server.enable = true;
-      acme.certs.${domain} = { };
+      acme = {
+        useRoot = true;
+        certs.${domain} = { };
+      };
       postgresql = {
         enable = true;
         extraOptions = {
