@@ -7,13 +7,23 @@
 let
   inherit (lib) mkOption types;
   inherit (lib.${namespace}) host;
+
+  cfg = config.${namespace}.user;
 in
 {
-  options.${namespace}.user = {
+  options.${namespace}.user = with types; {
     name = mkOption {
-      type = types.str;
+      type = str;
       default = config.snowfallorg.user.name or host.name;
       readOnly = true;
+    };
+    nickname = mkOption {
+      type = nullOr str;
+      default = host.nickname or cfg.name;
+    };
+    email = mkOption {
+      type = nullOr str;
+      default = host.email or null;
     };
   };
 

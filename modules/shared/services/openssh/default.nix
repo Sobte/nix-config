@@ -17,9 +17,6 @@ in
     environment.systemPackages = with pkgs; [
       openssh
     ];
-    users.users.${config.${namespace}.user.name} = {
-      openssh.authorizedKeys.keys = lib.${namespace}.host.authorizedKeys;
-    };
   };
 
 }

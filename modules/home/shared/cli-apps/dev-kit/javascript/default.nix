@@ -9,7 +9,10 @@ let
   inherit (pkgs.stdenv) isDarwin;
 
   pnpmHome =
-    if isDarwin then "/Users/${lib.${namespace}.host.name}/Library/pnpm" else "$HOME/.local/share/pnpm";
+    if isDarwin then
+      "/Users/${config.${namespace}.user.name}/Library/pnpm"
+    else
+      "$HOME/.local/share/pnpm";
   cfg = config.${namespace}.cli-apps.dev-kit.javascript;
 in
 {

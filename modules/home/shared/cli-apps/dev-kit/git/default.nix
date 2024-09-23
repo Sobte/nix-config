@@ -7,6 +7,7 @@
 }:
 let
   inherit (lib) mkOption types;
+  inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.cli-apps.dev-kit.git;
 in
@@ -15,12 +16,11 @@ in
     enable = lib.mkEnableOption "git";
     userName = mkOption {
       type = types.nullOr types.str;
-      default = lib.${namespace}.host.git.name or null;
+      default = user.nickname or null;
     };
-
     userEmail = mkOption {
       type = types.nullOr types.str;
-      default = lib.${namespace}.host.git.email or null;
+      default = user.email or null;
     };
   };
 
