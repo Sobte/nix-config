@@ -5,9 +5,15 @@
   ...
 }:
 let
-  inherit (lib) mkOption types concatMapAttrs;
+  inherit (lib)
+    mkOption
+    types
+    concatMapAttrs
+    optional
+    ;
   inherit (lib.${namespace}) getRootDomain;
   inherit (config.${namespace}) user;
+  inherit (config.${namespace}.services) nginx;
 
   cfg = config.${namespace}.services.acme;
 in
@@ -20,7 +26,7 @@ in
     };
     group = mkOption {
       type = str;
-      default = "acme";
+      default = if nginx.enable then "nginx" else "acme";
     };
     dnsProvider = mkOption {
       type = nullOr str;
@@ -28,6 +34,14 @@ in
       description = ''
         see the “code” field of the DNS providers listed at https://go-acme.github.io/lego/dns/.
       '';
+    };
+    postRun = mkOption {
+      type = lines;
+      default = "";
+    };
+    reloadServices = mkOption {
+      type = listOf str;
+      default = optional nginx.enable "nginx.service";
     };
     certs = mkOption {
       type = attrs;

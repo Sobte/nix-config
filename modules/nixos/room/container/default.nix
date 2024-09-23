@@ -17,6 +17,10 @@ in
   config = lib.mkIf cfg.enable {
     ${namespace} = {
       room.basis = mkDefaultEnabled;
+
+      services = {
+        acme = mkDefaultEnabled;
+      };
     };
 
     boot.isContainer = true;

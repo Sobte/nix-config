@@ -20,6 +20,7 @@ in
 
       services = {
         docker = mkDefaultEnabled;
+        acme = mkDefaultEnabled;
       };
     };
   };
