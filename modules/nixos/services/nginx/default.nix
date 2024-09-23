@@ -12,6 +12,27 @@ in
 {
   options.${namespace}.services.nginx = with types; {
     enable = lib.mkEnableOption "nginx";
+    httpSubConfigPath = mkOption {
+      type = str;
+      default = "/etc/nginx/conf.d/*.conf";
+      description = ''
+        To make the configuration easier to maintain, we recommend that you split it into a set of 
+        feature‑specific files stored in the `/etc/nginx/conf.d` directory and use the include directive in the 
+        main `nginx.conf` file to reference the contents of the feature‑specific files.
+      '';
+    };
+    commonHttpConfig = mkOption {
+      type = lines;
+      default = "";
+    };
+    httpConfig = mkOption {
+      type = lines;
+      default = "";
+    };
+    appendHttpConfig = mkOption {
+      type = lines;
+      default = "";
+    };
     virtualHosts = mkOption {
       type = attrs;
       default = { };
@@ -24,7 +45,18 @@ in
 
   config = lib.mkIf cfg.enable {
     services.nginx = {
-      inherit (cfg) enable virtualHosts;
+      inherit (cfg)
+        enable
+        httpConfig
+        appendHttpConfig
+        virtualHosts
+        ;
+      commonHttpConfig = lib.mkBefore (
+        ''
+          include ${cfg.httpSubConfigPath};
+        ''
+        + cfg.commonHttpConfig
+      );
     } // cfg.extraOptions;
   };
 }

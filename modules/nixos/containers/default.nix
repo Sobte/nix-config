@@ -29,6 +29,7 @@ let
   servicesEnum = [
     "postgresql"
     "vaultwarden"
+    "nginx"
   ];
   sharedServicesEnum = [
     "wg-quick"
