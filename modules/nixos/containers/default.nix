@@ -30,6 +30,7 @@ let
     "postgresql"
     "vaultwarden"
     "nginx"
+    "acme"
   ];
   sharedServicesEnum = [
     "wg-quick"
