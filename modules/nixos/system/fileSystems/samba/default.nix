@@ -15,15 +15,12 @@ let
     mapAttrs'
     ;
 
-  cfg = config.${namespace}.system.fileSystems.samba;
-
-  # home user
-  homeUser = config.users.users.${config.${namespace}.user.name};
   # By default, CIFS shares are mounted as root. 
   # If mounting as user is desirable, `uid`, `gid` 
   # and usergroup arguments can be provided as part of the filesystem options:
-  uid = homeUser.uid or 1000;
-  gid = config.groups.${homeUser.group}.gid or 100;
+  inherit (config.${namespace}.user) uid gid;
+
+  cfg = config.${namespace}.system.fileSystems.samba;
 
   # type
   sambaType = types.submodule (

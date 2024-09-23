@@ -24,9 +24,7 @@ let
   cfg = config.${namespace}.shared.secrets;
 
   # user home
-  userName = config.${namespace}.user.name;
-  homeUser = config.users.users.${userName};
-  homeDir = homeUser.home;
+  homeDir = config.${namespace}.user.home;
 
   # secrets path
   hosts-secrets = "${homeDir}/.config/hosts-secrets";

@@ -15,7 +15,7 @@ let
 
   cfg = config.${namespace}.shared.services.wg-quick;
 
-  homeDir = config.users.users.${config.${namespace}.user.name}.home;
+  homeDir = config.${namespace}.user.home;
   wg-pkgs = pkgs.wireguard-tools;
   prefix = "/etc/wireguard";
 in
