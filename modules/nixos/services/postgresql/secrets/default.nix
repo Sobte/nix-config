@@ -63,6 +63,9 @@ in
       default = "postgres";
       description = "The owner of the files.";
     };
+    createOwner = lib.mkEnableOption "auto create nginx owner" // {
+      default = !cfgParent.enable && (config.${namespace}.user.name != cfg.owner);
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -86,7 +89,7 @@ in
       } // (lib.optionalAttrs (!cfg.etc.useSymlink) onlyOwner);
     };
 
-    users = lib.mkIf (!cfgParent.enable) {
+    users = lib.mkIf cfg.createOwner {
       users.${cfg.owner} = {
         name = cfg.owner;
         uid = config.ids.uids.postgres;
