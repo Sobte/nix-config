@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   namespace,
@@ -51,6 +52,7 @@ in
         appendHttpConfig
         virtualHosts
         ;
+      package = pkgs.nginxQuic; # use full
       commonHttpConfig = lib.mkBefore (
         ''
           include ${cfg.httpSubConfigPath};

@@ -63,13 +63,9 @@ in
           ;
       };
       certs = concatMapAttrs (name: value: {
-        ${name} = value // {
-          environmentFile =
-            if (value.environmentFile or null) != null then
-              value.environmentFile
-            else
-              "/etc/acme/env/${getRootDomain name}.env";
-        };
+        ${name} = {
+          environmentFile = "/etc/acme/env/${getRootDomain name}.env";
+        } // value;
       }) cfg.certs;
       acceptTerms = cfg.enable;
     } // cfg.extraOptions;
