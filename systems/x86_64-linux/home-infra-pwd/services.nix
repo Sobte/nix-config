@@ -35,8 +35,16 @@ in
   };
 
   # ports
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
+  networking.firewall =
+    let
+      ports = [
+        80
+        443
+        47315
+      ];
+    in
+    {
+      allowedTCPPorts = ports;
+      allowedUDPPorts = ports;
+    };
 }
