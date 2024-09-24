@@ -31,6 +31,7 @@ in
         secrets.configNames = [ "${domain}" ];
       };
     };
+    shared.services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   # ports
