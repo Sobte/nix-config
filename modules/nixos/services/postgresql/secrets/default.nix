@@ -17,10 +17,11 @@ let
 
   onlyOwner = {
     inherit (config.users.users.${cfg.owner}) uid;
-    inherit (config.users.groups.postgres) gid;
+    inherit (config.users.groups.${group}) gid;
     # Read-only
     mode = "0400";
   };
+  group = "postgres";
 in
 {
   options.${namespace}.services.postgresql.secrets = with types; {
@@ -91,14 +92,14 @@ in
 
     users = lib.mkIf cfg.createOwner {
       users.${cfg.owner} = {
+        inherit group;
         name = cfg.owner;
         uid = config.ids.uids.postgres;
-        group = "postgres";
         description = "PostgreSQL server user";
         createHome = false;
         useDefaultShell = true;
       };
-      groups.postgres.gid = config.ids.gids.postgres;
+      groups.${group}.gid = config.ids.gids.postgres;
     };
   };
 }

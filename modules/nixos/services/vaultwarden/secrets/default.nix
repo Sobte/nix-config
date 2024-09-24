@@ -17,10 +17,11 @@ let
 
   onlyOwner = {
     inherit (config.users.users.${cfg.owner}) uid;
-    inherit (config.users.groups.vaultwarden) gid;
+    inherit (config.users.groups.${group}) gid;
     # Read-only
     mode = "0400";
   };
+  group = "vaultwarden";
 in
 {
   options.${namespace}.services.vaultwarden.secrets = with types; {
@@ -75,13 +76,13 @@ in
 
     users = lib.mkIf cfg.createOwner {
       users.${cfg.owner} = {
+        inherit group;
         name = cfg.owner;
-        group = "vaultwarden";
         description = "Vaultwarden server user";
         createHome = false;
         useDefaultShell = true;
       };
-      groups.vaultwarden = { };
+      groups.${group} = { };
     };
   };
 }

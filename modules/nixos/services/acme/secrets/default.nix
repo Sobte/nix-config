@@ -27,6 +27,7 @@ let
     # Read-only
     mode = "0400";
   };
+  group = "acme";
 in
 {
   options.${namespace}.services.acme.secrets = with types; {
@@ -103,13 +104,13 @@ in
 
     users = lib.mkIf cfg.createOwner {
       users.${cfg.owner} = {
+        inherit group;
         name = cfg.owner;
-        group = "acme";
         description = "acme web server user";
         createHome = false;
         useDefaultShell = true;
       };
-      users.groups.acme = { };
+      users.groups.${group} = { };
     };
   };
 }

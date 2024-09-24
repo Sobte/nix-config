@@ -22,10 +22,11 @@ let
 
   onlyOwner = {
     inherit (config.users.users.${cfg.owner}) uid;
-    inherit (config.users.groups.nginx) gid;
+    inherit (config.users.groups.${group}) gid;
     # Read-only
     mode = "0440";
   };
+  group = "nginx";
 in
 {
   options.${namespace}.services.nginx.secrets = with types; {
@@ -90,15 +91,15 @@ in
 
     users = lib.mkIf cfg.createOwner {
       users.${cfg.owner} = {
+        inherit group;
         isSystemUser = true;
         name = cfg.owner;
         uid = config.ids.uids.nginx;
-        group = "nginx";
         description = "nginx web server user";
         createHome = false;
         useDefaultShell = true;
       };
-      groups.nginx.gid = config.ids.gids.nginx;
+      groups.${group}.gid = config.ids.gids.nginx;
     };
   };
 }
