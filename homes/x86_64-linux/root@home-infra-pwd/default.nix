@@ -1,6 +1,7 @@
 {
-  cattery.room.container = {
-    enable = true;
+  cattery = {
+    room.container.enable = true;
+    cli-apps.cloudflared.enable = true;
   };
 
   snowfallorg.user.enable = false;

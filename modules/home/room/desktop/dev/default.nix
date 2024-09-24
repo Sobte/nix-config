@@ -58,10 +58,14 @@ in
       # linux config
       apps = {
         mail = mkDefaultEnabled;
-        network = mkDefaultEnabled;
         safety = mkDefaultEnabled;
         science = mkDefaultEnabled;
         video = mkDefaultEnabled;
+      };
+      cli-apps = {
+        cloudflared = mkDefaultEnabled;
+        tailscale = mkDefaultEnabled;
+        warp = mkDefaultEnabled;
       };
 
       # darwin config

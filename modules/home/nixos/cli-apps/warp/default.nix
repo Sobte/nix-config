@@ -8,19 +8,17 @@
 let
   inherit (pkgs.stdenv) isLinux;
 
-  cfg = config.${namespace}.apps.network;
+  cfg = config.${namespace}.cli-apps.warp;
 in
 {
-  options.${namespace}.apps.network = {
-    enable = lib.mkEnableOption "network";
+  options.${namespace}.cli-apps.warp = {
+    enable = lib.mkEnableOption "cloudflare warp";
   };
 
   config = lib.mkIf (cfg.enable && isLinux) {
     home.packages = with pkgs; [
       # network
-      cloudflared # tunnel
       cloudflare-warp
-      tailscale
     ];
   };
 

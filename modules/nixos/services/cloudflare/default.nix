@@ -12,6 +12,10 @@ in
 {
   options.${namespace}.services.cloudflare = with types; {
     enable = lib.mkEnableOption "cloudflare";
+    tunnels = mkOption {
+      type = attrs;
+      default = { };
+    };
     extraOptions = mkOption {
       type = attrs;
       default = { };
@@ -20,7 +24,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.cloudflared = {
-      inherit (cfg) enable;
+      inherit (cfg) enable tunnels;
     } // cfg.extraOptions;
   };
 }
