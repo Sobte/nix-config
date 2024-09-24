@@ -6,10 +6,6 @@ in
   ${namespace} = {
     services = {
       vscode-server.enable = true;
-      acme = {
-        useRoot = true;
-        certs.${domain} = { };
-      };
       postgresql = {
         enable = true;
         extraOptions = {
@@ -26,14 +22,13 @@ in
         enable = true;
         dbBackend = "postgresql";
       };
+      acme = {
+        useRoot = true;
+        certs.${domain} = { };
+      };
       nginx = {
         enable = true;
-        virtualHosts.${domain} = {
-          addSSL = true;
-          useACMEHost = domain;
-          quic = true;
-          locations."/".proxyPass = "http://localhost:8000";
-        };
+        secrets.configNames = [ "${domain}" ];
       };
     };
   };
