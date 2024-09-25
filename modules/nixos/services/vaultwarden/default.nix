@@ -32,6 +32,10 @@ in
         '';
       };
     };
+    extraOptions = mkOption {
+      type = attrs;
+      default = { };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -41,7 +45,7 @@ in
       # override default config
       config = mkForce { };
       environmentFile = cfg.configFile.settingsPath;
-    };
+    } // cfg.extraOptions;
   };
 
 }

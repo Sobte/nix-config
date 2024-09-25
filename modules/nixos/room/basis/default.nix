@@ -19,6 +19,7 @@ in
       nix = mkDefaultEnabled;
 
       cli-apps = {
+        gnupg = mkDefaultEnabled;
         nix = {
           nix-ld = mkDefaultEnabled;
         };
@@ -26,7 +27,6 @@ in
 
       services = {
         cron = mkDefaultEnabled;
-        gnupg = mkDefaultEnabled;
         openssh = mkDefaultEnabled;
       };
 

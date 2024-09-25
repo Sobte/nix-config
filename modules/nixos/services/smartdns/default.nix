@@ -16,11 +16,15 @@ let
   ];
 in
 {
-  options.${namespace}.services.smartdns = {
+  options.${namespace}.services.smartdns = with types; {
     enable = lib.mkEnableOption "smartdns";
     openFirewall = mkOption {
       type = types.bool;
       default = true;
+    };
+    extraOptions = mkOption {
+      type = attrs;
+      default = { };
     };
   };
 
@@ -57,7 +61,7 @@ in
         serve-expired-reply-ttl = 3;
         serve-expired-prefetch-time = 21600;
       };
-    };
+    } // cfg.extraOptions;
   };
 
 }

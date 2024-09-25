@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.${namespace}.services.gnupg;
+  cfg = config.${namespace}.cli-apps.gnupg;
 in
 {
-  options.${namespace}.services.gnupg = {
+  options.${namespace}.cli-apps.gnupg = {
     enable = lib.mkEnableOption "gnupg";
   };
 
