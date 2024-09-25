@@ -54,13 +54,16 @@ in
 
     systemd.services.gitea = lib.mkIf cfg.useWizard (
       let
+        configFile = "${cfg.configFile.settingsPath}";
         runConfig = "${config.services.gitea.customDir}/conf/app.ini";
       in
       {
         preStart = mkBefore ''
           function gitea_custom_config {
-            cp -f '${cfg.configFile.settingsPath}' '${runConfig}'
-            chmod u-w '${runConfig}'
+            if [ -s '${configFile}' ]; then
+              cp -f '${configFile}' '${runConfig}'
+              chmod u-w '${runConfig}'
+            fi
           }
           (umask 027; gitea_custom_config)
         '';
