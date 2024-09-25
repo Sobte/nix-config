@@ -12,7 +12,7 @@ let
   inherit (lib.${namespace}) mkMappingOption;
   inherit (config.age) secrets;
 
-  cfgParent = config.${namespace}.services.vaultwarden;
+  cfgParent = config.${namespace}.services.gitea;
   cfg = cfgParent.secrets;
 
   onlyOwner = {
@@ -21,13 +21,13 @@ let
     # Read-only
     mode = "0400";
   };
-  group = "vaultwarden";
+  group = "gitea";
 in
 {
-  options.${namespace}.services.vaultwarden.secrets = with types; {
-    enable = lib.mkEnableOption "vaultwarden" // {
-      # If vaultwarden is started, secrets are enabled by default
-      default = cfgParent.enable && config.${namespace}.shared.secrets.enable;
+  options.${namespace}.services.gitea.secrets = with types; {
+    enable = lib.mkEnableOption "gitea" // {
+      # If gitea is started, secrets are enabled by default
+      default = cfgParent.enable && cfgParent.useWizard && config.${namespace}.shared.secrets.enable;
     };
     etc = {
       enable = lib.mkEnableOption "bind to etc" // {
@@ -38,7 +38,7 @@ in
       };
       dirPath = mkOption {
         type = str;
-        default = "vaultwarden";
+        default = "gitea/conf";
         description = ''
           relative to the path of etc.
           Just like: `/etc/{etc.dirPath}`
@@ -47,16 +47,16 @@ in
     };
     files = {
       settingsPath = mkMappingOption rec {
-        source = "vaultwarden/vaultwarden.env";
+        source = "gitea/conf/app.ini";
         target = secrets."${host}/${source}".path;
       };
     };
     owner = mkOption {
       type = str;
-      default = "vaultwarden";
+      default = "gitea";
       description = "The owner of the files.";
     };
-    createOwner = lib.mkEnableOption "auto create vaultwarden owner" // {
+    createOwner = lib.mkEnableOption "auto create gitea owner" // {
       default = !cfgParent.enable && (config.${namespace}.user.name != cfg.owner);
     };
   };
@@ -67,9 +67,9 @@ in
       "${cfg.files.settingsPath.source}".beneficiary = cfg.owner;
     };
 
-    # etc configuration default path: `/etc/vaultwarden`
+    # etc configuration default path: `/etc/gitea/conf`
     environment.etc = lib.mkIf cfg.etc.enable {
-      "${cfg.etc.dirPath}/vaultwarden.env" = {
+      "${cfg.etc.dirPath}/app.ini" = {
         source = cfg.files.settingsPath.target;
       } // (lib.optionalAttrs (!cfg.etc.useSymlink) onlyOwner);
     };
@@ -78,7 +78,7 @@ in
       users.${cfg.owner} = {
         inherit group;
         name = cfg.owner;
-        description = "Vaultwarden server user";
+        description = "Gitea Service";
         createHome = false;
         useDefaultShell = true;
       };

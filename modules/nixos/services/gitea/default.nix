@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption types mkBefore;
 
   cfg = config.${namespace}.services.gitea;
 in
@@ -28,9 +28,10 @@ in
     configFile = {
       settingsPath = mkOption {
         type = path;
-        default = "${config.services.gitea.customDir}/conf/app.ini";
-        readOnly = true;
+        default = "/etc/gitea/conf/app.ini";
         description = ''
+          If useWizard is enabled, the config files 
+          will be copied to ${config.services.gitea.customDir}.
           config manual ref: <https://docs.gitea.com/administration/config-cheat-sheet>
         '';
       };
@@ -50,5 +51,20 @@ in
         else
           (if cfg.dbBackend == "postgresql" then "postgres" else cfg.dbBackend);
     } // cfg.extraOptions;
+
+    systemd.services.gitea = lib.mkIf cfg.useWizard (
+      let
+        runConfig = "${config.services.gitea.customDir}/conf/app.ini";
+      in
+      {
+        preStart = mkBefore ''
+          function gitea_custom_config {
+            cp -f '${cfg.configFile.settingsPath}' '${runConfig}'
+            chmod u-w '${runConfig}'
+          }
+          (umask 027; gitea_custom_config)
+        '';
+      }
+    );
   };
 }
