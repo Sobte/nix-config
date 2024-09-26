@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   namespace,
@@ -21,10 +22,7 @@ in
       default = "sqlite";
       description = "To run gitea after database service.";
     };
-    useWizard = mkOption {
-      type = bool;
-      default = true;
-    };
+    useWizard = lib.mkEnableOption "gitea use host config";
     configFile = {
       settingsPath = mkOption {
         type = path;
@@ -36,6 +34,10 @@ in
         '';
       };
     };
+    settings = mkOption {
+      type = attrs;
+      default = { };
+    };
     extraOptions = mkOption {
       type = attrs;
       default = { };
@@ -44,7 +46,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.gitea = {
-      inherit (cfg) enable useWizard;
+      inherit (cfg) enable useWizard settings;
       database.type =
         if cfg.dbBackend == "sqlite" then
           "sqlite3"
@@ -56,12 +58,19 @@ in
       let
         configFile = "${cfg.configFile.settingsPath}";
         runConfig = "${config.services.gitea.customDir}/conf/app.ini";
+        pathConfig = "${config.services.gitea.customDir}/conf/rootPath";
+        staticRootPath = config.services.gitea.settings.server.STATIC_ROOT_PATH;
+        replaceSecretBin = "${pkgs.replace-secret}/bin/replace-secret";
       in
       {
         preStart = mkBefore ''
           function gitea_custom_config {
             if [ -s '${configFile}' ]; then
               cp -f '${configFile}' '${runConfig}'
+              chmod u+w '${runConfig}'
+              echo '${staticRootPath}' > '${pathConfig}'
+              ${replaceSecretBin} '#staticRootPath#' '${pathConfig}' '${runConfig}'
+              rm -f '${pathConfig}'
               chmod u-w '${runConfig}'
             fi
           }
