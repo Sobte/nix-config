@@ -17,7 +17,7 @@
     user.name = "nixos"; # use nixos as default user
     # plasma6
     desktop.kde.enable = true;
-    system.kernel-latest.enable = true;
+    system.kernel.enable = true;
     room.desktop.general.enable = true;
   };
 

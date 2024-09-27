@@ -34,7 +34,7 @@ in
         locale = mkDefaultEnabled;
         network = mkDefaultEnabled;
         time = mkDefaultEnabled;
-        kernel-latest = mkDefaultEnabled;
+        kernel = mkDefaultEnabled;
       };
 
       # shared

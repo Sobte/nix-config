@@ -19,7 +19,6 @@ in
       room.general = mkDefaultEnabled;
 
       services = {
-        docker = mkDefaultEnabled;
         acme = mkDefaultEnabled;
       };
     };
