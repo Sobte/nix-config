@@ -29,6 +29,7 @@ in
         "thunderbird" # email client
         "microsoft-remote-desktop" # remote desktop client
         "signal" # instant messaging application focusing on security
+        "obsidian" # obsidian
       ];
     };
 
