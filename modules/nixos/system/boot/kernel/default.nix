@@ -8,10 +8,10 @@
 let
   inherit (lib) mkOption types;
 
-  cfg = config.${namespace}.system.kernel;
+  cfg = config.${namespace}.system.boot.kernel;
 in
 {
-  options.${namespace}.system.kernel = with types; {
+  options.${namespace}.system.boot.kernel = with types; {
     enable = lib.mkEnableOption "kernel";
     version = mkOption {
       type = str;

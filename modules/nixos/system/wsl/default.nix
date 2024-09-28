@@ -5,6 +5,8 @@
   ...
 }:
 let
+  inherit (config.${namespace}.system.boot) binfmt;
+
   cfg = config.${namespace}.system.wsl;
 in
 {
@@ -20,6 +22,7 @@ in
       nativeSystemd = true;
       useWindowsDriver = true;
       # docker-desktop.enable = true;
+      interop.register = binfmt.enable;
     };
   };
 

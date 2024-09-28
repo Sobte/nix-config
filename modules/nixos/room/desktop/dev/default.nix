@@ -26,6 +26,8 @@ in
         docker = mkDefaultEnabled;
         vscode-server = mkDefaultEnabled;
       };
+
+      system.boot.binfmt = mkDefaultEnabled;
     };
 
     # disable sudo password

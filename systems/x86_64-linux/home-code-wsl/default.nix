@@ -7,7 +7,10 @@
 
     services.vscode-server.enable = true;
     # disable hardware peripherals
-    system.peripherals.enable = false;
+    system = {
+      peripherals.enable = false;
+      boot.binfmt.enable = true;
+    };
   };
 
   system.stateVersion = "24.11";
