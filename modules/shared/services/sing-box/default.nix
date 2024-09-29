@@ -20,6 +20,10 @@ in
     // (lib.optionalAttrs isLinux {
       # enable sing-box
       services.sing-box.enable = true;
+      systemd.services.sing-box = {
+        # use own config
+        preStart = lib.mkForce "";
+      };
     })
   );
 }
