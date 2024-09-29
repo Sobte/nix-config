@@ -58,31 +58,32 @@ in
   };
 
   config =
-    {
-      users.users.${cfg.name} =
-        {
-          openssh.authorizedKeys = cfg.authorizedKeys;
-        }
-        // (lib.optionalAttrs isDarwin {
-          # Just to ensure that it is not null when accessing, the default value on Mac is 501
-          uid = 501;
-        });
-    }
+    (optionalAttrs isDarwin {
+      users.users.${cfg.name} = {
+        # Just to ensure that it is not null when accessing, the default value on Mac is 501
+        uid = 501;
+        openssh.authorizedKeys = cfg.authorizedKeys;
+      };
+    })
     // (optionalAttrs isLinux {
       # disable automatic creation. enabling it will mess up my configuration.
       snowfallorg.users.${cfg.name}.create = false;
       users = {
-        users.${cfg.name} = lib.optionalAttrs (cfg.name != "root") {
-          isNormalUser = true;
+        users.${cfg.name} =
+          (optionalAttrs (cfg.name != "root") {
+            isNormalUser = true;
 
-          group = linuxUserGroup;
-          # single user
-          uid = 1000;
-          home = "/home/${cfg.name}";
+            group = linuxUserGroup;
+            # single user
+            uid = 1000;
+            home = "/home/${cfg.name}";
 
-          # for sudo
-          extraGroups = [ "wheel" ];
-        };
+            # for sudo
+            extraGroups = [ "wheel" ];
+          })
+          // {
+            openssh.authorizedKeys = cfg.authorizedKeys;
+          };
         # default shell
       } // (optionalAttrs config.programs.zsh.enable { defaultUserShell = pkgs.zsh; });
     });
