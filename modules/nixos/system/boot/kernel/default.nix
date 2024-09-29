@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption types optionalAttrs;
 
   cfg = config.${namespace}.system.boot.kernel;
 in
@@ -17,6 +17,11 @@ in
       type = str;
       default = "latest";
     };
+    sysctl = mkOption {
+      type = attrs;
+      default = { };
+    };
+    useIpForward = lib.mkEnableOption "just like: `net.ipv4.ip_forward=1`, overwritten if sysctl ip_forward is set.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -28,5 +33,11 @@ in
     boot.zfs = lib.mkIf (cfg.version == "latest") {
       package = pkgs.zfs_unstable;
     };
+
+    boot.kernel.sysctl =
+      (optionalAttrs cfg.useIpForward {
+        "net.ipv4.ip_forward" = 1;
+      })
+      // cfg.sysctl;
   };
 }

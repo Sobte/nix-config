@@ -9,6 +9,7 @@
     shared.services.sing-box = {
       enable = true;
     };
+    system.boot.kernel.useIpForward = true;
   };
 
   system.stateVersion = "24.11";
