@@ -15,7 +15,7 @@
 
   ${namespace} = {
     user.name = "nixos"; # use nixos as default user
-    system.kernel.enable = true;
+    system.boot.kernel.enable = true;
     room.general.enable = true;
   };
 

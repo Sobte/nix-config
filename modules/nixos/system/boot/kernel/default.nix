@@ -24,7 +24,7 @@ in
       if cfg.version == "latest" then
         pkgs.linuxPackages_latest
       else
-        pkgs.linuxKernel.packages."linux_${cfg.version}";
+        pkgs.linuxKernel.packages."linux_${builtins.replaceStrings [ "." ] [ "_" ] cfg.version}";
     boot.zfs = lib.mkIf (cfg.version == "latest") {
       package = pkgs.zfs_unstable;
     };
