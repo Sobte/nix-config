@@ -51,7 +51,7 @@ in
     (lib.optionalAttrs isLinux {
       fonts.fontDir.enable = true;
       console = {
-        font = "spleen-8x16";
+        font = "spleen-12x24";
         packages = with pkgs; [
           spleen
           terminus_font
