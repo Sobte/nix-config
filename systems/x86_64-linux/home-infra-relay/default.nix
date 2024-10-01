@@ -12,5 +12,8 @@
     system.boot.kernel.useIpForward = true;
   };
 
+  # close firewall
+  networking.firewall.enable = false;
+
   system.stateVersion = "24.11";
 }
