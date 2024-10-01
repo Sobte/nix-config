@@ -31,9 +31,6 @@ in
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
-    # the way to mount disks
-    services.udisks2.enable = true;
-
     # opengl, graphics drivers
     hardware.graphics.enable32Bit = true;
 
