@@ -13,9 +13,12 @@ in
     room.desktop.dev.enable = true;
     desktop.kde.enable = true;
 
-    system.fileSystems.samba = {
-      enable = true;
-      inherit client;
+    system = {
+      boot.binfmt.enable = true;
+      fileSystems.samba = {
+        enable = true;
+        inherit client;
+      };
     };
     shared.services.wg-quick.configNames = [ "wg-come-home" ];
   };
