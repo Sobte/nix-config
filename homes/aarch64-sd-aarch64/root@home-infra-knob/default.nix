@@ -1,6 +1,6 @@
 {
   cattery = {
-    room.container.enable = true;
+    room.server.enable = true;
   };
 
   snowfallorg.user.enable = false;
