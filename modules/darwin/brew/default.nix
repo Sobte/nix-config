@@ -13,13 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    homebrew = {
-      enable = true;
-      onActivation = {
-        autoUpdate = true;
-        upgrade = true;
-      };
-      brews = [ ];
+    cattery.brew = {
       # software that can't update itself.
       # giving the ablitity to self update is usually more efficient,
       # tho some software is not able to do so.
@@ -32,18 +26,6 @@ in
         "obsidian" # obsidian
       ];
     };
-
-    ${namespace}.home.extraOptions = {
-      programs = {
-        zsh.initExtra = lib.mkAfter ''
-          # brew
-          export BREW_HOME="/opt/homebrew"
-          # check brew home exists in path
-          if [[ ":$PATH:" != *":$BREW_HOME/bin:"* ]]; then
-              export PATH="$PATH:$BREW_HOME/bin"
-          fi
-        '';
-      };
-    };
   };
+
 }

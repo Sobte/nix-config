@@ -1,4 +1,4 @@
-{ lib, namespace, ... }:
+{ lib, ... }:
 {
   isoImage.isoBaseName = "nixos-plasma6-new-kernel";
 
@@ -6,7 +6,7 @@
   # is incompatible with networkmanager.
   networking.wireless.enable = lib.mkForce false;
 
-  ${namespace} = {
+  cattery = {
     user.name = "nixos"; # use nixos as default user
     # plasma6
     desktop.kde.enable = true;

@@ -1,8 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
+{ lib, ... }:
 {
   isoImage.isoBaseName = "nixos-minimal-new-kernel-no-zfs";
 
@@ -13,7 +9,7 @@
   boot.supportedFilesystems.zfs = lib.mkForce false;
   boot.initrd.supportedFilesystems.zfs = lib.mkForce false;
 
-  ${namespace} = {
+  cattery = {
     user.name = "nixos"; # use nixos as default user
     system.boot.kernel.enable = true;
     room.general.enable = true;

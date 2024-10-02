@@ -16,9 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     cattery.user = {
-      settings = lib.${namespace}.host // {
-        inherit (config.snowfallorg.user) name;
-      };
+      settings = lib.${namespace}.host;
     };
   };
 }

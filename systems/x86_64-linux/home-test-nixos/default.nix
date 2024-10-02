@@ -9,7 +9,7 @@ in
 {
   imports = [ ./hardware.nix ];
 
-  ${namespace} = {
+  cattery = {
     room.desktop.general.enable = true;
     desktop.hyprland.theme = {
       charm-cat.enable = true;

@@ -1,9 +1,8 @@
-{ namespace, ... }:
 let
   domain = "home.pwd.oop.icu";
 in
 {
-  ${namespace} = {
+  cattery = {
     services = {
       postgresql = {
         enable = true;

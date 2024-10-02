@@ -9,7 +9,7 @@ in
 {
   imports = [ ./hardware.nix ];
 
-  ${namespace} = {
+  cattery = {
     room.desktop.dev.enable = true;
     desktop.kde.enable = true;
 

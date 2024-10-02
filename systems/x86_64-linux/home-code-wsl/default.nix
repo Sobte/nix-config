@@ -1,8 +1,7 @@
-{ namespace, ... }:
 {
   imports = [ ./hardware.nix ];
 
-  ${namespace} = {
+  cattery = {
     room.desktop.wsl.enable = true;
 
     services.vscode-server.enable = true;

@@ -18,16 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,25 +28,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:yaxitech/ragenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # game
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+    cattery-modules = {
+      url = "github:nixcafe/cattery-modules";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
   };
 
@@ -71,7 +52,7 @@
         src = ./.;
 
         snowfall = {
-          namespace = "cattery";
+          namespace = "lovelycat";
           meta = {
             name = "meow-flake";
             title = "Meow' Nix Flakes";
@@ -79,20 +60,15 @@
         };
       };
 
-      shared-modules =
-        builtins.attrValues (lib.snowfall.module.create-modules { src = ./modules/shared; })
-        ++ (with inputs; [
-          agenix.nixosModules.default
-        ]);
-
       nixos-modules = with inputs; [
-        home-manager.nixosModules.home-manager
-        lanzaboote.nixosModules.lanzaboote
-        vscode-server.nixosModules.default
-        nixos-wsl.nixosModules.default
-        nix-gaming.nixosModules.pipewireLowLatency
+        cattery-modules.nixosModules.default
       ];
-
+      darwin-modules = with inputs; [
+        cattery-modules.darwinModules.default
+      ];
+      homes-modules = with inputs; [
+        cattery-modules.homeModules.default
+      ];
     in
     lib.mkFlake {
 
@@ -103,16 +79,13 @@
 
       systems = {
         modules = {
-          nixos = shared-modules ++ nixos-modules;
-          darwin = shared-modules;
-          install-iso = shared-modules;
-          sd-aarch64 = shared-modules;
+          nixos = nixos-modules;
+          darwin = darwin-modules;
         };
       };
 
-      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+      homes.modules = homes-modules;
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
-
     };
 }

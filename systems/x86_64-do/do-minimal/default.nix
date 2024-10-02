@@ -1,9 +1,5 @@
 {
-  namespace,
-  ...
-}:
-{
-  ${namespace} = {
+  cattery = {
     user.name = "root"; # use nixos as default user
     room.server.enable = true;
   };

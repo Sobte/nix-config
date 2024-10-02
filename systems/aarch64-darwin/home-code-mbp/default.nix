@@ -1,9 +1,5 @@
 {
-  namespace,
-  ...
-}:
-{
-  ${namespace} = {
+  cattery = {
     room.desktop.dev.enable = true;
     shared.services = {
       wg-quick = {
