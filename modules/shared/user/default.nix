@@ -20,15 +20,15 @@ in
   options.${namespace}.user = with types; {
     name = mkOption {
       type = str;
-      default = host.name;
+      default = cfg.settings.name or "";
     };
     nickname = mkOption {
       type = nullOr str;
-      default = host.nickname or cfg.name;
+      default = cfg.settings.nickname or cfg.name or null;
     };
     email = mkOption {
       type = nullOr str;
-      default = host.email or null;
+      default = cfg.settings.email or null;
     };
     home = mkOption {
       type = nullOr str;
@@ -48,12 +48,16 @@ in
     authorizedKeys = {
       keys = lib.mkOption {
         type = listOf singleLineStr;
-        default = host.authorizedKeys.keys;
+        default = cfg.settings.authorizedKeys.keys or [ ];
       };
       keyFiles = lib.mkOption {
         type = listOf path;
         default = [ ];
       };
+    };
+    settings = mkOption {
+      type = attrs;
+      default = host;
     };
   };
 

@@ -45,7 +45,7 @@ symbol = ' '
 
 [dotnet]
 symbol = '󰪮 '
-detect_extensions = [ "csproj", "fsproj", "xproj", "sln"]
+detect_extensions = ["csproj", "fsproj", "xproj", "sln"]
 
 [elixir]
 symbol = ' '
