@@ -35,9 +35,7 @@
 
     cattery-modules = {
       url = "github:nixcafe/cattery-modules";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
