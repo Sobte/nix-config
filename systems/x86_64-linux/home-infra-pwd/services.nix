@@ -26,10 +26,10 @@ in
       };
       nginx = {
         enable = true;
-        secrets.configNames = [ "${domain}" ];
+        secrets.configNames = [ "${domain}.conf" ];
       };
+      wg-quick.configNames = [ "wg-come-home" ];
     };
-    shared.services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   # ports

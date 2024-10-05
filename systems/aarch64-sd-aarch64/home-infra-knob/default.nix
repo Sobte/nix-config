@@ -8,7 +8,7 @@
     user.name = "root"; # use root as default user
     room.server.enable = true;
     system.boot.efi.enable = false;
-    shared.services.wg-quick.configNames = [ "wg-come-home" ];
+    services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   system.stateVersion = "24.11";

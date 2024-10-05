@@ -20,7 +20,7 @@ in
         inherit client;
       };
     };
-    shared.services.wg-quick.configNames = [ "wg-come-home" ];
+    services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   # krdp ports
