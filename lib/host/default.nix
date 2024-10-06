@@ -14,6 +14,7 @@
         };
       };
     };
+    signKey = "612A2672CCEDF205";
     authorizedKeys.keys = [
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPZsxQz6l4pHNXMHMbj9Vp3aOACZnmBK3qT4r7DxWRZZAAAADnNzaDppQHNvYnRlLm1l"
     ];
