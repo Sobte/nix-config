@@ -17,8 +17,8 @@ in
   config = lib.mkIf cfg.enable {
     cattery.cli-apps.security = {
       gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
+        enable = lib.mkDefault true;
+        enableSSHSupport = lib.mkDefault true;
       };
     };
   };

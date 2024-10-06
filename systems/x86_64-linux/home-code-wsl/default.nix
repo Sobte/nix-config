@@ -10,6 +10,10 @@
       peripherals.enable = false;
       boot.binfmt.enable = true;
     };
+
+    cli-apps.security = {
+      gnupg.enable = false;
+    };
   };
 
   system.stateVersion = "24.11";
