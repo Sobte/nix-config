@@ -66,11 +66,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1728246604,
-        "narHash": "sha256-uv6tKh9uK6bojBx+lj1QtkwUtetot0AD0JpRWBUc2aQ=",
+        "lastModified": 1728252533,
+        "narHash": "sha256-OpdVP3g4g8dxGmytoDNHHKiXfUbrOmDb6d6g+nLZtwE=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "431bb9e9f4be5622d0eae10ab85c028beb582272",
+        "rev": "7f22ccddb3d9ebc4dc9a94d9fe04ade89fe59566",
         "type": "github"
       },
       "original": {
