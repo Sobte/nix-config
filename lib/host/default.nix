@@ -4,6 +4,10 @@
     name = "meow";
     nickname = "sobte";
     email = "i@sobte.me";
+    sendEmail = {
+      smtpserver = "pixel.mxrouting.net";
+      smtpuser = "noreply@sobte.me";
+    };
     samba.client = {
       # home nas config
       home-nas = {
