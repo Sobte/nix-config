@@ -62,6 +62,9 @@
       homes-modules = with inputs; [
         cattery-modules.homeModules.default
       ];
+      shared-modules = builtins.attrValues (
+        lib.snowfall.module.create-modules { src = ./modules/shared; }
+      );
     in
     lib.mkFlake {
 
@@ -72,8 +75,8 @@
 
       systems = {
         modules = {
-          nixos = nixos-modules;
-          darwin = darwin-modules;
+          nixos = nixos-modules ++ shared-modules;
+          darwin = darwin-modules ++ shared-modules;
         };
       };
 
