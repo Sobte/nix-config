@@ -3,6 +3,8 @@
 format = """$directory[::](dimmed black) $all"""
 continuation_prompt = '[󰇙](bold green) '
 
+command_timeout = 1000
+
 [aws]
 symbol = ' '
 
