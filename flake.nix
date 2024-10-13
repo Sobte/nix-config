@@ -29,7 +29,7 @@
     };
 
     cattery-modules = {
-      url = "github:nixcafe/cattery-modules";
+      url = "github:nixcafe/cattery-modules/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
