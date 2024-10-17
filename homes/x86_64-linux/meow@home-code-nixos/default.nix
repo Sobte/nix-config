@@ -1,5 +1,6 @@
 {
-  cattery.room.desktop.dev = {
-    enable = true;
+  cattery = {
+    apps.remote.enable = true;
+    room.desktop.dev.enable = true;
   };
 }
