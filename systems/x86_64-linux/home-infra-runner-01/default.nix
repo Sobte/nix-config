@@ -1,5 +1,8 @@
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./services.nix
+  ];
 
   cattery = {
     user.name = "root"; # use root as default user
