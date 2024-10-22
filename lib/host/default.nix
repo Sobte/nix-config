@@ -23,7 +23,7 @@
     # they are generated using fido2 and require a passphrase.
     # and it is not movable
     authorizedKeys.keys = [
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIC28xE3cSlISUrxNy6tWuyoQciROmE794AI6Jm/XoariAAAADXNzaDpob21lLWNvZGU="
+      "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBCAtuUN2HxfkpZ5VKpZ3ZUrPT27Hj07WfJNGQXvnZ2626eLq1RR/cJfvoWbpKwPdAtbt1LATP+5D1XEfcFJGMjWKCKEWZIQjQ/Yes6dl65yHfwRemhlA0ERupZIkSaWZSg=="
     ];
     # using toml here to benefit from schema & lsp
     starship.settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
