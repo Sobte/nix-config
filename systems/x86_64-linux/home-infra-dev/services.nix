@@ -3,7 +3,7 @@
     services = {
       # Do not add ensureDatabases yet because gitea will add it.
       postgresql.enable = true;
-      gitea = {
+      forgejo = {
         enable = true;
         dbBackend = "postgresql";
         useWizard = true;
