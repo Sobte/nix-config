@@ -23,10 +23,36 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
+    device = "tmpfs";
+    fsType = "tmpfs";
+    options = [
+      "relatime"
+      "size=40%"
+      "mode=755"
+    ];
+  };
+
+  cattery.system.fileSystems.btrfs.impermanence = {
+    "@home".device = "/dev/disk/by-uuid/2f1dc58e-6d8a-4cb4-8247-b4e9acf39681";
+  };
+
+  fileSystems."/home" = {
     device = "/dev/disk/by-uuid/2f1dc58e-6d8a-4cb4-8247-b4e9acf39681";
+    # focus
+    neededForBoot = true;
     fsType = "btrfs";
     options = [
-      "subvol=@"
+      "subvol=@home"
+      "compress=zstd:1"
+    ];
+  };
+
+  fileSystems."/persistent" = {
+    device = "/dev/disk/by-uuid/2f1dc58e-6d8a-4cb4-8247-b4e9acf39681";
+    neededForBoot = true;
+    fsType = "btrfs";
+    options = [
+      "subvol=@persistent"
       "compress=zstd:1"
     ];
   };
@@ -49,15 +75,6 @@
       "fmask=0137"
       "dmask=0027"
       "errors=remount-ro"
-    ];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/2f1dc58e-6d8a-4cb4-8247-b4e9acf39681";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd:1"
     ];
   };
 

@@ -1,10 +1,13 @@
 {
+  pkgs,
   lib,
   config,
   namespace,
   ...
 }:
 let
+  inherit (pkgs.stdenv) isLinux;
+  inherit (lib) optionalString;
   # user home
   homeDir = config.cattery.user.home;
 
@@ -18,11 +21,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery = {
-      secrets = {
-        enable = true;
-        secretsPath = "${homeDir}/.config/hosts-secrets";
-      };
+    cattery.secrets = {
+      enable = true;
+      secretsPath = "${optionalString isLinux "/persistent"}${homeDir}/.config/hosts-secrets";
     };
   };
 }

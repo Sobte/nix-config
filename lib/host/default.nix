@@ -2,10 +2,12 @@
   # default vars
   host = {
     name = "meow";
-    nickname = "sobte";
-    email = "i@sobte.me";
+    realName = "sobte";
+    email = {
+      address = "i@sobte.me";
+      smtp.host = "pixel.mxrouting.net";
+    };
     sendEmail = {
-      smtpserver = "pixel.mxrouting.net";
       smtpuser = "noreply@sobte.me";
     };
     samba.client = {

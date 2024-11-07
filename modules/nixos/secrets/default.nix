@@ -18,11 +18,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery = {
-      secrets = {
-        enable = true;
-        secretsPath = "${homeDir}/.config/hosts-secrets";
-      };
+    cattery.secrets = {
+      enable = true;
+      secretsPath = "/persistent${homeDir}/.config/hosts-secrets";
     };
   };
 }

@@ -12,9 +12,12 @@ in
   cattery = {
     room.desktop.dev.enable = true;
     desktop.kde.enable = true;
+    # use hashedPasswordFile
+    user.useSecretPasswordFile = true;
 
     system = {
       boot.binfmt.enable = true;
+      impermanence.enable = true;
       fileSystems.samba = {
         enable = true;
         inherit client;
