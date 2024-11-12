@@ -6,6 +6,7 @@
     email = {
       address = "i@sobte.me";
       smtp.host = "pixel.mxrouting.net";
+      imap.host = "pixel.mxrouting.net";
     };
     sendEmail = {
       smtpuser = "noreply@sobte.me";
@@ -20,7 +21,10 @@
         };
       };
     };
-    signKey = "612A2672CCEDF205";
+    gpg = {
+      signKey = "612A2672CCEDF205";
+      encryptKey = "FEE8B702D71CAEB0";
+    };
     # Because these keys can access all computers, 
     # they are generated using fido2 and require a passphrase.
     # and it is not movable
