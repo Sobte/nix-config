@@ -33,5 +33,6 @@
     ];
     # using toml here to benefit from schema & lsp
     starship.settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
+    wezterm.extraConfig = builtins.readFile ./config/wezterm.lua;
   };
 }
