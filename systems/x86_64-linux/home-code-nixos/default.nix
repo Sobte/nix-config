@@ -10,7 +10,10 @@ in
   imports = [ ./hardware.nix ];
 
   cattery = {
-    room.desktop.dev.enable = true;
+    room.desktop = {
+      dev.enable = true;
+      game.enable = true;
+    };
     desktop.kde.enable = true;
     # use hashedPasswordFile
     user.useSecretPasswordFile = true;
@@ -23,7 +26,10 @@ in
         inherit client;
       };
     };
-    services.wg-quick.configNames = [ "wg-come-home" ];
+    services = {
+      wg-quick.configNames = [ "wg-come-home" ];
+      tailscale.enable = true;
+    };
   };
 
   # krdp ports
