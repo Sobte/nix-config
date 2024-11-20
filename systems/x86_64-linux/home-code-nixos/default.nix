@@ -14,7 +14,7 @@ in
       dev.enable = true;
       game.enable = true;
     };
-    desktop.kde.enable = true;
+    desktop.plasma.enable = true;
     # use hashedPasswordFile
     user.useSecretPasswordFile = true;
 

@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   # default vars
   host = {
@@ -34,5 +35,121 @@
     # using toml here to benefit from schema & lsp
     starship.settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
     wezterm.extraConfig = builtins.readFile ./config/wezterm.lua;
+    # kde plasma settings
+    # https://nix-community.github.io/plasma-manager/options.xhtml
+    desktop.plasma = {
+      # focus
+      overrideConfig = true;
+      # input
+      input.keyboard = {
+        numlockOnStartup = "on";
+        layouts = [
+          {
+            layout = "us";
+          }
+        ];
+      };
+      # power management
+      powerdevil = {
+        AC = {
+          autoSuspend.action = "nothing";
+          powerButtonAction = "shutDown";
+        };
+      };
+      # lockscreen
+      kscreenlocker = {
+        autoLock = true;
+        timeout = 10;
+        lockOnResume = true;
+        appearance = {
+          wallpaperSlideShow = {
+            interval = 300;
+            path = "${inputs.wallpapers}/wide";
+          };
+        };
+      };
+      # workspace
+      workspace = {
+        clickItemTo = "select";
+        wallpaperSlideShow = {
+          interval = 300;
+          path = "${inputs.wallpapers}/wide";
+        };
+      };
+      # kwin
+      kwin = {
+        effects = {
+          blur.enable = true;
+        };
+        virtualDesktops = {
+          names = [
+            "Desktop 1"
+            "Desktop 2"
+          ];
+          rows = 1;
+        };
+      };
+      # spectacle
+      spectacle.shortcuts = {
+        captureRectangularRegion = "F6";
+      };
+      # panels
+      panels = [
+        {
+          height = 32;
+          location = "bottom";
+        }
+      ];
+      # hotkeys
+      hotkeys.commands = {
+        "launch-wezterm" = {
+          name = "Launch WezTerm";
+          key = "Meta+Return";
+          command = "wezterm";
+        };
+      };
+      # fonts
+      fonts = {
+        general = {
+          family = "Source Han Sans";
+          pointSize = 10;
+          styleStrategy.antialiasing = "prefer";
+        };
+        fixedWidth = {
+          family = "Iosevka";
+          pointSize = 10;
+          styleStrategy.antialiasing = "prefer";
+        };
+        small = {
+          family = "Source Han Sans";
+          pointSize = 8;
+          styleStrategy.antialiasing = "prefer";
+        };
+        toolbar = {
+          family = "Source Han Sans";
+          pointSize = 10;
+          styleStrategy.antialiasing = "prefer";
+        };
+        menu = {
+          family = "Source Han Sans";
+          pointSize = 10;
+          styleStrategy.antialiasing = "prefer";
+        };
+        windowTitle = {
+          family = "DejaVu Math TeX Gyre";
+          pointSize = 10;
+          styleStrategy.antialiasing = "prefer";
+        };
+      };
+      # other config
+      configFile = {
+        # use fcitx5 as input method
+        "kwinrc"."Wayland"."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+      };
+      # data file
+      dataFile = {
+        "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
+      };
+    };
   };
 }

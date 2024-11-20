@@ -31,10 +31,17 @@
     cattery-modules = {
       url = "github:nixcafe/cattery-modules/dev";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "darwin";
+      inputs.home-manager.follows = "home-manager";
     };
 
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wallpapers = {
+      url = "github:Sobte/wallpapers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

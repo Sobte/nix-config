@@ -9,7 +9,7 @@
   cattery = {
     user.name = "nixos"; # use nixos as default user
     # plasma6
-    desktop.kde.enable = true;
+    desktop.plasma.enable = true;
     system.boot.kernel.enable = true;
     room.desktop.general.enable = true;
   };

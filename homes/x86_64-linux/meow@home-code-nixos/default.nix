@@ -8,6 +8,7 @@
       };
     };
     room.desktop.dev.enable = true;
+    desktop.plasma.enable = true;
     system.impermanence.enable = true;
   };
 }
