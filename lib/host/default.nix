@@ -98,6 +98,30 @@
         {
           height = 32;
           location = "bottom";
+          widgets = [
+            "org.kde.plasma.kickoff"
+            "org.kde.plasma.pager"
+            {
+              name = "org.kde.plasma.icontasks";
+              config = {
+                General.launchers = [
+                  "applications:code.desktop"
+                  "applications:org.telegram.desktop.desktop"
+                  "applications:google-chrome.desktop"
+                  "applications:thunderbird.desktop"
+                  "applications:org.kde.dolphin.desktop"
+                  "applications:org.wezfurlong.wezterm.desktop"
+                  "applications:vesktop.desktop"
+                  "applications:obsidian.desktop"
+                  "applications:org.remmina.Remmina.desktop"
+                ];
+              };
+            }
+            "org.kde.plasma.marginsseparator"
+            "org.kde.plasma.systemtray"
+            "org.kde.plasma.digitalclock"
+            "org.kde.plasma.showdesktop"
+          ];
         }
       ];
       # hotkeys
