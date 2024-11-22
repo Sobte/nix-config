@@ -175,5 +175,16 @@
         "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
       };
     };
+    # catppuccin
+    catppuccin = {
+      flavor = "macchiato";
+      accent = "sky";
+    };
+    sddm.catppuccin = {
+      background = "${inputs.wallpapers}/wide/default";
+      font = "Iosevka";
+      fontSize = "10";
+      loginBackground = false;
+    };
   };
 }

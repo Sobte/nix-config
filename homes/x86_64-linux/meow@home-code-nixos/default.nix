@@ -8,7 +8,12 @@
       };
     };
     room.desktop.dev.enable = true;
-    desktop.plasma.enable = true;
+    desktop = {
+      addons.catppuccin.enable = true;
+      plasma.enable = true;
+    };
     system.impermanence.enable = true;
   };
+
+  catppuccin.pointerCursor.enable = true;
 }

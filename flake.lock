@@ -50,9 +50,25 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1731232837,
+        "narHash": "sha256-0aIwr/RC/oe7rYkfJb47xjdEQDSNcqpFGsEa+EPlDEs=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "32359bf226fe874d3b7a0a5753d291a4da9616fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "cattery-modules": {
       "inputs": {
         "agenix": "agenix",
+        "catppuccin": "catppuccin",
         "darwin": [
           "darwin"
         ],
@@ -73,11 +89,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1732106781,
-        "narHash": "sha256-paFPc+R2kSNnbO8eTYgxBuAiOHP2IBUSzsQVods0dS4=",
+        "lastModified": 1732277635,
+        "narHash": "sha256-wH0wWV+n+w4zI3fAg5C1jB/9HrWZqicFGYTY/0QfTHE=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "ff27b4201fd5e1e74ab98a99356d7565c7a509c2",
+        "rev": "0d0ba3c9df8a569767da22f31ed18157ce43f572",
         "type": "github"
       },
       "original": {
@@ -148,11 +164,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732016537,
-        "narHash": "sha256-XwXUK+meYnlhdQz2TVE4Wv+tsx1CkdGbDPt1tRzCNH4=",
+        "lastModified": 1732229547,
+        "narHash": "sha256-vtUhSQFgDfyyNM6rgmn35A2T+L5PXBS0H89cxWK9N2A=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "61cee20168a3ebb71a9efd70a55adebaadfbe4d4",
+        "rev": "edabc790a834326dcb5810e2698fa743483510d0",
         "type": "github"
       },
       "original": {
