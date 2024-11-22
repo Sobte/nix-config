@@ -9,8 +9,11 @@
       smtp.host = "pixel.mxrouting.net";
       imap.host = "pixel.mxrouting.net";
     };
-    sendEmail = {
-      smtpuser = "noreply@sobte.me";
+    git = {
+      sendEmail = {
+        smtpuser = "noreply@sobte.me";
+      };
+      ignores = [ ".Trash*" ];
     };
     samba.client = {
       # home nas config

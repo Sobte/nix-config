@@ -15,8 +15,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.cli-apps.dev-kit.git = {
-      inherit (lib.${namespace}.host) sendEmail;
-    };
+    cattery.cli-apps.dev-kit.git = config.cattery.user.settings.git or { };
   };
 }
