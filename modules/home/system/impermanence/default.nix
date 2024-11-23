@@ -16,10 +16,6 @@ in
 
   config = lib.mkIf cfg.enable {
     cattery.system.impermanence = {
-      directories = [
-        # steam games
-        ".factorio"
-      ];
       xdg = {
         config.directories = [
           "nix-config"
