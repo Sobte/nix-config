@@ -172,6 +172,11 @@
       configFile = {
         # use fcitx5 as input method
         "kwinrc"."Wayland"."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+        # spectacle 
+        "spectaclerc"."General"."clipboardGroup" = "PostScreenshotCopyImage";
+        "spectaclerc"."ImageSave"."preferredImageFormat" = "WEBP";
+        "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
+        "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
       };
       # data file
       dataFile = {
