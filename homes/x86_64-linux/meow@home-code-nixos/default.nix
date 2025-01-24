@@ -15,5 +15,5 @@
     system.impermanence.enable = true;
   };
 
-  catppuccin.pointerCursor.enable = true;
+  catppuccin.cursors.enable = true;
 }

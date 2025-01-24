@@ -29,7 +29,7 @@
       signKey = "612A2672CCEDF205";
       encryptKey = "FEE8B702D71CAEB0";
     };
-    # Because these keys can access all computers, 
+    # Because these keys can access all computers,
     # they are generated using fido2 and require a passphrase.
     # and it is not movable
     authorizedKeys.keys = [
@@ -171,8 +171,9 @@
       # other config
       configFile = {
         # use fcitx5 as input method
-        "kwinrc"."Wayland"."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
-        # spectacle 
+        "kwinrc"."Wayland"."InputMethod" =
+          "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+        # spectacle
         "spectaclerc"."General"."clipboardGroup" = "PostScreenshotCopyImage";
         "spectaclerc"."ImageSave"."preferredImageFormat" = "WEBP";
         "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
@@ -185,14 +186,16 @@
     };
     # catppuccin
     catppuccin = {
-      flavor = "macchiato";
-      accent = "sky";
-    };
-    sddm.catppuccin = {
-      background = "${inputs.wallpapers}/wide/default";
-      font = "Iosevka";
-      fontSize = "10";
-      loginBackground = false;
+      global = {
+        flavor = "macchiato";
+        accent = "sky";
+      };
+      sddm = {
+        background = "${inputs.wallpapers}/wide/default";
+        font = "Iosevka";
+        fontSize = "10";
+        loginBackground = false;
+      };
     };
   };
 }

@@ -17,11 +17,11 @@ in
     };
     sddm = mkOption {
       type = attrs;
-      default = user.settings.sddm.catppuccin or { };
+      default = user.settings.catppuccin.sddm or { };
     };
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.sddm.catppuccin = cfg.sddm;
+    catppuccin.sddm = cfg.sddm;
   };
 }
