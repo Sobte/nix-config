@@ -5,9 +5,11 @@
   ...
 }:
 let
+  inherit (lib) optionalString;
+
   # user home
   homeDir = config.cattery.user.home;
-
+  persistent = config.cattery.system.impermanence;
   cfg = config.${namespace}.secrets;
 in
 {
@@ -20,7 +22,8 @@ in
   config = lib.mkIf cfg.enable {
     cattery.secrets = {
       enable = true;
-      secretsPath = "/persistent${homeDir}/.config/hosts-secrets";
+      secretsPath = "${optionalString persistent.enable "/persistent"}${homeDir}/.config/hosts-secrets";
     };
+
   };
 }
