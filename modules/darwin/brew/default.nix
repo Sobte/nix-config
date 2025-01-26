@@ -21,6 +21,8 @@ in
         "microsoft-remote-desktop" # remote desktop client
         "signal" # instant messaging application focusing on security
         "obsidian" # obsidian
+        "snipaste" # screen capture tool
+        "battery" # managing battery charging
       ];
     };
   };
