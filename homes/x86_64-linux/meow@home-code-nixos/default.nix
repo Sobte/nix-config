@@ -1,7 +1,13 @@
 {
   cattery = {
     apps = {
-      remote.enable = true;
+      remote = {
+        enable = true;
+        needs = [
+          "krdc"
+          "remmina"
+        ];
+      };
       thunderbird = {
         enable = true;
         search.enable = true;

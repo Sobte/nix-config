@@ -113,7 +113,7 @@
                   "applications:google-chrome.desktop"
                   "applications:thunderbird.desktop"
                   "applications:org.kde.dolphin.desktop"
-                  "applications:org.wezfurlong.wezterm.desktop"
+                  "applications:com.mitchellh.ghostty.desktop"
                   "applications:vesktop.desktop"
                   "applications:obsidian.desktop"
                   "applications:org.remmina.Remmina.desktop"
@@ -129,10 +129,10 @@
       ];
       # hotkeys
       hotkeys.commands = {
-        "launch-wezterm" = {
-          name = "Launch WezTerm";
+        "launch-ghostty" = {
+          name = "Launch Ghostty";
           key = "Meta+Return";
-          command = "wezterm";
+          command = "ghostty";
         };
       };
       # fonts
@@ -189,12 +189,17 @@
       global = {
         flavor = "macchiato";
         accent = "sky";
+        sddm = {
+          background = "${inputs.wallpapers}/wide/default";
+          font = "Iosevka";
+          fontSize = "10";
+          loginBackground = false;
+        };
       };
-      sddm = {
-        background = "${inputs.wallpapers}/wide/default";
-        font = "Iosevka";
-        fontSize = "10";
-        loginBackground = false;
+      home = {
+        flavor = "macchiato";
+        accent = "sky";
+        vscode.enable = false;
       };
     };
   };
