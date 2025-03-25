@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  isoImage.isoBaseName = "nixos-minimal-new-kernel-no-zfs";
+  isoImage.isoBaseName = lib.mkForce "nixos-minimal-new-kernel-no-zfs";
 
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.
@@ -10,7 +10,10 @@
   boot.initrd.supportedFilesystems.zfs = lib.mkForce false;
 
   cattery = {
-    user.name = "nixos"; # use nixos as default user
+    user = {
+      name = "nixos"; # use nixos as default user
+      initialHashedPassword = "";
+    };
     system.boot.kernel.enable = true;
     room.general.enable = true;
   };
