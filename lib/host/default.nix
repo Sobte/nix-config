@@ -200,6 +200,38 @@
         flavor = "macchiato";
         accent = "sky";
         vscode.enable = false;
+        zed.enable = false;
+      };
+    };
+    # zed-editor
+    zed-editor = {
+      extensions = [
+        "nix"
+        "elixir"
+        "deno"
+        "zig"
+        "lua"
+        "kotlin"
+        "toml"
+        "haskell"
+        "latex"
+        "env"
+        "dockerfile"
+        "make"
+        "rainbow-csv"
+      ];
+      userKeymaps = { };
+      userSettings = {
+        # use direnv
+        load_direnv = "shell_hook";
+        base_keymap = "VSCode";
+        ui_font_size = 16;
+        buffer_font_size = 16;
+        theme = {
+          mode = "system";
+          light = "Gruvbox Dark Hard";
+          dark = "One Dark";
+        };
       };
     };
   };
