@@ -13,7 +13,10 @@
         search.enable = true;
       };
     };
-    room.desktop.dev.enable = true;
+    room.desktop.dev = {
+      enable = true;
+      allDevKit = true;
+    };
     desktop = {
       addons.catppuccin.enable = true;
       plasma.enable = true;
