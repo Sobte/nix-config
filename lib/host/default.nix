@@ -13,7 +13,10 @@
       sendEmail = {
         smtpuser = "noreply@sobte.me";
       };
-      ignores = [ ".Trash*" ];
+      ignores = [
+        ".Trash*"
+        ".DS_Store"
+      ];
     };
     samba.client = {
       # home nas config
@@ -109,6 +112,8 @@
               config = {
                 General.launchers = [
                   "applications:code.desktop"
+                  "applications:cursor.desktop"
+                  "applications:dev.zed.Zed.desktop"
                   "applications:org.telegram.desktop.desktop"
                   "applications:google-chrome.desktop"
                   "applications:thunderbird.desktop"
@@ -174,6 +179,9 @@
         "kwinrc"."Wayland"."InputMethod" =
           "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
         # spectacle
+        "spectaclerc"."Annotations"."annotationToolType" = 6;
+        "spectaclerc"."Annotations"."rectangleShadow" = false;
+        "spectaclerc"."Annotations"."rectangleStrokeColor" = "255,0,0";
         "spectaclerc"."General"."clipboardGroup" = "PostScreenshotCopyImage";
         "spectaclerc"."ImageSave"."preferredImageFormat" = "WEBP";
         "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
