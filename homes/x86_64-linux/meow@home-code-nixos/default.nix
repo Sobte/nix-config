@@ -12,6 +12,7 @@
         enable = true;
         search.enable = true;
       };
+      zoom-us.enable = true;
     };
     room.desktop.dev = {
       enable = true;
