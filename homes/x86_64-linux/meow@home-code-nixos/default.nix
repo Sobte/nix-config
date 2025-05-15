@@ -13,6 +13,7 @@
         search.enable = true;
       };
       zoom-us.enable = true;
+      ghostty.enable = true;
     };
     room.desktop.dev = {
       enable = true;

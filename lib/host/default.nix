@@ -118,7 +118,7 @@
                   "applications:google-chrome.desktop"
                   "applications:thunderbird.desktop"
                   "applications:org.kde.dolphin.desktop"
-                  "applications:com.mitchellh.ghostty.desktop"
+                  "applications:org.wezfurlong.wezterm.desktop"
                   "applications:vesktop.desktop"
                   "applications:obsidian.desktop"
                   "applications:org.remmina.Remmina.desktop"
