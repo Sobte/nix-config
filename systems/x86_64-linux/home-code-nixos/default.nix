@@ -10,6 +10,7 @@ in
   imports = [ ./hardware.nix ];
 
   cattery = {
+    nix.secrets.enable = true;
     room.desktop = {
       dev.enable = true;
       game.enable = true;

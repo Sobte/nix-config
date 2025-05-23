@@ -2,6 +2,7 @@
 {
   # default vars
   host = {
+    defaultUserShell = "nushell";
     name = "meow";
     realName = "sobte";
     email = {
@@ -38,8 +39,11 @@
     authorizedKeys.keys = [
       "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBCAtuUN2HxfkpZ5VKpZ3ZUrPT27Hj07WfJNGQXvnZ2626eLq1RR/cJfvoWbpKwPdAtbt1LATP+5D1XEfcFJGMjWKCKEWZIQjQ/Yes6dl65yHfwRemhlA0ERupZIkSaWZSg=="
     ];
+    # nushell settings
+    nushell.settings = builtins.fromTOML (builtins.readFile ./config/nushell.toml);
     # using toml here to benefit from schema & lsp
     starship.settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
+    # wezterm settings
     wezterm.extraConfig = builtins.readFile ./config/wezterm.lua;
     # kde plasma settings
     # https://nix-community.github.io/plasma-manager/options.xhtml

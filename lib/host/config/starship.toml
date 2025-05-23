@@ -1,3 +1,5 @@
+# https://starship.rs/config/
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """$directory[::](dimmed black) $all"""
