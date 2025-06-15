@@ -2,6 +2,8 @@
 {
   # default vars
   host = {
+    timeZone = "Asia/Shanghai";
+    defaultLocale = "en_US.UTF-8";
     defaultUserShell = "nushell";
     name = "meow";
     realName = "sobte";

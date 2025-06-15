@@ -1,5 +1,10 @@
 {
   cattery = {
+    cli-apps = {
+      tool = {
+        installer.enable = true;
+      };
+    };
     apps = {
       remote = {
         enable = true;

@@ -28,20 +28,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     cattery-modules = {
       url = "github:nixcafe/cattery-modules/dev";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "darwin";
       inputs.home-manager.follows = "home-manager";
+      inputs.snowfall-lib.follows = "snowfall-lib";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     wallpapers = {
       url = "github:Sobte/wallpapers";
+      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -82,7 +91,7 @@
 
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ ];
+        permittedInsecurePackages = [ "ventoy-1.1.05" ];
       };
 
       systems = {
