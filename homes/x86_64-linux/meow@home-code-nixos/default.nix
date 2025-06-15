@@ -3,6 +3,7 @@
     cli-apps = {
       tool = {
         installer.enable = true;
+        claude-code.enable = true;
       };
     };
     apps = {
