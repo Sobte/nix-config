@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let
   domain = "home.pwd.oop.icu";
 in
@@ -6,6 +7,7 @@ in
     services = {
       postgresql = {
         enable = true;
+        package = pkgs.postgresql_16;
         extraOptions = {
           ensureDatabases = [ "vaultwarden" ];
           ensureUsers = [
