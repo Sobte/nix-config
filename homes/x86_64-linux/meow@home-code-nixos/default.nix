@@ -1,6 +1,9 @@
 {
   cattery = {
     cli-apps = {
+      dev-kit = {
+        jujutsu.enable = true;
+      };
       tool = {
         installer.enable = true;
         claude-code.enable = true;
