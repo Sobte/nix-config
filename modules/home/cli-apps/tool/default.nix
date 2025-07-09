@@ -15,9 +15,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.cli-apps.tool.useful = {
-      enable = true;
-      commonAliases = true;
+    cattery.cli-apps = {
+      shell = {
+        atuin.enable = true;
+      };
+      tool = {
+        useful = {
+          enable = true;
+          commonAliases = true;
+        };
+      };
     };
   };
 }
