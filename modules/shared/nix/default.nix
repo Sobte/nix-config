@@ -17,14 +17,18 @@ in
   config = lib.mkIf cfg.enable {
     nix = {
       settings = {
+        lazy-trees = true;
+
         substituters = [
-          "https://hyprland.cachix.org"
+          "https://install.determinate.systems"
           "https://cache.garnix.io"
+          "https://hyprland.cachix.org"
         ];
 
         trusted-public-keys = [
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+          "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         ];
       };
     };
