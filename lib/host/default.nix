@@ -192,6 +192,8 @@
         "spectaclerc"."ImageSave"."preferredImageFormat" = "WEBP";
         "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
         "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
+        # disable baloofilerc indexing
+        "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
       };
       # data file
       dataFile = {

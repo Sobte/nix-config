@@ -27,7 +27,7 @@ config.font_size = 10
 -- https://learn.microsoft.com/en-us/typography/opentype/spec/features_pt#tag-ss01---ss20
 config.font = wezterm.font_with_fallback {
   {
-    family = 'Iosevka Nerd Font',
+    family = 'Iosevka Nerd Font Mono',
     weight = 'Regular',
   },
   {
