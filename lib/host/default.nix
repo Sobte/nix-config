@@ -45,6 +45,8 @@
     nushell.settings = builtins.fromTOML (builtins.readFile ./config/nushell.toml);
     # using toml here to benefit from schema & lsp
     starship.settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
+    # foot settings
+    foot.settings = builtins.fromTOML (builtins.readFile ./config/foot.toml);
     # wezterm settings
     wezterm.extraConfig = builtins.readFile ./config/wezterm.lua;
     # kde plasma settings
@@ -124,7 +126,7 @@
                   "applications:google-chrome.desktop"
                   "applications:thunderbird.desktop"
                   "applications:org.kde.dolphin.desktop"
-                  "applications:org.wezfurlong.wezterm.desktop"
+                  "applications:foot.desktop"
                   "applications:vesktop.desktop"
                   "applications:obsidian.desktop"
                   "applications:org.remmina.Remmina.desktop"

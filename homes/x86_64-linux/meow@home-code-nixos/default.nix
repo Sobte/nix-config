@@ -23,6 +23,7 @@
       };
       zoom-us.enable = true;
       ghostty.enable = true;
+      foot.enable = true;
     };
     room.desktop.dev = {
       enable = true;
