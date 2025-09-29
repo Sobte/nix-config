@@ -11,6 +11,7 @@ in
 
   cattery = {
     nix.secrets.enable = true;
+    apps.game.gale.enable = true;
     room.desktop = {
       dev.enable = true;
       game.enable = true;
