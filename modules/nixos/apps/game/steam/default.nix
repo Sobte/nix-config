@@ -23,13 +23,19 @@ in
           ".factorio"
         ];
         xdg = {
+          # Steam Proton/Wine prefix (game data) path:
+          # ~/.steam/steam/steamapps/compatdata/<AppID>/pfx/drive_c/
+          # Example: Portal 2 (AppID 620) https://store.steampowered.com/app/620/Portal_2/
           data.directories = [
             "Last Call BBS"
             "shapez.io"
             "Tabletop Simulator"
             "Draw&Guess"
+            "UnrailedGame"
+            "Opus Magnum"
           ];
           config.directories = [
+            # Unity Game
             "unity3d"
             "blender"
           ];
