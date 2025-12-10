@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (lib) optionalString;
   # user home
   homeDir = config.cattery.user.home;
