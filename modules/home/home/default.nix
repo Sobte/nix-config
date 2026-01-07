@@ -1,4 +1,4 @@
 { lib, ... }:
 {
-  home.stateVersion = lib.mkDefault "25.11";
+  home.stateVersion = lib.mkDefault "26.05";
 }
