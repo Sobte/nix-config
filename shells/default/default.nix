@@ -8,7 +8,7 @@
 mkShell {
   packages = with pkgs; [
     # nix stuff
-    nixfmt-rfc-style
+    nixfmt
     deadnix
     statix
   ];
