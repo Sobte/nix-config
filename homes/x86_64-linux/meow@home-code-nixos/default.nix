@@ -24,6 +24,7 @@
       zoom-us.enable = true;
       ghostty.enable = true;
       foot.enable = true;
+      slack.enable = true;
     };
     room.desktop.dev = {
       enable = true;
