@@ -4,7 +4,7 @@
   host = {
     timeZone = "Asia/Shanghai";
     defaultLocale = "en_US.UTF-8";
-    defaultUserShell = "nushell";
+    defaultUserShell = "fish";
     name = "meow";
     realName = "sobte";
     email = {
