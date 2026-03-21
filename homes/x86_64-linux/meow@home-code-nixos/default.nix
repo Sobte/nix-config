@@ -37,5 +37,9 @@
     system.impermanence.enable = true;
   };
 
+  services.ssh-agent = {
+    enable = true;
+  };
+
   catppuccin.cursors.enable = true;
 }
