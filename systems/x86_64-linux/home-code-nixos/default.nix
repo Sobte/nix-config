@@ -40,7 +40,11 @@ in
   # krdp ports
   networking.firewall =
     let
-      ports = [ 6630 ];
+      ports = [
+        6630
+        80
+        443
+      ];
     in
     {
       allowedUDPPorts = ports;
