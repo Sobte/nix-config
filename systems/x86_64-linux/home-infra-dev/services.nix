@@ -1,8 +1,12 @@
+{ pkgs, ... }:
 {
   cattery = {
     services = {
       # Do not add ensureDatabases yet because gitea will add it.
-      postgresql.enable = true;
+      postgresql = {
+        enable = true;
+        package = pkgs.postgresql_17;
+      };
       forgejo = {
         enable = true;
         dbBackend = "postgresql";
