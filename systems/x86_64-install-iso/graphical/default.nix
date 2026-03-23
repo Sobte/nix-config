@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  isoImage.isoBaseName = lib.mkForce "nixos-plasma6-new-kernel";
+  image.baseName = lib.mkForce "nixos-plasma6-new-kernel";
 
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.
