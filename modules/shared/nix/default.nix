@@ -17,8 +17,6 @@ in
   config = lib.mkIf cfg.enable {
     nix = {
       settings = {
-        lazy-trees = true;
-
         substituters = [
           "https://install.determinate.systems"
           "https://cache.garnix.io"
