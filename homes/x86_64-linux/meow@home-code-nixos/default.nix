@@ -7,6 +7,7 @@
       tool = {
         installer.enable = true;
         claude-code.enable = true;
+        opencode.enable = true;
       };
     };
     apps = {

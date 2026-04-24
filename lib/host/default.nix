@@ -238,7 +238,7 @@
         "make"
         "rainbow-csv"
       ];
-      userKeymaps = { };
+      userKeymaps = [ ];
       userSettings = {
         # use direnv
         load_direnv = "shell_hook";
