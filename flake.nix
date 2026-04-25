@@ -42,14 +42,19 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
+    wallpapers = {
+      url = "github:Sobte/wallpapers";
+      inputs.snowfall-lib.follows = "snowfall-lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wezterm = {
       url = "github:wezterm/wezterm?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wallpapers = {
-      url = "github:Sobte/wallpapers";
-      inputs.snowfall-lib.follows = "snowfall-lib";
+    opencode = {
+      url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
