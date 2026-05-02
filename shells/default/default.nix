@@ -11,6 +11,7 @@ mkShell {
     nixfmt
     deadnix
     statix
+    inputs.colmena.packages.${system}.colmena
   ];
 
   inherit (inputs.self.checks.${system}.pre-commit-check) shellHook;

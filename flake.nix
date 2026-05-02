@@ -42,6 +42,11 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wallpapers = {
       url = "github:Sobte/wallpapers";
       inputs.snowfall-lib.follows = "snowfall-lib";
@@ -108,5 +113,8 @@
       homes.modules = homes-modules;
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt; };
+    }
+    // {
+      colmenaHive = import ./colmena/colmenaHive { inherit inputs; };
     };
 }
