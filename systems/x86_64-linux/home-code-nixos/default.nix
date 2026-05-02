@@ -11,7 +11,14 @@ in
 
   cattery = {
     nix.secrets.enable = true;
-    apps.game.gale.enable = true;
+    apps = {
+      game.gale.enable = true;
+      ssh = {
+        knownHostsFileNames = [
+          "known_hosts"
+        ];
+      };
+    };
     room.desktop = {
       dev.enable = true;
       game.enable = true;
