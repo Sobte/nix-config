@@ -19,7 +19,6 @@ in
       xdg = {
         config.directories = [
           "nix-config"
-          "hosts-secrets"
         ];
         data.files = [
           # dolphin user-places

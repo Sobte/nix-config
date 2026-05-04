@@ -62,6 +62,11 @@
       url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hosts-secrets = {
+      url = "github:Sobte/hosts-secrets";
+      flake = false;
+    };
   };
 
   outputs =
