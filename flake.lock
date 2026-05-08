@@ -81,11 +81,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1778087956,
-        "narHash": "sha256-Cbf8fa8fBSrkDTPCGKbHT0Ggh1PQlG6bOprNfJdpGYc=",
+        "lastModified": 1778233477,
+        "narHash": "sha256-OaY8fgVVX1pt9UbavweNZTxJNxaW0bQNYhb4Kwfgpa8=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "4fc3f1483b65860e1fafc60d10ee241a9e527a51",
+        "rev": "5811995615649f86425f960247f2f86e9c04192c",
         "type": "github"
       },
       "original": {
@@ -739,11 +739,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777951879,
-        "narHash": "sha256-NPT0E83KP8ObpeeKbCD0XetxzhVUXiY12j6FQ0P1z2w=",
+        "lastModified": 1778125220,
+        "narHash": "sha256-WuM0IwmoMXt2r42n3BiT5wx/cxugTUTbndIQnsASKWA=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "ba0c7a6b6daee0101ff5b64f6893e2aa963be653",
+        "rev": "8f01d20678b7ab4543383f3ea29a0022c9de48af",
         "type": "github"
       },
       "original": {
@@ -906,11 +906,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778226779,
-        "narHash": "sha256-NqwnLwL5h6fJQdUiBTn1hZHVHinJjEgFN1fHkUkgpv8=",
+        "lastModified": 1778230242,
+        "narHash": "sha256-um2+G7k48O7NxtvvOmxhxMqD4/yqg0T3BVdasQH6zpA=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "6869186fc69983becd55f2a9ec6f9c623037d3fc",
+        "rev": "edbc02855d2d359e93cc6241c2114a2e464f29ee",
         "type": "github"
       },
       "original": {
