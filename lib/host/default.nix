@@ -250,6 +250,23 @@
           light = "Gruvbox Dark Hard";
           dark = "One Dark";
         };
+        languages = {
+          "Nix" = {
+            "language_servers" = [
+              "nixd"
+              "!nil"
+            ];
+            "formatter" = {
+              "external" = {
+                "command" = "nixfmt";
+                "arguments" = [
+                  "--quiet"
+                  "--"
+                ];
+              };
+            };
+          };
+        };
       };
     };
   };
