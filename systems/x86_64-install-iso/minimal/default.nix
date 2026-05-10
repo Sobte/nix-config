@@ -1,6 +1,6 @@
 { lib, ... }:
-{
-  image.baseName = lib.mkForce "nixos-minimal-new-kernel";
+rec {
+  image.baseName = lib.mkForce "nixos-minimal-new-kernel-${system.stateVersion}-linux";
 
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.
