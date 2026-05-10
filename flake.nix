@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wallpapers = {
       url = "github:Sobte/wallpapers";
       inputs.snowfall-lib.follows = "snowfall-lib";
@@ -90,6 +95,7 @@
 
       nixos-modules = with inputs; [
         cattery-modules.nixosModules.default
+        disko.nixosModules.default
       ];
       darwin-modules = with inputs; [
         cattery-modules.darwinModules.default

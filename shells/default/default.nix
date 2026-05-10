@@ -12,6 +12,8 @@ mkShell {
     deadnix
     statix
     inputs.colmena.packages.${system}.colmena
+    # nixos install
+    nixos-anywhere
   ];
 
   inherit (inputs.self.checks.${system}.pre-commit-check) shellHook;
