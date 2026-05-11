@@ -29,4 +29,9 @@
       targetHost = "home-infra-runner-01";
     };
   };
+  home-test-nixos = {
+    deployment = {
+      targetHost = "home-test-nixos";
+    };
+  };
 }

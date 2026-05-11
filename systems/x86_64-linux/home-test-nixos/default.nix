@@ -10,6 +10,9 @@ in
   imports = [ ./hardware.nix ];
 
   cattery = {
+    # use hashedPasswordFile
+    user.useSecretPasswordFile = true;
+
     room.desktop.general.enable = true;
     desktop.hyprland.theme = {
       charm-cat.enable = true;
@@ -22,7 +25,7 @@ in
         inherit client;
       };
     };
-    services.wg-quick.configNames = [ "wg-come-home" ];
+    # services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   system.stateVersion = "26.05";
