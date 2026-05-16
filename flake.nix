@@ -70,7 +70,7 @@
 
     hosts-secrets = {
       url = "github:Sobte/hosts-secrets";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

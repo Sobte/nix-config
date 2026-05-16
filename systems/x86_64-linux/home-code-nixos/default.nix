@@ -12,6 +12,10 @@ in
   cattery = {
     nix.secrets.enable = true;
     apps = {
+      winbox = {
+        enable = true;
+        openFirewall = true;
+      };
       game.gale.enable = true;
       ssh = {
         knownHostsFileNames = [
