@@ -34,6 +34,11 @@
       targetHost = "home-test-nixos";
     };
   };
+  home-infra-web = {
+    deployment = {
+      targetHost = "home-infra-web";
+    };
+  };
   home-infra-pve002 = {
     deployment = {
       targetHost = "home-infra-pve002";
