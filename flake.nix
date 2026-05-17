@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     darwin = {
@@ -68,6 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    proxmox-nixos = {
+      url = "github:SaumonNet/proxmox-nixos";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
+
     hosts-secrets = {
       url = "github:Sobte/hosts-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +102,7 @@
       nixos-modules = with inputs; [
         cattery-modules.nixosModules.default
         disko.nixosModules.default
+        proxmox-nixos.nixosModules.proxmox-ve
       ];
       darwin-modules = with inputs; [
         cattery-modules.darwinModules.default
