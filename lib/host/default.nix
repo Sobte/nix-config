@@ -130,6 +130,7 @@
                   "applications:vesktop.desktop"
                   "applications:obsidian.desktop"
                   "applications:org.remmina.Remmina.desktop"
+                  "applications:winbox.desktop"
                 ];
               };
             }
