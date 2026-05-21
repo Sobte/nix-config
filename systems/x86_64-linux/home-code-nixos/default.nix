@@ -17,11 +17,6 @@ in
         openFirewall = true;
       };
       game.gale.enable = true;
-      ssh = {
-        knownHostsFileNames = [
-          "known_hosts"
-        ];
-      };
     };
     room.desktop = {
       dev.enable = true;

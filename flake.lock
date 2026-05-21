@@ -131,11 +131,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1779306903,
-        "narHash": "sha256-lm/fvh9Yvb32MTxfyPRKGrpWRfI+lf7vikHen7H6UYs=",
+        "lastModified": 1779388748,
+        "narHash": "sha256-4ctLePhEBXC7fn1L7MlHU6OPhUeHlKYH1fux6cF/VVw=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "01f4b3120bdd3f64ea54d39070ed1706ec0b30f3",
+        "rev": "769ad55c6f0c6514b09aa56bca1b58ba0f1e6011",
         "type": "github"
       },
       "original": {
@@ -910,11 +910,11 @@
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
-        "lastModified": 1779375109,
-        "narHash": "sha256-cOWyxzAtxC0VTBBLnjEAk8sNKHqGBzLZ0UqkS0esOCg=",
+        "lastModified": 1779384670,
+        "narHash": "sha256-UG/ln7bPpWkq/GdbWSHVQc3F0MybgkRt12YA8W/oCe0=",
         "owner": "Sobte",
         "repo": "hosts-secrets",
-        "rev": "03c849bce899a262ffe16a46790b9b37c41c4d4b",
+        "rev": "aa91fac26d5b94b1e094e3fdf84a08195b3d9557",
         "type": "github"
       },
       "original": {

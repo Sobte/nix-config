@@ -26,12 +26,6 @@
       ghostty.enable = true;
       foot.enable = true;
       slack.enable = true;
-      ssh = {
-        enable = true;
-        includeNames = [
-          "block_config"
-        ];
-      };
     };
     room.desktop.dev = {
       enable = true;
@@ -46,6 +40,11 @@
 
   services.ssh-agent = {
     enable = true;
+  };
+
+  # home block
+  lovelycat = {
+    cli-apps.ssh.homeBlock.enable = true;
   };
 
   catppuccin.cursors.enable = true;
