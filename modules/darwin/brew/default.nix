@@ -18,11 +18,12 @@ in
         "google-chrome"
         "jetbrains-toolbox"
         "thunderbird" # email client
-        "microsoft-remote-desktop" # remote desktop client
+        "windows-app" # remote desktop client
         "signal" # instant messaging application focusing on security
         "obsidian" # obsidian
         "snipaste" # screen capture tool
         "battery" # managing battery charging
+        "sfm"
       ];
     };
   };
