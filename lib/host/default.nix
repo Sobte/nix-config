@@ -20,6 +20,15 @@
         ".Trash*"
         ".DS_Store"
       ];
+      settings = {
+        pull.rebase = true;
+        rerere.enabled = true;
+        column.ui = "auto";
+        branch.sort = "-committerdate";
+        init.defaultBranch = "main";
+        diff.algorithm = "histogram";
+        rebase.autostash = true;
+      };
     };
     samba.client = {
       # home nas config
