@@ -25,7 +25,7 @@ in
         inherit client;
       };
     };
-    # services.wg-quick.configNames = [ "wg-come-home" ];
+    services.wg-quick.configNames = [ "wg-come-home" ];
   };
 
   system.stateVersion = "26.05";
