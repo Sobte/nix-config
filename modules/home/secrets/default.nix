@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
   inherit (lib) optionalAttrs;
 
   cfg = config.${namespace}.secrets;
@@ -23,6 +23,9 @@ in
       lib.${namespace}.secrets
       // (optionalAttrs isDarwin {
         secretsDir = "${config.cattery.user.home}/.secrets";
+      })
+      // (optionalAttrs isLinux {
+        secretsDir = "/run/user/${toString config.home.uid}/agenix";
       });
   };
 }
