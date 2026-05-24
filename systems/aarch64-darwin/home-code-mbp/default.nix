@@ -1,4 +1,6 @@
 {
+  imports = [ ./system.nix ];
+
   cattery = {
     nix.secrets.enable = true;
     room.desktop.dev.enable = true;
