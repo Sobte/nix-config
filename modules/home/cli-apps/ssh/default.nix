@@ -111,6 +111,10 @@ in
   };
 
   config = lib.mkIf cfg.homeBlock.enable {
+    home.packages = [
+      mergeRemoteConfig
+    ];
+
     cattery = {
       secrets = {
         shared.users.${name}.files = {
