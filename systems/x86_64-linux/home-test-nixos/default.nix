@@ -25,7 +25,12 @@ in
         inherit client;
       };
     };
-    services.wg-quick.configNames = [ "wg-come-home" ];
+    services = {
+      wg-quick.configNames = [ "wg-come-home" ];
+      openssh.settings = {
+        StreamLocalBindUnlink = true;
+      };
+    };
   };
 
   system.stateVersion = "26.05";

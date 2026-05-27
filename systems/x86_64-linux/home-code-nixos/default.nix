@@ -40,6 +40,9 @@ in
     services = {
       wg-quick.configNames = [ "wg-come-home" ];
       tailscale.enable = true;
+      openssh.settings = {
+        StreamLocalBindUnlink = true;
+      };
     };
   };
 

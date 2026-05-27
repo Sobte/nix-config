@@ -9,6 +9,9 @@
         enable = true;
         configNames = [ "wg-go-home" ];
       };
+      openssh.extraConfig = ''
+        StreamLocalBindUnlink yes
+      '';
     };
   };
 
