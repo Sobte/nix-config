@@ -33,5 +33,9 @@ in
     };
   };
 
+  security.sudo.extraConfig = ''
+    Defaults env_reset, timestamp_timeout=60
+  '';
+
   system.stateVersion = "26.05";
 }
