@@ -11,5 +11,5 @@
     system.boot.efi.enable = true;
   };
 
-  system.stateVersion = "26.05";
+  system.stateVersion = "26.11";
 }
