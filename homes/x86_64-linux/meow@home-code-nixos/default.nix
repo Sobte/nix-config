@@ -1,8 +1,17 @@
 {
+  inputs,
+  system,
+  host,
+  ...
+}:
+{
   cattery = {
     cli-apps = {
       dev-kit = {
         jujutsu.enable = true;
+        git = {
+          inherit (inputs.hosts-secrets.lib.keys.computed.${host}.settings.git) includeNames;
+        };
       };
       tool = {
         installer.enable = true;
@@ -47,5 +56,11 @@
     cli-apps.ssh.homeBlock.enable = true;
   };
 
-  catppuccin.cursors.enable = true;
+  home.pointerCursor = {
+    name = "nhmeow-cursor";
+    package = inputs.nhmeow-cursor.packages.${system}.nhmeow-cursor;
+    size = 32;
+  };
+
+  # catppuccin.cursors.enable = true;
 }
