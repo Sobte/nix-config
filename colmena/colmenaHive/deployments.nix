@@ -34,6 +34,11 @@
       targetHost = "home-code-nixos";
     };
   };
+  home-code-laptop = {
+    deployment = {
+      targetHost = "home-code-laptop";
+    };
+  };
   home-test-nixos = {
     deployment = {
       targetHost = "home-test-nixos";
