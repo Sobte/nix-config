@@ -1,4 +1,5 @@
 {
+  inputs,
   namespace,
   lib,
   ...
@@ -8,6 +9,9 @@ let
 in
 {
   imports = [
+    # Closest available match.
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p16s-amd-gen1
+
     ./hardware.nix
     # ./disk.nix
   ];
@@ -33,7 +37,13 @@ in
     user.useSecretPasswordFile = true;
 
     system = {
-      boot.binfmt.enable = true;
+      boot = {
+        lanzaboote = {
+          enable = true;
+          pkiBundle = "/persistent/var/lib/sbctl";
+        };
+        binfmt.enable = true;
+      };
       impermanence.enable = true;
       fileSystems.samba = {
         enable = true;
@@ -48,6 +58,15 @@ in
       };
     };
   };
+
+  # No driver support for fingerprint reader
+  # services.fprintd.enable = true;
+  # security.pam.services = {
+  #   sudo.fprintAuth = true;
+  #   kscreenlocker.fprintAuth = true;
+  #   sddm.fprintAuth = false;
+  # };
+  hardware.enableAllFirmware = true;
 
   # krdp ports
   networking.firewall =
