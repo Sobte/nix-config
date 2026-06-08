@@ -39,6 +39,12 @@
     desktop = {
       addons.catppuccin.enable = true;
       plasma.enable = true;
+      niri.theme = {
+        cozy-meow = {
+          enable = true;
+          wallpaper.imagePath = "${inputs.wallpapers}/wide/default";
+        };
+      };
     };
     system.impermanence.enable = true;
   };
@@ -58,5 +64,6 @@
     size = 32;
   };
 
+  catppuccin.swaylock.enable = false;
   # catppuccin.cursors.enable = true;
 }

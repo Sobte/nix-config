@@ -32,6 +32,12 @@ in
     desktop = {
       addons.catppuccin.enable = true;
       plasma.enable = true;
+      niri.theme = {
+        cozy-meow = {
+          enable = true;
+          greetd.enable = false;
+        };
+      };
     };
     # use hashedPasswordFile
     user.useSecretPasswordFile = true;
