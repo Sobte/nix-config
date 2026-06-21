@@ -39,6 +39,45 @@
     desktop = {
       addons.catppuccin.enable = true;
       plasma.enable = true;
+      hyprland.theme.caelestia = {
+        enable = true;
+        settings = {
+          appearance = {
+            transparency.enabled = true;
+          };
+          background = {
+            wallpaperEnabled = true;
+          };
+          paths.wallpaperDir = "${inputs.wallpapers}/wide";
+          general.idle = {
+            lockBeforeSleep = true;
+            inhibitWhenAudio = true;
+            timeouts = [
+              {
+                timeout = 600; # 10 min
+                idleAction = "lock";
+              }
+              {
+                timeout = 900; # 15 min
+                idleAction = "dpms off";
+                returnAction = "dpms on";
+              }
+              {
+                timeout = 1800; # 30 min
+                idleAction = [
+                  "systemctl"
+                  "suspend-then-hibernate"
+                ];
+              }
+            ];
+          };
+          launcher = {
+            useFuzzy = {
+              apps = true;
+            };
+          };
+        };
+      };
     };
     system.impermanence.enable = true;
   };

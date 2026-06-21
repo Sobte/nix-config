@@ -32,6 +32,9 @@ in
     desktop = {
       addons.catppuccin.enable = true;
       plasma.enable = true;
+      hyprland.theme.caelestia = {
+        enable = true;
+      };
     };
     # use hashedPasswordFile
     user.useSecretPasswordFile = true;
