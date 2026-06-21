@@ -18,10 +18,10 @@ in
     cattery.desktop.xdg = {
       app = {
         editor = [
-          "cursor.desktop"
           "dev.zed.Zed.desktop"
           "code-insiders.desktop"
           "code.desktop"
+          "cursor.desktop"
         ];
       };
     };
