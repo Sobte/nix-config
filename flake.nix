@@ -68,11 +68,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    opencode = {
-      url = "github:anomalyco/opencode";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     proxmox-nixos = {
       url = "github:SaumonNet/proxmox-nixos";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
