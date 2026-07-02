@@ -65,6 +65,7 @@
 
     nhmeow-cursor = {
       url = "github:nhmeow/nhmeow-cursor";
+      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -75,6 +76,7 @@
 
     hosts-secrets = {
       url = "github:Sobte/hosts-secrets";
+      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -117,7 +119,9 @@
 
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "ventoy-1.1.05" ];
+        permittedInsecurePackages = [
+          "ventoy-1.1.05"
+        ];
       };
 
       systems = {
