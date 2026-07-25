@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (config.snowfallorg.user) name;
+  inherit (config.cattery.user) name;
 
   cfg = config.${namespace}.cli-apps.ssh;
 

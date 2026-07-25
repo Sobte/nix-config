@@ -1,11 +1,10 @@
 {
   inputs,
   pkgs,
-  mkShell,
   system,
   ...
 }:
-mkShell {
+pkgs.mkShell {
   packages = with pkgs; [
     # nix stuff
     nixfmt

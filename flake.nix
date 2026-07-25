@@ -3,6 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    purr.url = "github:nixcafe/purr";
+
     darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,33 +20,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
+    cattery-modules = {
+      url = "github:nixcafe/cattery-modules";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "darwin";
+      inputs.home-manager.follows = "home-manager";
+      inputs.rust-overlay.follows = "rust-overlay";
+      inputs.purr.follows = "purr";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "darwin";
+      inputs.home-manager.follows = "home-manager";
     };
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cattery-modules = {
-      url = "github:nixcafe/cattery-modules/dev";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "darwin";
-      inputs.home-manager.follows = "home-manager";
-      inputs.snowfall-lib.follows = "snowfall-lib";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     colmena = {
@@ -59,14 +58,14 @@
 
     wallpapers = {
       url = "github:Sobte/wallpapers";
-      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.purr.follows = "purr";
     };
 
     nhmeow-cursor = {
       url = "github:nhmeow/nhmeow-cursor";
-      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.purr.follows = "purr";
     };
 
     proxmox-nixos = {
@@ -76,64 +75,39 @@
 
     hosts-secrets = {
       url = "github:Sobte/hosts-secrets";
-      inputs.snowfall-lib.follows = "snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.purr.follows = "purr";
     };
   };
 
   outputs =
     inputs:
-    let
-      # TODO: write your own module loader with container support.
-      lib = inputs.snowfall-lib.mkLib {
-        # snowfall doc: https://snowfall.org/guides/lib/quickstart/
-        inherit inputs;
-        # root dir
-        src = ./.;
-
-        snowfall = {
-          namespace = "lovelycat";
-          meta = {
-            name = "meow-flake";
-            title = "Meow' Nix Flakes";
-          };
-        };
-      };
-
-      nixos-modules = with inputs; [
-        cattery-modules.nixosModules.default
-        disko.nixosModules.default
-        proxmox-nixos.nixosModules.proxmox-ve
-      ];
-      darwin-modules = with inputs; [
-        cattery-modules.darwinModules.default
-      ];
-      homes-modules = with inputs; [
-        cattery-modules.homeModules.default
-      ];
-      shared-modules = builtins.attrValues (
-        lib.snowfall.module.create-modules { src = ./modules/shared; }
-      );
-    in
-    lib.mkFlake {
-
-      channels-config = {
+    inputs.purr.lib.mkFlake {
+      inherit inputs;
+      src = ./.;
+      namespace = "lovelycat";
+      nixpkgsConfig = {
         allowUnfree = true;
         permittedInsecurePackages = [
           "ventoy-1.1.05"
         ];
       };
-
-      systems = {
-        modules = {
-          nixos = nixos-modules ++ shared-modules;
-          darwin = darwin-modules ++ shared-modules;
-        };
+      extraModules = with inputs; {
+        nixos = [
+          cattery-modules.nixosModules.default
+          disko.nixosModules.default
+          proxmox-nixos.nixosModules.proxmox-ve
+        ];
+        darwin = [
+          cattery-modules.darwinModules.default
+        ];
+        home = [
+          cattery-modules.homeModules.default
+        ];
       };
-
-      homes.modules = homes-modules;
-
-      outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt; };
+      outputsBuilder = { pkgs, ... }: {
+        formatter = pkgs.nixfmt;
+      };
     }
     // {
       colmenaHive = import ./colmena/colmenaHive { inherit inputs; };

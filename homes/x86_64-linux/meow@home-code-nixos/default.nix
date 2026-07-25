@@ -57,6 +57,7 @@
   };
 
   home.pointerCursor = {
+    enable = true;
     name = "nhmeow-cursor";
     package = inputs.nhmeow-cursor.packages.${system}.nhmeow-cursor;
     size = 32;
