@@ -18,6 +18,10 @@ in
         enable = true;
         secrets.configNames = [ "${domain}.conf" ];
       };
+      beszel = {
+        enable = true;
+        hub.enable = true;
+      };
       wg-quick.configNames = [ "wg-come-home" ];
     };
   };

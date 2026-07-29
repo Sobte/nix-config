@@ -54,4 +54,9 @@
       targetHost = "home-infra-pve002";
     };
   };
+  home-infra-nas = {
+    deployment = {
+      targetHost = "home-infra-nas";
+    };
+  };
 }
