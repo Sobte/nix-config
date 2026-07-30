@@ -17,6 +17,7 @@
         installer.enable = true;
         claude-code.enable = true;
         opencode.enable = true;
+        ventoy.enable = true;
       };
     };
     apps = {

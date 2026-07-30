@@ -89,7 +89,7 @@
       nixpkgsConfig = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "ventoy-1.1.05"
+          "ventoy-1.1.12"
         ];
       };
       extraModules = with inputs; {
