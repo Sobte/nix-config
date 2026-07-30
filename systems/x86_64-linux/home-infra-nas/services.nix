@@ -21,14 +21,15 @@
     postgresql = {
       enable = true;
       package = pkgs.postgresql_19;
-      ensureDatabases = [ "hydra" ];
-      ensureUsers = [
-        {
-          name = "hydra";
-          ensureDBOwnership = true;
-        }
-      ];
       dataDir = "/fast/serv-apps/postgresql/data";
+    };
+    openssh.settings = {
+      StreamLocalBindUnlink = true;
+    };
+    hydra = {
+      enable = true;
+      hydraURL = "https://home.hydra.oop.icu";
+      notificationSender = "hydra@example.com";
     };
   };
 
@@ -42,5 +43,16 @@
   users.users.shared = {
     isSystemUser = true;
     group = "shared";
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      80
+      443
+    ];
+    extraCommands = ''
+      iptables -I nixos-fw 1 -i br-+ -p tcp --dport 3000 -j ACCEPT
+      iptables -I nixos-fw 1 -i docker0 -p tcp --dport 3000 -j ACCEPT
+    '';
   };
 }
