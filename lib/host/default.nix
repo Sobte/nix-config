@@ -36,6 +36,7 @@
       binds = {
         "home-resources" = { };
         "home-shared" = { };
+        "home-archives" = { };
       };
     };
   };
