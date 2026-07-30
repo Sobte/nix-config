@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   cattery.services = {
     docker.enable = true;
@@ -16,6 +17,18 @@
           recursive = true;
         };
       };
+    };
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_19;
+      ensureDatabases = [ "hydra" ];
+      ensureUsers = [
+        {
+          name = "hydra";
+          ensureDBOwnership = true;
+        }
+      ];
+      dataDir = "/fast/serv-apps/postgresql/data";
     };
   };
 

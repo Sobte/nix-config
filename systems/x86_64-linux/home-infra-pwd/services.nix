@@ -8,15 +8,13 @@ in
       postgresql = {
         enable = true;
         package = pkgs.postgresql_16;
-        extraOptions = {
-          ensureDatabases = [ "vaultwarden" ];
-          ensureUsers = [
-            {
-              name = "vaultwarden";
-              ensureDBOwnership = true;
-            }
-          ];
-        };
+        ensureDatabases = [ "vaultwarden" ];
+        ensureUsers = [
+          {
+            name = "vaultwarden";
+            ensureDBOwnership = true;
+          }
+        ];
       };
       vaultwarden = {
         enable = true;

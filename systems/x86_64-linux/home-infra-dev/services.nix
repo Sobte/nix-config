@@ -6,6 +6,13 @@
       postgresql = {
         enable = true;
         package = pkgs.postgresql_17;
+        ensureDatabases = [ "forgejo" ];
+        ensureUsers = [
+          {
+            name = "forgejo";
+            ensureDBOwnership = true;
+          }
+        ];
       };
       forgejo = {
         enable = true;
