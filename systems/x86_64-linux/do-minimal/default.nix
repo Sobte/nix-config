@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   purr = {
-    images = [ "digital-ocean" ];
+    images = [ "digital-ocean-fixed" ];
   };
   networking.hostName = lib.mkForce "";
   cattery = {

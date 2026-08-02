@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   purr = {
-    images = [ "google-compute" ];
+    images = [ "google-compute-fixed" ];
   };
   networking.hostName = lib.mkForce "";
   cattery = {
