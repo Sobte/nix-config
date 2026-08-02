@@ -1,0 +1,24 @@
+From 18fa1eecf20bd540a9b073184a4846c62ce32008 Mon Sep 17 00:00:00 2001
+From: Vladimir-csp <4061903+Vladimir-csp@users.noreply.github.com>
+Date: Sat, 1 Aug 2026 22:48:54 +0300
+Subject: [PATCH] docs: fix manpage syntax for newer scdoc, fixes #18
+
+---
+ app2unit.1.scd | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/app2unit.1.scd b/app2unit.1.scd
+index 87a504b..1b02834 100644
+--- a/app2unit.1.scd
++++ b/app2unit.1.scd
+@@ -65,8 +65,8 @@ Or set slice explicitly. Default and short
+ 
+ 	Override the whole Unit ID. Must match type. Defaults to recommended
+ 	templates:
+-		app-_${desktop}_-_${app_name}_@_${random}_.service++
+-app-_${desktop}_-_${app_name}_-_${random}_.scope
++		app-${desktop}-${app_name}@${random}.service++
++app-${desktop}-${app_name}-${random}.scope
+ 	Conflicts with *-a*.
+ 
+ *-x*
