@@ -4,6 +4,7 @@
   timeZone = "Asia/Shanghai";
   defaultLocale = "en_US.UTF-8";
   defaultUserShell = "fish";
+  injectHomeUser = false;
   name = "meow";
   realName = "sobte";
   email = {
@@ -227,6 +228,7 @@
     home = {
       flavor = "macchiato";
       accent = "sky";
+      starship.enable = false;
       vscode.profiles.default.enable = false;
       zed.enable = false;
     };

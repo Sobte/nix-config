@@ -1,5 +1,8 @@
 { lib, ... }:
 rec {
+  purr = {
+    images = [ "iso-installer" ];
+  };
   image.baseName = lib.mkForce "nixos-plasma6-new-kernel-${system.stateVersion}-linux";
 
   # `install-iso` adds wireless support that
@@ -13,7 +16,10 @@ rec {
     };
     # plasma6
     desktop.plasma.enable = true;
-    system.boot.kernel.enable = true;
+    system.boot.kernel = {
+      enable = true;
+      useLatestZfsCompatible = true;
+    };
     room.desktop.general.enable = true;
   };
 

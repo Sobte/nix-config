@@ -1,5 +1,8 @@
 { lib, ... }:
 rec {
+  purr = {
+    images = [ "iso-installer" ];
+  };
   image.baseName = lib.mkForce "nixos-minimal-new-kernel-${system.stateVersion}-linux";
 
   # `install-iso` adds wireless support that
@@ -11,7 +14,10 @@ rec {
       name = "nixos"; # use nixos as default user
       initialHashedPassword = "";
     };
-    system.boot.kernel.enable = true;
+    system.boot.kernel = {
+      enable = true;
+      useLatestZfsCompatible = true;
+    };
     room.general.enable = true;
   };
 

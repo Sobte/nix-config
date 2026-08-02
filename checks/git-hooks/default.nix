@@ -1,5 +1,5 @@
 { inputs, system, ... }:
-inputs.pre-commit-hooks.lib.${system}.run {
+inputs.git-hooks.lib.${system}.run {
   src = ../../.;
   hooks = {
     # formatter

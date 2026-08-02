@@ -30,6 +30,13 @@
       enable = true;
       hydraURL = "https://home.hydra.oop.icu";
       notificationSender = "hydra@example.com";
+      useSubstitutes = true;
+      minimumDiskFree = 20;
+      minimumDiskFreeEvaluator = 10;
+      extraOptions = {
+        maxServers = 8;
+      };
+      extraConfig = "allow_import_from_derivation = true";
     };
   };
 

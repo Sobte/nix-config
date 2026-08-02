@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks = {
+    git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -91,6 +91,7 @@
         permittedInsecurePackages = [
           "ventoy-1.1.12"
         ];
+        problems.handlers.zfs.broken = "warn";
       };
       extraModules = with inputs; {
         nixos = [
@@ -107,6 +108,10 @@
       };
       outputsBuilder = { pkgs, ... }: {
         formatter = pkgs.nixfmt;
+      };
+      hydraJobs = {
+        enable = true;
+        systems = [ "x86_64-linux" ];
       };
     }
     // {

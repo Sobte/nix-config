@@ -6,6 +6,7 @@
   ];
 
   cattery = {
+    nix.secrets.enable = true;
     room.server.nas = {
       enable = true;
       zfs.enable = true;
@@ -14,7 +15,10 @@
     system = {
       boot = {
         efi.enable = true;
-        kernel.version = "6.18";
+        kernel = {
+          enable = true;
+          useLatestZfsCompatible = true;
+        };
       };
       impermanence = {
         enable = true;

@@ -11,7 +11,13 @@ let
 in
 {
   cattery = {
-    system.network.enable = false;
+    system = {
+      network.enable = false;
+      boot.kernel = {
+        enable = true;
+        useLatestZfsCompatible = true;
+      };
+    };
     services = {
       acme = {
         useRoot = true;
