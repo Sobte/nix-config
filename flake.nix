@@ -111,6 +111,7 @@
       };
       hydraJobs = {
         enable = true;
+        as = "builds";
         systems = [ "x86_64-linux" ];
       };
     }
