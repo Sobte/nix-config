@@ -1,0 +1,11 @@
+--- a/tools/lkl/cptofs.c
++++ b/tools/lkl/cptofs.c
+@@ -666,7 +666,7 @@
+ 	}
+ 	disk_id = ret;
+ 
+-	ret = lkl_start_kernel("mem=100M");
++	ret = lkl_start_kernel("mem=2048M");
+ 	if (ret < 0) {
+ 		fprintf(stderr, "failed to start kernel: %s\n",
+ 			lkl_strerror(ret));
