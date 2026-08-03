@@ -1,0 +1,38 @@
+name: hydra-sync
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout hydra branch
+        uses: actions/checkout@v4
+        with:
+          ref: hydra
+          path: hydra-branch
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v26
+
+      - name: Re-pin hydra lock to latest main
+        working-directory: hydra-branch
+        run: nix flake update nix-config
+
+      - name: Commit and push
+        working-directory: hydra-branch
+        run: |
+          if git diff --quiet -- flake.lock; then
+            echo "hydra lock already at latest"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flake.lock
+          git commit -m "chore: sync hydra lock to ${GITHUB_SHA:0:7}"
+          git push origin hydra
