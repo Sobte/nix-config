@@ -1,0 +1,3 @@
+{
+  images = [ "digital-ocean-fixed" ];
+}

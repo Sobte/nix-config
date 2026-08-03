@@ -1,0 +1,3 @@
+{
+  images = [ "proxmox-lxc" ];
+}

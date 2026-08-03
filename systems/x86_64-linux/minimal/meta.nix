@@ -1,0 +1,3 @@
+{
+  images = [ "iso-installer" ];
+}

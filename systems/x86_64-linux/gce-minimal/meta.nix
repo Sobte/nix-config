@@ -1,0 +1,3 @@
+{
+  images = [ "google-compute-fixed" ];
+}

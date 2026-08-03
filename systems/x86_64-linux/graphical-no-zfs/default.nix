@@ -1,8 +1,5 @@
 { lib, ... }:
 rec {
-  purr = {
-    images = [ "iso-installer" ];
-  };
   image.baseName = lib.mkForce "nixos-plasma6-new-kernel-no-zfs-${system.stateVersion}-linux";
 
   # `install-iso` adds wireless support that

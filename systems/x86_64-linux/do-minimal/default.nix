@@ -1,8 +1,5 @@
 { lib, ... }:
 {
-  purr = {
-    images = [ "digital-ocean-fixed" ];
-  };
   networking.hostName = lib.mkForce "";
   cattery = {
     user.name = "root"; # use nixos as default user

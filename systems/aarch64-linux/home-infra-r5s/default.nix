@@ -1,8 +1,5 @@
 { inputs, ... }:
 {
-  purr = {
-    images = [ "sd-card" ];
-  };
   imports = with inputs; [
     nixos-hardware.nixosModules.friendlyarm-nanopi-r5s
   ];
