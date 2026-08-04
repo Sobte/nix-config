@@ -867,11 +867,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1785792398,
-        "narHash": "sha256-HiGqtyfSzwsmTRBLaLuUderd/oxyIYuS2rY7yltEDj8=",
+        "lastModified": 1785806777,
+        "narHash": "sha256-isw2Y7cDwKzB1Le8bBJb+gfhaIpItaEEz3IU+OTEJSc=",
         "owner": "Sobte",
         "repo": "nix-config",
-        "rev": "a1d6c60b3f7adc7c7d05addf7a96533f1bdf8de0",
+        "rev": "1a5809d148dfbb2c155e481441453b9cd6b0d0f0",
         "type": "github"
       },
       "original": {
