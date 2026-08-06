@@ -107,6 +107,75 @@
         Persistent = true;
       };
     };
+
+    # Pull the newest NixOS images Hydra builds into home-resources, keeping
+    # the KEEP newest builds per image job (mirrors the jobset keepnr of 3).
+    # Products land under /tank/home-resources/Linux/NixOS, so sync-pve-images
+    # picks up the *.iso / *.qcow2 automatically for PVE.
+    services.sync-nixos-images = {
+      description = "Sync latest NixOS images from Hydra into home-resources (keep 3 per job)";
+      after = [ "zfs.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart =
+          let
+            script = pkgs.writeShellScript "sync-nixos-images" ''
+              set -euo pipefail
+              HYDRA_URL="http://localhost:3000"
+              PROJECT="nix-config"
+              JOBSET="main"
+              DEST="/tank/home-resources/Linux/NixOS"
+              KEEP="3"
+
+              # All image jobs from the `images` flake output. Update when hosts
+              # gain or change image formats.
+              IMAGE_JOBS="images.do-minimal.digital-ocean images.do-minimal.digital-ocean-fixed images.gce-minimal.google-compute images.gce-minimal.google-compute-fixed images.graphical.iso-installer images.graphical-no-zfs.iso-installer images.lxc-minimal.proxmox-lxc images.minimal.iso-installer images.minimal-no-zfs.iso-installer images.virtualbox-minimal.virtualbox"
+
+              mkdir -p "$DEST"
+
+              for job in $IMAGE_JOBS; do
+                dir="$DEST/$job"
+                mkdir -p "$dir"
+
+                # Newest KEEP successful builds for this job, newest first.
+                ids="$(curl -fsS "$HYDRA_URL/api/latestbuilds?project=$PROJECT&jobset=$JOBSET&job=$job&nr=$KEEP" | jq -r '.[] | select(.buildstatus == 0) | .id' || true)"
+                [ -n "$ids" ] || { echo "[sync-nixos-images] no successful build for $job"; continue; }
+
+                # Reflink-copy each product file (nix-support excluded) into
+                # <buildid>-<name>, so multiple files of one build stay grouped.
+                for id in $ids; do
+                  out="$(curl -fsS "$HYDRA_URL/build/$id/api/get-info" | jq -r '.outPath // empty' || true)"
+                  [ -n "$out" ] && [ -d "$out" ] || continue
+                  while IFS= read -r -d "" f; do
+                    base="$(basename "$f")"
+                    dest="$dir/$id-$base"
+                    [ -e "$dest" ] || cp --reflink=auto -n "$f" "$dest"
+                  done < <(find "$out" -type f ! -path '*/nix-support/*' -print0)
+                done
+
+                # Prune down to the newest KEEP build ids in this job's directory.
+                keep_ids="$(ls -1 "$dir" | sed -n 's/^\([0-9]*\)-.*/\1/p' | sort -nu | tail -n "$KEEP")"
+                [ -n "$keep_ids" ] || continue
+                for f in "$dir"/*; do
+                  [ -f "$f" ] || continue
+                  id="''${f##*/}"; id="''${id%%-*}"
+                  echo "$keep_ids" | grep -qx "$id" || rm -f "$f"
+                done
+              done
+            '';
+          in
+          "${script}";
+      };
+    };
+    timers.sync-nixos-images = {
+      description = "Daily sync of Hydra NixOS images into home-resources";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
+    };
   };
 
   users.groups.resource = { };
