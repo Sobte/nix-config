@@ -1088,11 +1088,11 @@
         "nixpkgs-lib": "nixpkgs-lib_3"
       },
       "locked": {
-        "lastModified": 1785982064,
-        "narHash": "sha256-0ah9FJ8z8r7UCBdPy/CruyUHGZN2Qh2Dk4GzNX97gQ4=",
+        "lastModified": 1786057126,
+        "narHash": "sha256-fgVt8YbYLSn3K25sb/l85nz6leusUaUJCgJgkQjDpmo=",
         "owner": "nixcafe",
         "repo": "purr",
-        "rev": "f79c2aa8f771eedc6b20f3dc08ababd073935ae3",
+        "rev": "87835652c2bfde286b1edfd6f668c53582032211",
         "type": "github"
       },
       "original": {
