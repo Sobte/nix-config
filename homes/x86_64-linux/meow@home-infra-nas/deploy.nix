@@ -33,8 +33,13 @@ let
       if [ -z "$out" ]; then
         local job="nixosConfigurations.x86_64-linux.$machine"
         local build_id
-        build_id="$(curl -fsS "$HYDRA_URL/api/latestbuilds?project=$PROJECT&jobset=$JOBSET&job=$job&nr=1" | jq -r '.[0].id')"
-        out="$(curl -fsS "$HYDRA_URL/build/$build_id/api/get-info" | jq -r '.outPath')"
+        build_id="$(curl -fsS "$HYDRA_URL/api/latestbuilds?project=$PROJECT&jobset=$JOBSET&job=$job&nr=1" | jq -r '.[0].id // empty' 2>/dev/null || true)"
+        if [ -z "$build_id" ]; then
+          echo "[hydra-deploy] no successful build found for $job" >&2
+          return 1
+        fi
+        out="$(curl -fsS "$HYDRA_URL/build/$build_id/api/get-info" | jq -r '.outPath' 2>/dev/null || true)"
+        [ -n "$out" ] || { echo "[hydra-deploy] failed to resolve out path for build $build_id" >&2; return 1; }
         echo "[hydra-deploy] resolved latest successful build $build_id for $job: $out"
       fi
 
@@ -73,15 +78,19 @@ let
     machines="${autoDeployList}"
     [ -n "$machines" ] || exit 0
 
+    # Track overall status so a failure anywhere surfaces in the exit code
+    # (systemd logs it) without aborting the remaining machines.
+    status=0
+
     for machine in $machines; do
       job="nixosConfigurations.x86_64-linux.$machine"
-      build_id="$(curl -fsS "$HYDRA_URL/api/latestbuilds?project=$PROJECT&jobset=$JOBSET&job=$job&nr=1" | jq -r '.[0].id // empty')"
+      build_id="$(curl -fsS "$HYDRA_URL/api/latestbuilds?project=$PROJECT&jobset=$JOBSET&job=$job&nr=1" | jq -r '.[0].id // empty' 2>/dev/null || true)"
       if [ -z "$build_id" ]; then
-        echo "[hydra-deploy] $machine: no successful build yet"
+        echo "[hydra-deploy] $machine: no successful build yet (or Hydra API unreachable)"
         continue
       fi
 
-      # Skip if this build was already deployed.
+      # Skip if this build was already deployed successfully.
       stamp="''${XDG_STATE_HOME:-$HOME/.local/state}/hydra-deploy/$machine"
       mkdir -p "$(dirname "$stamp")"
       last="$(cat "$stamp" 2>/dev/null || true)"
@@ -90,13 +99,18 @@ let
         continue
       fi
 
-      echo "$build_id" > "$stamp"
+      # Mark as done ONLY after a successful deploy. On failure the stamp is
+      # left untouched, so the next timer run retries the same build.
       if deploy "$machine"; then
+        echo "$build_id" > "$stamp"
         echo "[hydra-deploy] $machine: deployed build $build_id"
       else
         echo "[hydra-deploy] $machine: DEPLOY FAILED for build $build_id" >&2
+        status=1
       fi
     done
+
+    exit "$status"
   '';
 in
 {
