@@ -174,11 +174,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1786049006,
-        "narHash": "sha256-3OWq4kV7eGVm8roIDw5+5TpRgpm9MHr1Qmxs5rmnSp8=",
+        "lastModified": 1786061137,
+        "narHash": "sha256-OnI9sNEAV6kGOVh9bc+s8yp0/0ILO5G8+vHsOW7icoY=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "6c2f87a177094806141d51e1e8b63da6436d3c0e",
+        "rev": "08233903527a47860c57ccdb35319740d522745f",
         "type": "github"
       },
       "original": {
@@ -735,11 +735,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785868022,
-        "narHash": "sha256-ZdN7/K1JF4b/1SylgeiKGM8ZsU7E0OxVYqgDXZU39js=",
+        "lastModified": 1786062452,
+        "narHash": "sha256-XriCIZRifH9ZUhHLu4IIfyQzHR8rbw2P62LtQLJCfh4=",
         "owner": "Sobte",
         "repo": "hosts-secrets",
-        "rev": "aa5aff08cf5851945a24ada470beaef8b620a54b",
+        "rev": "b2629917e5ec54595680d40078878d10f234e197",
         "type": "github"
       },
       "original": {
@@ -867,11 +867,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1786061572,
-        "narHash": "sha256-KJn8wbfrhwyCcaybPfD9WzYLMUsuI3za2av9c9Lbrx0=",
+        "lastModified": 1786062926,
+        "narHash": "sha256-PgWSwW6JmqS+ZM7UgXFGtH4Y039uCSMji8UvPERTcgs=",
         "owner": "Sobte",
         "repo": "nix-config",
-        "rev": "5b6ce8e6b61d028b7a216f9f0f599dc3bdbbd1f2",
+        "rev": "ed9ba8e0d911488c5115668aa748c1c33abbab76",
         "type": "github"
       },
       "original": {
