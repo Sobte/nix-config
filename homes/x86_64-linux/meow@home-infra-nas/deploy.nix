@@ -13,7 +13,6 @@ let
     "home-infra-dns"
     "home-infra-knob"
     "home-infra-relay"
-    "home-infra-knob"
     "home-infra-runner-01"
     "home-infra-web"
   ];
