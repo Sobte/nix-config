@@ -18,6 +18,12 @@
         claude-code.enable = true;
         opencode.enable = true;
         ventoy.enable = true;
+        tea = {
+          enable = true;
+          gitCredentialHelper.hosts = [
+            "https://git.sobte.dev"
+          ];
+        };
       };
     };
     apps = {

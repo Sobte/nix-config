@@ -21,6 +21,7 @@ in
       beszel = {
         enable = true;
         hub.enable = true;
+        agent.enable = false;
       };
       wg-quick.configNames = [ "wg-come-home" ];
     };
