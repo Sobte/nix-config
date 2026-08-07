@@ -1,5 +1,6 @@
+{ catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     room.server-mini.enable = true;
   };
 

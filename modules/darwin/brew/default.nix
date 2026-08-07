@@ -2,6 +2,7 @@
   config,
   lib,
   namespace,
+  catteryNs,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.brew = {
+    ${catteryNs}.brew = {
       casks = [
         "google-chrome"
         "jetbrains-toolbox"

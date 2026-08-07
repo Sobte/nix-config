@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     services = {
       # Do not add ensureDatabases yet because gitea will add it.
       postgresql = {

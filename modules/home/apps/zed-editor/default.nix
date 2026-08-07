@@ -3,6 +3,7 @@
   lib,
   namespace,
   pkgs,
+  catteryNs,
   ...
 }:
 let
@@ -16,7 +17,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.apps.zed-editor = {
+    ${catteryNs}.apps.zed-editor = {
       extraPackages = with pkgs; [
         nixd
       ];

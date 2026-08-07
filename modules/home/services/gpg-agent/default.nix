@@ -2,6 +2,7 @@
   lib,
   config,
   namespace,
+  catteryNs,
   ...
 }:
 let
@@ -15,7 +16,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.services.gpg-agent = {
+    ${catteryNs}.services.gpg-agent = {
       enable = lib.mkDefault true;
       enableExtraSocket = lib.mkDefault true;
       verbose = lib.mkDefault true;

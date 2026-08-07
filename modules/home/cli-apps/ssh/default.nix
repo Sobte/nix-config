@@ -3,15 +3,16 @@
   config,
   namespace,
   pkgs,
+  catteryNs,
   ...
 }:
 let
-  inherit (config.cattery.user) name;
+  inherit (config.${catteryNs}.user) name;
 
   cfg = config.${namespace}.cli-apps.ssh;
 
-  remoteConfig = "${config.cattery.user.home}/.ssh/remote_config";
-  customConfig = "${config.cattery.user.home}/.ssh/custom_config";
+  remoteConfig = "${config.${catteryNs}.user.home}/.ssh/remote_config";
+  customConfig = "${config.${catteryNs}.user.home}/.ssh/custom_config";
 
   mergeRemoteConfig = pkgs.writeShellApplication {
     name = "merge-remote-ssh-config";
@@ -26,8 +27,8 @@ let
 
       target="${remoteConfig}"
 
-      block="${config.cattery.secrets.shared.users.${name}.files."ssh/block_config".path}"
-      known="${config.cattery.secrets.shared.users.${name}.files."ssh/known_hosts".path}"
+      block="${config.${catteryNs}.secrets.shared.users.${name}.files."ssh/block_config".path}"
+      known="${config.${catteryNs}.secrets.shared.users.${name}.files."ssh/known_hosts".path}"
 
       tmp="$(mktemp)"
 
@@ -115,7 +116,7 @@ in
       mergeRemoteConfig
     ];
 
-    cattery = {
+    ${catteryNs} = {
       secrets = {
         shared.users.${name}.files = {
           "ssh/known_hosts" = { };

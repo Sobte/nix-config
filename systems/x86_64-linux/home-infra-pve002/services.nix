@@ -4,13 +4,14 @@
   system,
   inputs,
   host,
+  catteryNs,
   ...
 }:
 let
   domain = "pve002.home.host.oop.icu";
 in
 {
-  cattery = {
+  ${catteryNs} = {
     system = {
       network.enable = false;
       boot.kernel = {

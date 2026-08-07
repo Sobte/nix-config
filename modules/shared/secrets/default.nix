@@ -2,6 +2,7 @@
   lib,
   config,
   namespace,
+  catteryNs,
   ...
 }:
 let
@@ -15,6 +16,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.secrets = lib.${namespace}.secrets;
+    ${catteryNs}.secrets = lib.${namespace}.secrets;
   };
 }

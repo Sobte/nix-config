@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, catteryNs, ... }:
 let
   domain = "home.pwd.oop.icu";
 in
 {
-  cattery = {
+  ${catteryNs} = {
     services = {
       postgresql = {
         enable = true;

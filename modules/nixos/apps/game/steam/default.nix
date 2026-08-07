@@ -2,10 +2,11 @@
   config,
   lib,
   namespace,
+  catteryNs,
   ...
 }:
 let
-  catCfg = config.cattery.apps.game.steam;
+  catCfg = config.${catteryNs}.apps.game.steam;
 
   cfg = config.${namespace}.apps.game.steam;
 in
@@ -17,8 +18,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.home.extraOptions = {
-      cattery.system.impermanence = {
+    ${catteryNs}.home.extraOptions = {
+      ${catteryNs}.system.impermanence = {
         directories = [
           ".factorio"
         ];

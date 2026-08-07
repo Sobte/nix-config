@@ -1,9 +1,9 @@
-{ config, ... }:
+{ config, catteryNs, ... }:
 let
   domain = "home.web.oop.icu";
 in
 {
-  cattery = {
+  ${catteryNs} = {
     secrets = {
       hosts.global.files = {
         "www/singbox/mac.json" = { };
@@ -44,7 +44,7 @@ in
       mkdir -p /var/www/html/singbox
 
       cp -f "${
-        config.cattery.secrets.hosts.global.files."www/singbox/mac.json".path
+        config.${catteryNs}.secrets.hosts.global.files."www/singbox/mac.json".path
       }" /var/www/html/singbox/mac.json
 
       chown -R nginx:nginx /var/www/

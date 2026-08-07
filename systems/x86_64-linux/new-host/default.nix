@@ -1,10 +1,15 @@
-{ lib, namespace, ... }:
+{
+  lib,
+  namespace,
+  catteryNs,
+  ...
+}:
 {
   imports = [
     ./disk.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     user = {
       name = "root"; # use root as default user
       authorizedKeys = {

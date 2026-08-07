@@ -1,15 +1,16 @@
+{ namespace, catteryNs, ... }:
 {
   imports = [
     ./deploy.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     room.server.nas.enable = true;
     system.impermanence.enable = true;
   };
 
   # home block
-  lovelycat = {
+  ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
   };
 }

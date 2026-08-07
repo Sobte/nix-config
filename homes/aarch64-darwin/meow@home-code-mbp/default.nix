@@ -1,10 +1,11 @@
+{ namespace, catteryNs, ... }:
 {
-  cattery.room.desktop.dev = {
+  ${catteryNs}.room.desktop.dev = {
     enable = true;
   };
 
   # home block
-  lovelycat = {
+  ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
   };
 }

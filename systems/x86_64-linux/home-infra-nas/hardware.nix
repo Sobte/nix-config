@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  catteryNs,
   ...
 }:
 {
@@ -22,7 +23,7 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  cattery.system.fileSystems.btrfs.impermanence = {
+  ${catteryNs}.system.fileSystems.btrfs.impermanence = {
     "@home".device = "/dev/disk/by-uuid/4e930b13-f154-4c76-aa5c-38f6131df4c6";
   };
 

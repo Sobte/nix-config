@@ -1,5 +1,6 @@
+{ catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     room.container.enable = true;
   };
 

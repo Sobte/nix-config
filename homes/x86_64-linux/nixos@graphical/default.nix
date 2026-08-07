@@ -1,7 +1,8 @@
+{ catteryNs, ... }:
 {
   home.stateVersion = "26.11";
 
-  cattery = {
+  ${catteryNs} = {
     room.desktop.general.enable = true;
     apps.browser = {
       needs = [

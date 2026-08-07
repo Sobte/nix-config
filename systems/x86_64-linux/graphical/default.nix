@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, catteryNs, ... }:
 rec {
   image.baseName = lib.mkForce "nixos-plasma6-new-kernel-${system.stateVersion}-linux";
 
@@ -6,7 +6,7 @@ rec {
   # is incompatible with networkmanager.
   networking.wireless.enable = lib.mkForce false;
 
-  cattery = {
+  ${catteryNs} = {
     user = {
       name = "nixos"; # use nixos as default user
       initialHashedPassword = "";

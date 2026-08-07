@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  catteryNs,
   ...
 }:
 {
@@ -32,7 +33,7 @@
     ];
   };
 
-  cattery.system.fileSystems.btrfs.impermanence = {
+  ${catteryNs}.system.fileSystems.btrfs.impermanence = {
     "@home".device = "/dev/disk/by-uuid/2f1dc58e-6d8a-4cb4-8247-b4e9acf39681";
   };
 

@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  catteryNs,
   ...
 }:
 {
@@ -37,7 +38,7 @@
     device = "/dev/disk/by-uuid/b1fb6b75-dd65-4e9b-bc52-53db70d57e89";
   };
 
-  cattery.system.fileSystems.btrfs.impermanence = {
+  ${catteryNs}.system.fileSystems.btrfs.impermanence = {
     "@home".device = "/dev/mapper/crypted";
   };
 

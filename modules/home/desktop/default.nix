@@ -2,6 +2,7 @@
   lib,
   config,
   namespace,
+  catteryNs,
   ...
 }:
 let
@@ -15,7 +16,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    cattery.desktop.xdg = {
+    ${catteryNs}.desktop.xdg = {
       app = {
         editor = [
           "dev.zed.Zed.desktop"

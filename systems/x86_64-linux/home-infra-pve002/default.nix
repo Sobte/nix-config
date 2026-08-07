@@ -1,3 +1,4 @@
+{ catteryNs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -5,7 +6,7 @@
     # ./disk.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     user.name = "root"; # use root as default user
     # Enable EFI boot support
     system.boot.efi.enable = true;

@@ -1,3 +1,4 @@
+{ catteryNs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -5,7 +6,7 @@
     # ./disk.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     nix.secrets.enable = true;
     room.server.nas = {
       enable = true;

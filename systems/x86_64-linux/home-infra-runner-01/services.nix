@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     services = {
       docker.enable = true;
       gitea-actions-runner = {

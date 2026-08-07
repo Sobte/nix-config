@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     services.sing-box.enable = true;
     system.boot.kernel = {
       useIpForward = true;

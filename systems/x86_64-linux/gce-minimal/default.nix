@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, catteryNs, ... }:
 {
   networking.hostName = lib.mkForce "";
-  cattery = {
+  ${catteryNs} = {
     user.name = "root"; # use nixos as default user
     room.server = {
       enable = true;

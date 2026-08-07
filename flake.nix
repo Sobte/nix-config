@@ -91,7 +91,9 @@
         permittedInsecurePackages = [
           "ventoy-1.1.12"
         ];
-        problems.handlers.zfs.broken = "warn";
+      };
+      extraArgs = {
+        catteryNs = "cattery";
       };
       extraModules = with inputs; {
         nixos = [

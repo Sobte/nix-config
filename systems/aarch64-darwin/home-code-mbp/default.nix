@@ -1,7 +1,8 @@
+{ catteryNs, ... }:
 {
   imports = [ ./system.nix ];
 
-  cattery = {
+  ${catteryNs} = {
     nix.secrets.enable = true;
     room.desktop.dev.enable = true;
     services = {

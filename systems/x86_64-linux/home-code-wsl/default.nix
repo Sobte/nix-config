@@ -1,7 +1,8 @@
+{ catteryNs, ... }:
 {
   imports = [ ./hardware.nix ];
 
-  cattery = {
+  ${catteryNs} = {
     room.desktop.wsl.enable = true;
 
     services.vscode-server.enable = true;

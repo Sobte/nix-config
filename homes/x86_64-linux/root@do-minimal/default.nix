@@ -1,7 +1,8 @@
+{ catteryNs, ... }:
 {
   home.stateVersion = "26.11";
 
-  cattery = {
+  ${catteryNs} = {
     room.server.enable = true;
     # convenient to check specifications during first installation
     cli-apps.tool = {

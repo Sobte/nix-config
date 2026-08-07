@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ inputs, catteryNs, ... }:
 {
-  cattery = {
+  ${catteryNs} = {
     room.desktop.general = {
       enable = true;
     };

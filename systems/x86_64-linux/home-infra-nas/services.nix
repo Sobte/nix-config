@@ -2,6 +2,7 @@
   pkgs,
   lib,
   purr,
+  catteryNs,
   ...
 }:
 let
@@ -17,7 +18,7 @@ let
   );
 in
 {
-  cattery.services = {
+  ${catteryNs}.services = {
     docker.enable = true;
     wg-quick.configNames = [ "wg-come-home" ];
     vscode-server.enable = true;

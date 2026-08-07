@@ -1,5 +1,6 @@
+{ catteryNs, ... }:
 {
-  cattery.room.container = {
+  ${catteryNs}.room.container = {
     enable = true;
   };
 

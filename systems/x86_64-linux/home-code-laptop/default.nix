@@ -2,6 +2,7 @@
   inputs,
   namespace,
   lib,
+  catteryNs,
   ...
 }:
 let
@@ -16,7 +17,7 @@ in
     # ./disk.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     nix.secrets.enable = true;
     apps = {
       winbox = {

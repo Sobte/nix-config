@@ -1,6 +1,7 @@
 {
   namespace,
   lib,
+  catteryNs,
   ...
 }:
 let
@@ -9,7 +10,7 @@ in
 {
   imports = [ ./hardware.nix ];
 
-  cattery = {
+  ${catteryNs} = {
     # use hashedPasswordFile
     user.useSecretPasswordFile = true;
 

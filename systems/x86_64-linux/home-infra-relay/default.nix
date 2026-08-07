@@ -1,10 +1,11 @@
+{ catteryNs, ... }:
 {
   imports = [
     ./hardware.nix
     ./services.nix
   ];
 
-  cattery = {
+  ${catteryNs} = {
     user.name = "root"; # use root as default user
     room.server.enable = true;
     services.getty.enable = true;

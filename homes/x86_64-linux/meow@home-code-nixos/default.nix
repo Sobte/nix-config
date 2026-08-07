@@ -2,10 +2,12 @@
   inputs,
   system,
   host,
+  namespace,
+  catteryNs,
   ...
 }:
 {
-  cattery = {
+  ${catteryNs} = {
     cli-apps = {
       dev-kit = {
         jujutsu.enable = true;
@@ -59,7 +61,7 @@
   };
 
   # home block
-  lovelycat = {
+  ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
   };
 
