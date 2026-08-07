@@ -175,7 +175,7 @@ in
                       base="$(basename "$f")"
                       dest="$dir/$id-$base"
                       [ -e "$dest" ] || cp --reflink=auto -n "$f" "$dest"
-                    done < <(find "$out" -type f ! -path '*/nix-support/*' -print0)
+                    done < <(find "$out" \( -type f -o -type l \) ! -path '*/nix-support/*' -print0)
                   done
 
                   # Prune down to the newest KEEP build ids in this job's directory.
