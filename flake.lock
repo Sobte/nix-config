@@ -174,11 +174,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1786061137,
-        "narHash": "sha256-OnI9sNEAV6kGOVh9bc+s8yp0/0ILO5G8+vHsOW7icoY=",
+        "lastModified": 1786071041,
+        "narHash": "sha256-a/ris7DWdwT/GGwziFA2WBl7q5SHvDu78fM8TCWGJrg=",
         "owner": "nixcafe",
         "repo": "cattery-modules",
-        "rev": "08233903527a47860c57ccdb35319740d522745f",
+        "rev": "0fd2d12f2091be2939c50a974c80af63a3140697",
         "type": "github"
       },
       "original": {
@@ -867,11 +867,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1786063638,
-        "narHash": "sha256-QhsHXB4ZvJwVpkQu1S9SqdQttuSho3orPnN6IsnNkk8=",
+        "lastModified": 1786074290,
+        "narHash": "sha256-DxBEOkx5KTbZJfOZWzKBwOCyOOgijObqohRq/hzf2lc=",
         "owner": "Sobte",
         "repo": "nix-config",
-        "rev": "e2abf261aa9e43fb80eba7a05d25d274857566a8",
+        "rev": "0d4b5b2334a67aa51a752738d65f97d255c6c8a0",
         "type": "github"
       },
       "original": {
