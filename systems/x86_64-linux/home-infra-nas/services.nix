@@ -1,7 +1,21 @@
 {
   pkgs,
+  lib,
+  purr,
   ...
 }:
+let
+  # Image jobs as exposed by this flake's `images` output: one per
+  # host/format pair from self's host registry, so stale jobs (e.g. removed
+  # hosts or renamed formats still present in Hydra's history) are ignored.
+  imageJobs = lib.concatStringsSep " " (
+    lib.flatten (
+      lib.mapAttrsToList (
+        host: meta: map (fmt: "images.${host}.${fmt}") (meta.images or [ ])
+      ) purr.systemMetas
+    )
+  );
+in
 {
   cattery.services = {
     docker.enable = true;
@@ -139,9 +153,8 @@
                 DEST="/tank/home-resources/Linux/NixOS"
                 KEEP="3"
 
-                  # All image jobs from the `images` flake output. Update when hosts
-                # gain or change image formats.
-                IMAGE_JOBS="images.do-minimal.digital-ocean images.do-minimal.digital-ocean-fixed images.gce-minimal.google-compute images.gce-minimal.google-compute-fixed images.graphical.iso-installer images.graphical-no-zfs.iso-installer images.lxc-minimal.proxmox-lxc images.minimal.iso-installer images.minimal-no-zfs.iso-installer images.virtualbox-minimal.virtualbox"
+                  # Image jobs come from self's `images` output via purr.systemMetas.
+                IMAGE_JOBS="${imageJobs}"
 
                 mkdir -p "$DEST"
 
