@@ -177,7 +177,7 @@
               '';
             };
           in
-          "${script}";
+          "${script}/bin/sync-nixos-images";
       };
     };
     timers.sync-nixos-images = {
