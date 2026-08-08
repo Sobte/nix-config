@@ -1,13 +1,15 @@
 { catteryNs, ... }:
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./services.nix
+  ];
 
   ${catteryNs} = {
     user.name = "root"; # use root as default user
     room.container.enable = true;
     system.proxmox.lxc.enable = true;
     services = {
-      smartdns.enable = true;
       vscode-server.enable = true;
     };
   };

@@ -704,11 +704,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786168517,
-        "narHash": "sha256-HWk/qIKfqjcR4dUl3hMlutrWOT0YzPt18MHzaplN5/Q=",
+        "lastModified": 1786170195,
+        "narHash": "sha256-hrpS5/Xpsf8yt8N6uFj0GbN7nDADHU+DT7wBy2DSphs=",
         "owner": "Sobte",
         "repo": "hosts-secrets",
-        "rev": "16b6459d6ac9ccfdf76f2b6b737a2d9dca5eadda",
+        "rev": "dd6468da1f50079b29c6226b708e2ff2f9f529e7",
         "type": "github"
       },
       "original": {
