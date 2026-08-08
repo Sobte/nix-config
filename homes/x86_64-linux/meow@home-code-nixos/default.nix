@@ -12,7 +12,7 @@
       dev-kit = {
         jujutsu.enable = true;
         git = {
-          inherit (inputs.hosts-secrets.lib.keys.computed.${host}.settings.git) includeNames;
+          inherit (inputs.hosts-secrets.lib.settings.git.hosts.${host}) includes;
         };
       };
       tool = {
@@ -63,6 +63,7 @@
   # home block
   ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
+    user.calendar.enable = true;
   };
 
   home.pointerCursor = {

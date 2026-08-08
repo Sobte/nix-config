@@ -91,6 +91,7 @@
   # home block
   ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
+    user.calendar.enable = true;
   };
 
   home.pointerCursor = {
