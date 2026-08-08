@@ -1,6 +1,11 @@
-{ config, catteryNs, ... }:
+{
+  config,
+  inputs,
+  catteryNs,
+  ...
+}:
 let
-  domain = "home.web.oop.icu";
+  domain = inputs.hosts-secrets.lib.settings.domains.web;
 in
 {
   ${catteryNs} = {

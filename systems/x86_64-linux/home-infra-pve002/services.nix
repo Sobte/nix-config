@@ -8,7 +8,7 @@
   ...
 }:
 let
-  domain = "pve002.home.host.oop.icu";
+  domain = inputs.hosts-secrets.lib.settings.domains.pve002;
 in
 {
   ${catteryNs} = {

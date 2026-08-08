@@ -2,6 +2,7 @@
   pkgs,
   lib,
   purr,
+  inputs,
   catteryNs,
   ...
 }:
@@ -72,7 +73,7 @@ in
     };
     hydra = {
       enable = true;
-      hydraURL = "https://home.hydra.oop.icu";
+      hydraURL = "https://${inputs.hosts-secrets.lib.settings.domains.hydra}";
       notificationSender = "hydra@example.com";
       useSubstitutes = true;
       minimumDiskFree = 20;

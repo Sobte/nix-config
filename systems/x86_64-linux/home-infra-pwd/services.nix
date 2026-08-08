@@ -1,6 +1,11 @@
-{ pkgs, catteryNs, ... }:
+{
+  pkgs,
+  inputs,
+  catteryNs,
+  ...
+}:
 let
-  domain = "home.pwd.oop.icu";
+  domain = inputs.hosts-secrets.lib.settings.domains.pwd;
 in
 {
   ${catteryNs} = {

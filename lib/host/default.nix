@@ -33,7 +33,7 @@
   samba.client = {
     # home nas config
     home-nas = {
-      hostUrl = "home.nas.oop.icu";
+      hostUrl = inputs.hosts-secrets.lib.settings.domains.nas;
       binds = {
         "home-resources" = { };
         "home-shared" = { };
