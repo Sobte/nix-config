@@ -69,7 +69,7 @@
     };
 
     proxmox-nixos = {
-      url = "github:codgician/proxmox-nixos/nixos-26.05";
+      url = "github:Sobte/proxmox-nixos/fix/crypt-openssl-rsa-0.41";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 

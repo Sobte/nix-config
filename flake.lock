@@ -998,11 +998,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1786201459,
-        "narHash": "sha256-CiOTEjmwAmG2AWnaIno9YaCJJmpca2FXPhMAsnrolCg=",
+        "lastModified": 1786313170,
+        "narHash": "sha256-9BG7OgUWdu0ONDO5X2q6+K4bsuBITkX/3W4nNJu1Ito=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8b8c811c7c2541c30382c5de7ed26be055569c60",
+        "rev": "fcb8fcd6bf2d0adecae5bd491afaaaf8311b758d",
         "type": "github"
       },
       "original": {
@@ -1070,16 +1070,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1786275136,
-        "narHash": "sha256-M0CpYcUzI06C+S/UTotIMUu3Q9BBvRNjiY2S7aFoj7A=",
-        "owner": "codgician",
+        "lastModified": 1786355809,
+        "narHash": "sha256-PufqPyXOIBJP7YXnkW/Al23Lq/NpAh8bJVBhzwN0Nt4=",
+        "owner": "Sobte",
         "repo": "proxmox-nixos",
-        "rev": "a018a90d7ea72bf7d4b4fd7a2768dc6e1df1dd8a",
+        "rev": "140fde9defa55da0f0e2ca48ac32c5cfda725245",
         "type": "github"
       },
       "original": {
-        "owner": "codgician",
-        "ref": "nixos-26.05",
+        "owner": "Sobte",
+        "ref": "fix/crypt-openssl-rsa-0.41",
         "repo": "proxmox-nixos",
         "type": "github"
       }
