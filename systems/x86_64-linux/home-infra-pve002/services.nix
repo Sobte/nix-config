@@ -7,9 +7,6 @@
   catteryNs,
   ...
 }:
-let
-  domain = inputs.hosts-secrets.lib.settings.domains.pve002;
-in
 {
   ${catteryNs} = {
     system = {
@@ -20,10 +17,6 @@ in
       };
     };
     services = {
-      acme = {
-        useRoot = true;
-        certs.${domain} = { };
-      };
       wg-quick.configNames = [ "wg-come-home" ];
     };
   };
