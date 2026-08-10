@@ -50,7 +50,11 @@ in
   # pve zfs (optional)
   networking.hostId = "40f55cd5"; # head -c 8 /etc/machine-id
   boot.supportedFilesystems = [ "zfs" ];
-  environment.systemPackages = [ pkgs.zfs ];
+  environment.systemPackages = with pkgs; [
+    zfs
+    # nfs
+    nfs-utils
+  ];
 
   # systemd network
   networking.useNetworkd = true;
