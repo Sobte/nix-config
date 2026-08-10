@@ -47,6 +47,11 @@ in
     };
   };
 
+  # local-send
+  programs.localsend = {
+    enable = true;
+  };
+
   # krdp ports
   networking.firewall =
     let
