@@ -87,6 +87,8 @@ in
     };
   };
 
+  nix.buildMachines = inputs.hosts-secrets.lib.settings.buildMachines;
+
   systemd = {
     services.sync-pve-images = {
       description = "Reflink ISO images from home-resources into PVE image storage";
