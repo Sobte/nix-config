@@ -49,6 +49,11 @@
       targetHost = "home-infra-web";
     };
   };
+  home-infra-pve001 = {
+    deployment = {
+      targetHost = "home-infra-pve001";
+    };
+  };
   home-infra-pve002 = {
     deployment = {
       targetHost = "home-infra-pve002";
