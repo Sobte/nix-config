@@ -83,11 +83,12 @@ in
       };
       extraConfig = ''
         allow_import_from_derivation = true
+        max_output_size = 17179869184
       '';
     };
   };
 
-  nix.buildMachines = inputs.hosts-secrets.lib.settings.buildMachines;
+  nix.buildMachines = inputs.hosts-secrets.lib.builders.mkBuildMachines pkgs;
 
   systemd = {
     services.sync-pve-images = {
