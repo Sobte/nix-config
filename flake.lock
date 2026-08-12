@@ -1070,11 +1070,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1786373922,
-        "narHash": "sha256-UM7JE43Vjq2VuIoJjhfJ32EZ8A4K3W8aSKvg8gpw0/A=",
+        "lastModified": 1786514712,
+        "narHash": "sha256-nGIZm2TJoOHIdo2txSHzrMnN7nTEW+ui278Phs7XAk0=",
         "owner": "Sobte",
         "repo": "proxmox-nixos",
-        "rev": "f5a14098d22fabbea2a8a4f90aa20c0c440bcc6a",
+        "rev": "89c2fe088801e11f40f3ed317bc45a215aa5f980",
         "type": "github"
       },
       "original": {
