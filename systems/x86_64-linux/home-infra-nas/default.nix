@@ -1,10 +1,13 @@
-{ catteryNs, ... }:
+{ catteryNs, namespace, ... }:
 {
   imports = [
     ./hardware.nix
     ./services.nix
     # ./disk.nix
   ];
+
+  # Machine-name → IP mappings from hosts-secrets settings.
+  ${namespace}.hosts.enable = true;
 
   ${catteryNs} = {
     nix.secrets.enable = true;
