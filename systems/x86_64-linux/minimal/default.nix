@@ -12,7 +12,6 @@ rec {
       initialHashedPassword = "";
     };
     system.boot.kernel = {
-      enable = true;
       useLatestZfsCompatible = true;
     };
     room.general.enable = true;

@@ -11,7 +11,6 @@
     system = {
       network.enable = false;
       boot.kernel = {
-        enable = true;
         useLatestZfsCompatible = true;
       };
     };

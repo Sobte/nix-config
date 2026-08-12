@@ -14,7 +14,6 @@ rec {
     # plasma6
     desktop.plasma.enable = true;
     system.boot.kernel = {
-      enable = true;
       useLatestZfsCompatible = true;
     };
     room.desktop.general.enable = true;

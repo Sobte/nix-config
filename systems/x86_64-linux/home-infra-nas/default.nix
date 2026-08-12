@@ -20,7 +20,6 @@
       boot = {
         efi.enable = true;
         kernel = {
-          enable = true;
           useLatestZfsCompatible = true;
         };
       };
