@@ -1,6 +1,8 @@
 {
   namespace,
   lib,
+  inputs,
+  host,
   catteryNs,
   ...
 }:
@@ -27,7 +29,7 @@ in
       };
     };
     services = {
-      wg-quick.configNames = [ "wg-come-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
       openssh.settings = {
         StreamLocalBindUnlink = true;
       };
@@ -38,5 +40,4 @@ in
     Defaults env_reset, timestamp_timeout=60
   '';
 
-  system.stateVersion = "26.11";
 }

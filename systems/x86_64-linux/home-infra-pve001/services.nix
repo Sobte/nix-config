@@ -3,6 +3,8 @@
   lib,
   system,
   inputs,
+  host,
+  namespace,
   catteryNs,
   ...
 }:
@@ -15,7 +17,7 @@
       };
     };
     services = {
-      wg-quick.configNames = [ "wg-come-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     };
   };
 
@@ -35,11 +37,11 @@
   # pve
   services.proxmox-ve = {
     enable = true;
-    ipAddress = "10.0.10.240";
+    ipAddress = inputs.hosts-secrets.lib.keys.computed.${host}.endpoint.hostName;
   };
 
   # pve zfs (optional)
-  networking.hostId = "40f55cd5"; # head -c 8 /etc/machine-id
+  networking.hostId = "fc37a9f8"; # head -c 8 /etc/machine-id
   boot.supportedFilesystems = [ "zfs" ];
   environment.systemPackages = with pkgs; [
     zfs
@@ -86,15 +88,8 @@
   };
 
   # ports
-  networking.firewall =
-    let
-      ports = [
-        80
-        443
-      ];
-    in
-    {
-      allowedTCPPorts = ports;
-      allowedUDPPorts = ports;
-    };
+  ${namespace}.firewall.ports = [
+    80
+    443
+  ];
 }

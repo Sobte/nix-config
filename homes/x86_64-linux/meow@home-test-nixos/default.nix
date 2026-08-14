@@ -1,4 +1,9 @@
-{ inputs, catteryNs, ... }:
+{
+  namespace,
+  lib,
+  catteryNs,
+  ...
+}:
 {
   ${catteryNs} = {
     room.desktop.general = {
@@ -9,7 +14,7 @@
         charm-cat = {
           enable = true;
           wallpaper.settings = {
-            wallpaperDir = "${inputs.wallpapers}/wide";
+            wallpaperDir = lib.${namespace}.host.wallpaper.dir;
             transition = {
               type = "grow";
               step = 90;

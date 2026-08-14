@@ -285,4 +285,8 @@
   pi = {
     settings = builtins.fromJSON (builtins.readFile ./config/pi.json);
   };
+  # wallpaper dir (`cattery.desktop.hyprland.theme.*`)
+  wallpaper = {
+    dir = "${inputs.wallpapers}/wide";
+  };
 }

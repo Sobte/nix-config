@@ -16,6 +16,4 @@
       linuxPackages = final.linuxPackages_latest;
     })
   ];
-
-  system.stateVersion = "26.11";
 }

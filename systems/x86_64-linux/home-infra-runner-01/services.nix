@@ -1,4 +1,9 @@
-{ pkgs, catteryNs, ... }:
+{
+  pkgs,
+  inputs,
+  catteryNs,
+  ...
+}:
 {
   ${catteryNs} = {
     services = {
@@ -6,7 +11,7 @@
       gitea-actions-runner = {
         enable = true;
         package = pkgs.forgejo-runner;
-        url = "https://git.sobte.dev/";
+        url = "https://${inputs.hosts-secrets.lib.settings.domains.git}/";
       };
     };
   };

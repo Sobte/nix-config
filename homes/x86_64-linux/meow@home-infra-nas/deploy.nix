@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -9,13 +10,7 @@ let
   pollInterval = 60;
 
   # Machines to auto-deploy after a successful Hydra build. Empty = no auto deploy.
-  autoDeploy = [
-    "home-infra-dns"
-    "home-infra-knob"
-    "home-infra-relay"
-    "home-infra-runner-01"
-    "home-infra-web"
-  ];
+  autoDeploy = inputs.hosts-secrets.lib.settings.deploy.autoDeploy;
   autoDeployList = builtins.concatStringsSep " " autoDeploy;
 
   deployFn = ''

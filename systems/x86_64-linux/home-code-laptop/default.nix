@@ -1,5 +1,6 @@
 {
   inputs,
+  host,
   namespace,
   lib,
   catteryNs,
@@ -55,7 +56,7 @@ in
       };
     };
     services = {
-      wg-quick.configNames = [ "wg-go-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
       tailscale.enable = true;
       openssh.settings = {
         StreamLocalBindUnlink = true;
@@ -73,18 +74,10 @@ in
   hardware.enableAllFirmware = true;
 
   # krdp ports
-  networking.firewall =
-    let
-      ports = [
-        6630
-        80
-        443
-      ];
-    in
-    {
-      allowedUDPPorts = ports;
-      allowedTCPPorts = ports;
-    };
+  ${namespace}.firewall.ports = [
+    6630
+    80
+    443
+  ];
 
-  system.stateVersion = "26.11";
 }

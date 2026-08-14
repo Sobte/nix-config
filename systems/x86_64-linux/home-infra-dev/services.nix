@@ -1,11 +1,21 @@
-{ pkgs, catteryNs, ... }:
+{
+  pkgs,
+  inputs,
+  host,
+  namespace,
+  catteryNs,
+  ...
+}:
+let
+  inherit (inputs.hosts-secrets.lib.settings) cloudflared;
+in
 {
   ${catteryNs} = {
     services = {
       # Do not add ensureDatabases yet because gitea will add it.
       postgresql = {
         enable = true;
-        package = pkgs.postgresql_17;
+        package = pkgs.postgresql_19;
         ensureDatabases = [ "forgejo" ];
         ensureUsers = [
           {
@@ -22,29 +32,20 @@
       cloudflared = {
         enable = true;
         tunnels = {
-          "466fcedf-48d6-4066-89e4-069b29d27cd8" = {
+          ${cloudflared.tunnelId} = {
             default = "http_status:404";
-            ingress = {
-              "git.sobte.dev" = "http://localhost:3000";
-            };
+            inherit (cloudflared) ingress;
           };
         };
       };
-      wg-quick.configNames = [ "wg-come-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     };
   };
 
   # ports
-  networking.firewall =
-    let
-      ports = [
-        80
-        443
-        45235
-      ];
-    in
-    {
-      allowedTCPPorts = ports;
-      allowedUDPPorts = ports;
-    };
+  ${namespace}.firewall.ports = [
+    80
+    443
+    45235
+  ];
 }

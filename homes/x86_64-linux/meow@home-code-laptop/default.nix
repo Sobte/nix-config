@@ -2,6 +2,7 @@
   inputs,
   system,
   namespace,
+  lib,
   catteryNs,
   ...
 }:
@@ -51,7 +52,7 @@
           background = {
             wallpaperEnabled = true;
           };
-          paths.wallpaperDir = "${inputs.wallpapers}/wide";
+          paths.wallpaperDir = lib.${namespace}.host.wallpaper.dir;
           general.idle = {
             lockBeforeSleep = true;
             inhibitWhenAudio = true;

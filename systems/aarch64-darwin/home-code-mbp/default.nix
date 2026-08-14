@@ -1,4 +1,9 @@
-{ catteryNs, ... }:
+{
+  inputs,
+  host,
+  catteryNs,
+  ...
+}:
 {
   imports = [ ./system.nix ];
 
@@ -8,7 +13,7 @@
     services = {
       wg-quick = {
         enable = true;
-        configNames = [ "wg-go-home" ];
+        configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
       };
       openssh.extraConfig = ''
         StreamLocalBindUnlink yes

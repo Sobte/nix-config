@@ -1,24 +1,23 @@
-{ catteryNs, ... }:
+{
+  inputs,
+  host,
+  namespace,
+  catteryNs,
+  ...
+}:
 {
   imports = [ ./hardware.nix ];
 
+  ${namespace} = {
+    containerLxc.enable = true;
+    # ports
+    firewall.ports = [ 58755 ];
+  };
+
   ${catteryNs} = {
-    user.name = "root"; # use root as default user
-    room.container.enable = true;
-    system.proxmox.lxc.enable = true;
-    services.wg-quick.configNames = [ "wg-come-home" ];
+    services.wg-quick.configNames =
+      inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     system.boot.kernel.useIpForward = true;
   };
 
-  # ports
-  networking.firewall =
-    let
-      ports = [ 58755 ];
-    in
-    {
-      allowedTCPPorts = ports;
-      allowedUDPPorts = ports;
-    };
-
-  system.stateVersion = "26.11";
 }

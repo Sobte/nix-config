@@ -3,6 +3,8 @@
   lib,
   purr,
   inputs,
+  host,
+  namespace,
   catteryNs,
   ...
 }:
@@ -21,7 +23,7 @@ in
 {
   ${catteryNs}.services = {
     docker.enable = true;
-    wg-quick.configNames = [ "wg-come-home" ];
+    wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     vscode-server.enable = true;
     target.useWizard = true;
     samba.useWizard = true;
@@ -74,7 +76,7 @@ in
     hydra = {
       enable = true;
       hydraURL = "https://${inputs.hosts-secrets.lib.settings.domains.hydra}";
-      notificationSender = "hydra@example.com";
+      notificationSender = lib.${namespace}.host.email.address;
       useSubstitutes = true;
       minimumDiskFree = 20;
       minimumDiskFreeEvaluator = 10;
@@ -225,8 +227,8 @@ in
     Storage=persistent
   '';
 
-  networking.firewall = {
-    allowedTCPPorts = [
+  ${namespace}.firewall = {
+    ports = [
       80
       443
     ];

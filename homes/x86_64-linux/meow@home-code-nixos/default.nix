@@ -24,7 +24,7 @@
         tea = {
           enable = true;
           gitCredentialHelper.hosts = [
-            "https://git.sobte.dev"
+            "https://${inputs.hosts-secrets.lib.settings.domains.git}"
           ];
         };
       };

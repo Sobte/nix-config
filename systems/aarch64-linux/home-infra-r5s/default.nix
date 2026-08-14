@@ -1,4 +1,9 @@
-{ inputs, catteryNs, ... }:
+{
+  inputs,
+  host,
+  catteryNs,
+  ...
+}:
 {
   imports = with inputs; [
     nixos-hardware.nixosModules.friendlyarm-nanopi-r5s
@@ -8,8 +13,8 @@
     user.name = "root"; # use root as default user
     room.server.enable = true;
     system.boot.efi.enable = false;
-    services.wg-quick.configNames = [ "wg-come-home" ];
+    services.wg-quick.configNames =
+      inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
   };
 
-  system.stateVersion = "26.11";
 }

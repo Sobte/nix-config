@@ -1,4 +1,10 @@
-{ inputs, catteryNs, ... }:
+{
+  inputs,
+  host,
+  namespace,
+  catteryNs,
+  ...
+}:
 let
   domain = inputs.hosts-secrets.lib.settings.domains.dns;
 in
@@ -16,20 +22,13 @@ in
         enable = true;
         secrets.configNames = [ "${domain}.conf" ];
       };
-      wg-quick.configNames = [ "wg-come-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     };
   };
 
-  networking.firewall =
-    let
-      ports = [
-        80
-        443
-        53
-      ];
-    in
-    {
-      allowedTCPPorts = ports;
-      allowedUDPPorts = ports;
-    };
+  ${namespace}.firewall.ports = [
+    80
+    443
+    53
+  ];
 }

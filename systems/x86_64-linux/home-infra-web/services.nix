@@ -1,6 +1,8 @@
 {
   config,
   inputs,
+  host,
+  namespace,
   catteryNs,
   ...
 }:
@@ -28,7 +30,7 @@ in
         hub.enable = true;
         agent.enable = false;
       };
-      wg-quick.configNames = [ "wg-come-home" ];
+      wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
     };
   };
 
@@ -57,15 +59,8 @@ in
   };
 
   # ports
-  networking.firewall =
-    let
-      ports = [
-        80
-        443
-      ];
-    in
-    {
-      allowedTCPPorts = ports;
-      allowedUDPPorts = ports;
-    };
+  ${namespace}.firewall.ports = [
+    80
+    443
+  ];
 }
