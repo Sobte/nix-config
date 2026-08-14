@@ -281,4 +281,8 @@
       };
     };
   };
+  # pi coding agent (`cattery.cli-apps.tool.pi`)
+  pi = {
+    settings = builtins.fromJSON (builtins.readFile ./config/pi.json);
+  };
 }

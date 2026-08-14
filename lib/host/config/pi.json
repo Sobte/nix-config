@@ -1,0 +1,36 @@
+{
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
+  "theme": "dark",
+  "quietStartup": true,
+  "externalEditor": "code --wait",
+  "defaultTools": [
+    "bash",
+    "edit",
+    "write"
+  ],
+  "sessionDir": ".pi/sessions",
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3
+  },
+  "enabledModels": [
+    "deepseek-*"
+  ],
+  "terminal": {
+    "showImages": true,
+    "imageWidthCells": 60
+  },
+  "markdown": {
+    "mermaid": "streaming"
+  },
+  "warnings": {
+    "anthropicExtraUsage": true
+  }
+}

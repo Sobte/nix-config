@@ -19,6 +19,7 @@
         installer.enable = true;
         claude-code.enable = true;
         opencode.enable = true;
+        pi.enable = true;
         ventoy.enable = true;
         tea = {
           enable = true;
