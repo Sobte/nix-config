@@ -9,6 +9,11 @@
       targetHost = "home-infra-dns";
     };
   };
+  home-infra-knoa = {
+    deployment = {
+      targetHost = "home-infra-knoa";
+    };
+  };
   home-infra-knob = {
     deployment = {
       targetHost = "home-infra-knob";
