@@ -4,6 +4,7 @@
   catteryNs,
   inputs,
   host,
+  pkgs,
   ...
 }:
 let
@@ -39,6 +40,7 @@ in
         enable = true;
         inherit client;
       };
+      fonts.extraPackages = [ pkgs.windows11-fonts ];
     };
     services = {
       wg-quick.configNames = inputs.hosts-secrets.lib.settings.wireguard.configNames.${host} or [ ];
