@@ -223,9 +223,7 @@ in
   };
 
   # Persist deploy/watchdog logs across reboots (impermanence keeps /var/log).
-  services.journald.extraConfig = ''
-    Storage=persistent
-  '';
+  services.journald.settings.Journal.Storage = "persistent";
 
   ${namespace}.firewall = {
     ports = [
