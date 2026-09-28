@@ -138,7 +138,7 @@
                 "applications:org.kde.dolphin.desktop"
                 "applications:foot.desktop"
                 "applications:vesktop.desktop"
-                "applications:obsidian.desktop"
+                "applications:md.obsidian.Obsidian.desktop"
                 "applications:org.remmina.Remmina.desktop"
                 "applications:winbox.desktop"
               ];
