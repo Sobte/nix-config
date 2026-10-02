@@ -20,6 +20,8 @@
         claude-code.enable = true;
         opencode.enable = true;
         pi.enable = true;
+        lark-cli.enable = true;
+        feishu-cli.enable = true;
         ventoy.enable = true;
         tea = {
           enable = true;
