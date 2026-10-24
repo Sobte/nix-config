@@ -231,6 +231,7 @@
       starship.enable = false;
       vscode.profiles.default.enable = false;
       zed.enable = false;
+      opencode.enable = false;
     };
   };
   # zed-editor
