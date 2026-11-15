@@ -67,6 +67,7 @@
   # home block
   ${namespace} = {
     cli-apps.ssh.homeBlock.enable = true;
+    apps.lark.enable = true;
     user.calendar.enable = true;
   };
 
