@@ -11,7 +11,10 @@ let
   inherit (lib.${namespace}.host.samba) client;
 in
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./split-dns.nix
+  ];
 
   ${catteryNs} = {
     nix.secrets.enable = true;
