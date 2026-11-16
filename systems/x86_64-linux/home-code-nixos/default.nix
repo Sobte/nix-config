@@ -9,6 +9,7 @@
 }:
 let
   inherit (lib.${namespace}.host.samba) client;
+  hydra = inputs.hosts-secrets.lib.settings.hydra;
 in
 {
   imports = [
@@ -51,6 +52,11 @@ in
       openssh.settings = {
         StreamLocalBindUnlink = true;
       };
+      hydra-builder = {
+        enable = true;
+        queueRunnerAddr = "http://${hydra.queueRunner.address}:${toString hydra.queueRunner.port}";
+        settings = hydra.builders.home-code-nixos;
+      };
     };
   };
 
@@ -59,11 +65,13 @@ in
     enable = true;
   };
 
-  # krdp ports
-  ${namespace}.firewall.ports = [
-    6630
-    80
-    443
-  ];
+  ${namespace} = {
+    # krdp ports
+    firewall.ports = [
+      6630
+      80
+      443
+    ];
+  };
 
 }

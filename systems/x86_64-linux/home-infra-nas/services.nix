@@ -9,6 +9,8 @@
   ...
 }:
 let
+  hydra = inputs.hosts-secrets.lib.settings.hydra;
+
   # Image jobs as exposed by this flake's `images` output: one per
   # host/format pair from self's host registry, so stale jobs (e.g. removed
   # hosts or renamed formats still present in Hydra's history) are ignored.
@@ -80,6 +82,12 @@ in
       useSubstitutes = true;
       minimumDiskFree = 20;
       minimumDiskFreeEvaluator = 10;
+      queueRunner = {
+        # Upstream defaults to [::1] (loopback only); remote hydra-builder
+        # agents need a listener on all interfaces. TCP 50051 is opened in
+        # the firewall below; it is not forwarded to the internet.
+        grpc.address = "[::]";
+      };
       extraOptions = {
         maxServers = 8;
       };
@@ -88,9 +96,12 @@ in
         max_output_size = 17179869184
       '';
     };
+    hydra-builder = {
+      enable = true;
+      queueRunnerAddr = "http://127.0.0.1:${toString hydra.queueRunner.port}";
+      settings = hydra.builders.home-infra-nas;
+    };
   };
-
-  nix.buildMachines = inputs.hosts-secrets.lib.builders.mkBuildMachines pkgs;
 
   systemd = {
     services.sync-pve-images = {
@@ -225,14 +236,18 @@ in
   # Persist deploy/watchdog logs across reboots (impermanence keeps /var/log).
   services.journald.settings.Journal.Storage = "persistent";
 
-  ${namespace}.firewall = {
-    ports = [
-      80
-      443
-    ];
-    extraCommands = ''
-      iptables -I nixos-fw 1 -i br-+ -p tcp --dport 3000 -j ACCEPT
-      iptables -I nixos-fw 1 -i docker0 -p tcp --dport 3000 -j ACCEPT
-    '';
+  ${namespace} = {
+    firewall = {
+      ports = [
+        80
+        443
+      ];
+      # Hydra queue-runner gRPC for remote hydra-builder agents.
+      tcpPorts = [ 50051 ];
+      extraCommands = ''
+        iptables -I nixos-fw 1 -i br-+ -p tcp --dport 3000 -j ACCEPT
+        iptables -I nixos-fw 1 -i docker0 -p tcp --dport 3000 -j ACCEPT
+      '';
+    };
   };
 }

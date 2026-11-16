@@ -57,7 +57,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     homepage = "https://learn.microsoft.com/typography/";
     license = lib.licenses.unfree;
     platforms = lib.platforms.all;
-    maintainers = with lib.maintainers; [ sobte ];
 
     # Set a non-zero priority to allow easy overriding of the
     # fontconfig configuration files.
