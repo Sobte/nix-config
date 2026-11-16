@@ -653,11 +653,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794827576,
-        "narHash": "sha256-RynVKOGEArqiwvASZylfHsIA5vYZvMMgRy7qDlvqTcY=",
+        "lastModified": 1794838639,
+        "narHash": "sha256-sIpenej8DC6TKtDUa54kX2kmKZXvtar4JYKvN5MV4hA=",
         "owner": "Sobte",
         "repo": "hosts-secrets",
-        "rev": "73c9c644675aa5a91efc76c61fe34b3eb7cec4f7",
+        "rev": "7c86efffe31cef9dac8f0dd42d630f4651dd157d",
         "type": "github"
       },
       "original": {
