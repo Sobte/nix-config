@@ -10,11 +10,11 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "windows11-fonts";
-  version = "10.0.26200.6584-1";
+  version = "10.0.26300.9457-1";
 
   src = fetchurl {
-    url = "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/26200.6584.250915-1905.25h2_ge_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso";
-    hash = "sha256-phreq4le9aTbQ24KcBHJKi/xe7A1f1ixO7xAYuU157k=";
+    url = "https://software-static.download.prss.microsoft.com/dbazure/26300.9457.260913-1737.26h2_ge_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso";
+    hash = "sha256-vD8kCG663JRIkGa1rXgIniz1w0kekOeQu4GisZnBDjg=";
     # Don't ever cache this
     meta.license = lib.licenses.unfree;
   };
