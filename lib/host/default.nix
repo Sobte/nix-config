@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   # default vars
-  timeZone = "Asia/Shanghai";
+  timeZone = "America/Los_Angeles";
   defaultLocale = "en_US.UTF-8";
   defaultUserShell = "fish";
   injectHomeUser = false;
